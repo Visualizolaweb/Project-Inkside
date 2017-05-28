@@ -1,0 +1,382 @@
+@import "colorsInkside.css";
+@import "forms.css";
+
+a:visited, a:active, a:link{
+  color: inherit;}
+
+.brand-logo{
+  max-width: 170px;
+  margin-top: 5px;}
+
+nav i{
+  height: initial;}
+
+#menuinkside,#menuPoet {
+  top:   64px  !important;
+  width: 180px !important;
+  margin-left: 0px;
+  background-color: #FFF;
+}
+
+
+.btn-icon{
+  padding-left: 40px;
+  padding-right: 10px;
+}
+
+.btn-icon i{
+  position: absolute;
+  left: 0;
+  width: 30px;
+}
+
+
+
+#mobile-menu{
+  font-family: "Roboto Thin";
+  text-align: center;
+  padding-bottom: 90px;
+}
+
+#mobile-menu a{
+  font-family: "Roboto Condensed";
+  font-size: 17px;
+  color: #f2f9fd;
+}
+
+.profile-mobile{
+  padding: 0;
+  height: 100px;
+  margin-top: 20px;
+}
+
+.profile-mobile img{
+  width:  100%;
+  height: 100%;
+}
+
+#menu-dashboard-mobile li a{
+    line-height: 37px;
+    height: 36px;
+    text-align: left;
+    color: #263238;
+}
+
+.data-poet img{
+  width: 35px;
+  margin-right: 10px;
+  position: relative;
+  top:10px;
+}
+
+#pag_login{
+  background-color: #f5f7fa;
+}
+
+.border-1{
+  border: 1px solid #e5e8e9;
+}
+
+#pag_login a.signup{
+  color: #59ace2;
+}
+
+#pag_login a.signup:hover{
+  color: #0968a5;
+  text-decoration: underline;
+}
+
+#pag_login h6{
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+a i.fa{
+  margin-right: 15px;
+}
+
+#wrap-login{
+  margin-bottom: 20px;
+}
+
+#sec_comunity ul{
+  display: inline-block;
+}
+#sec_comunity ul li{
+  float: left;
+  width: 80px;
+  margin: 0 10px;
+}
+
+#sec_comunity ul li img{
+  width: 100%;}
+
+.material-tooltip {
+    padding: 10px;
+    border-radius: 5px;
+    background: #108497;
+    overflow: visible;
+}
+
+.material-tooltip .backdrop {
+    display: none !important;
+}
+
+.material-tooltip:after {
+    position: absolute;
+    content: " ";
+    top: 100%;
+    left: 50%;
+    margin-left: -8px;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 15px 10px 0 10px;
+    border-color: #108497 transparent transparent transparent;
+}
+
+footer{
+  position: absolute;
+  width: 100%;
+  padding: 20px 0;
+}
+
+footer h5{
+  font-size: 19px;
+}
+
+footer ul{
+  margin-left: 20px;
+}
+
+footer #redes a div{
+  padding: 10px;
+  background-color: #afaca8;
+  border-radius: 300px;
+  text-align: center;
+  width: 35px;
+  display: inline-flex;
+  margin-left: 5px;
+  color: #fff;
+}
+
+footer #redes a i.fa{
+  margin: 0;
+}
+
+footer #redes p{
+  display: inline-block;
+  clear: both;
+}
+
+footer #redes a + div{
+  clear: both;
+  padding-top: 10px;
+}
+
+.slider .caption{
+  width: 70%;
+}
+
+.slider h3{
+  margin-bottom: 0 !important;
+}
+
+.slider h5{
+  margin-top: 0 !important;
+}
+
+.form-register{
+  z-index: 4;
+  position: relative;
+  width: 100%;
+}
+
+.form-register section{
+  max-width: 300px;
+  position: absolute;
+  right: 0;
+  text-align: left;
+}
+
+.form-register section h2{
+  color: white;
+  font-family: "Roboto Condensed";
+  font-size: 42px;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.form-register section h3{
+  margin: 0;
+  margin: 0;
+  font-size: 19px;
+  color: white;}
+
+.form-register section .input-field{
+  margin-top: 0 !important;}
+
+.form-register section span.terms{
+  font-size: 10px;
+  line-height: 0.3 !important;
+  color: #fff;
+  margin-bottom: 10px;}
+
+.form-register section span.terms b{
+  color: #0BB4AC}
+
+.form-register section button{
+  margin-top: 12px;
+  width: 100%;}
+
+
+@media (max-width: 600px){
+  .background-mobile{
+    width: 100%;
+    height: 450px;
+    background-image: url("../images/slider/sliderMobile.jpg");
+  }
+
+  .form-register section{
+    max-width: none;
+  }
+}
+
+@media (max-width: 1125px){
+  .slides .caption h3, .slides .caption h5 {
+    width: 340px;
+  }
+}
+
+
+/* SECCION PUBLICACIONES */
+.sec-publicaciones{
+  padding: 30px 0;
+}
+
+.sec-publicaciones h1, #sec_comunity h3{
+  font-family: "Roboto Condensed";
+  font-size: 40px;
+  color: #2b3942;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+#sec_comunity p{
+  margin-top: 0;
+}
+
+.sec-publicaciones h6{
+  margin-top: 0;
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+  .sec-publicaciones .panel{
+    margin-bottom: 15px;
+  }
+
+.sec-publicaciones .panel div{
+  padding: 20px 20px 5px 20px;
+}
+
+.sec-publicaciones .panel h2{
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 0;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.sec-publicaciones .panel article{
+  border-top: 1px solid #cccccc;
+  margin-top: 10px;
+  font-size: 13px;
+  text-align: justify;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 10px;
+}
+
+.sec-publicaciones .panel article .more{
+  text-align: right;
+  padding: 0;
+}
+
+.bypoeta{
+  padding: 10px 0 0 0 !important;
+}
+
+.bypoeta img{
+  width: 50px;
+  display: inline-block;
+}
+
+.bypoeta h3{
+  font-size: 16px;
+  font-family: "Roboto Condensed";
+  float: right;
+  margin-top: 16px;
+}
+
+.sec-wrap-news{
+  padding: 20px;
+}
+
+.sec-wrap-news h2{
+  font-size: 32px;
+  font-family: "Roboto Condensed";
+  margin: 0;
+  text-align: center;}
+
+.sec-wrap-news p{
+  margin-top: 0;
+  text-align: center;
+}
+
+.sec-wrap-news article{
+  position: relative;
+}
+
+.sec-wrap-news div.title{
+  position: absolute;
+  top: 10px;
+  width: 100px;
+  padding: 5px;
+  text-align: center;
+}
+.sec-wrap-news div.content{
+  margin-top: -5px;
+  color: #607d8b;
+  padding: 10px;
+  height: 200px;
+}
+
+.sec-wrap-news div.content h4{
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-family: "Roboto Condensed";
+  font-size: 25px;
+  text-align: center;
+}
+
+.sec-wrap-news div.content p{
+  font-size: 13px;
+  text-align: center;
+}
+
+.sec-wrap-news div.content div.detail{
+  background-color: #607d8b;
+  color: white;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 5px;
+  display: inline-block;
+}
+
+.fechaPublicacion{
+  border-bottom: 1px solid #eeeeee;
+}

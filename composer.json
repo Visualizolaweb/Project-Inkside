@@ -1,0 +1,25 @@
+{
+    "name": "visualizolaweb/inkside",
+    "description": "Actualización de la red social para poetas Inkside poesia, integrando nueva interfaz y nueva estructura.",
+    "keywords": ["poemas", "comunidad", "red social"],
+    "homepage": "https://inksidepoesia.com/",
+    "authors": [
+        {
+            "name": "Guillermo Valencia",
+            "email": "guivalen@gmail.com",
+            "homepage": "http://www.visualizolaweb.com"
+        },
+        {
+            "name": "Oscar Ramos",
+            "homepage": "http://www.visualizolaweb.com"
+        },
+        {
+            "name": "Claudia Giraldo",
+            "homepage": "http://www.visualizolaweb.com"
+        }
+    ],
+    "require": {
+      "hybridauth/hybridauth": "3.0.x-dev",
+      "phpmailer/phpmailer": "~5.2"
+    }
+}

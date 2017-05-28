@@ -1,0 +1,54 @@
+body{
+  background-color: #FEFEFE;
+  color: #3D464D;}
+
+footer{
+  background-color: #F0F0DD;
+  color: #807060;}
+
+.primary-default{
+  background-color: #0A6D78;}
+
+.primary-default .active-drop{
+  background-color: #208D8F;}
+
+.secundary-default{
+  background-color: #F0F0DD;
+  color: #3D464D;}
+
+.icon-button{
+  background-color: #208D8F;}
+
+.primary-button{
+  background-color: #0BB4AC;}
+
+.icon-button-2{
+  background-color: #FAA931;}
+
+.secundary-button{
+  background-color: #FEC22C;}
+
+.cancel-button{
+  background-color: #727376;}
+
+.primary-default, .primary-hover, .icon-button, .primary-button, .secundary-button, .cancel-button, .label-event, .label-news, .label-article{
+  color: #FFFFFF;}
+
+article h1, .panel h2{
+  color: #367378;}
+
+a.read-more{
+  color: #0098DA !important;}
+
+.label-event{
+  background-color: #F37835;}
+
+.label-news{
+  background-color: #FAA831;}
+
+.label-article{
+  background-color: #057FB2;}
+
+.panel-author{
+  background-color: #F7F7E2;
+  color: #727376;}
