@@ -47,3 +47,4 @@ RewriteRule ^registro-social$ index.php?c=auth&a=registroSocial
 RewriteRule ^valido-email$   index.php?c=auth&a=validoEmail
 RewriteRule ^iniciar-sesion$   index.php?c=auth&a=inicioSesion
 RewriteRule ^cerrar-sesion$   index.php?c=auth&a=cerrarSesion
+RewriteRule ^actualizar-perfil$   index.php?c=poetas&a=actualizarDatoPoeta

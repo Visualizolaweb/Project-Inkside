@@ -3,7 +3,7 @@
 
   <div class="col m12 " id="wrap-login">
     <h5>Perfil de Poeta</h5>
-    <form class="row" method="post" data-parsley-validate id="perfilPoeta">
+    <form class="row" action="actualizar-perfil " method="post" data-parsley-validate id="perfilPoeta">
       <h6>Ingresa tus datos</h6>
 
       <div class="input-field col s12">
@@ -31,9 +31,14 @@
         <label for="txt_email">Tu dirección de correo electrónico</label>
       </div>
 
-      <div class="input-field col s12">
-        <input id="txt_foto" name="data[5]" type="file" required autocomplete="off" data-parsley-minlength="8">
-        <label for="txt_foto">Tu Foto</label>
+      <div class="file-field input-field col s12">
+        <div class="btn">
+          <span>Tu Foto</span>
+          <input id="txt_foto" name="data[5]" type="file">
+        </div>
+          <div class="file-path-wrapper">
+          <input class="file-path validate" type="text">
+        </div>
       </div>
 
       <div class="input-field col s12">
@@ -42,10 +47,14 @@
       </div>
 
       <div class="input-field col s12">
-        <input type="radio" name="data[7]" id="hombre">
-				<label for="txt_hombre">Hombre</label>
-				<input type="radio" name="data[7]" id="mujer">
-				<label for="txt_mujer">Mujer</label>
+        <p>
+          <input name="data[7]" type="radio" id="txt_hombre" value="Hombre"/>
+          <label for="txt_hombre">Hombre</label>
+        </p>
+        <p>
+          <input name="data[7]" type="radio" id="txt_mujer" value="Mujer"/>
+          <label for="txt_mujer">Mujer</label>
+        </p>
       </div>
 
       <div class="input-field col s12">

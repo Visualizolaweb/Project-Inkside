@@ -90,6 +90,20 @@ $("#txt_clave_confirm").keydown(function(e) {
 ///fecha nacimiento
 
 $('.datepicker').pickadate({
-  selectMonths: true, // Creates a dropdown to control month
-  selectYears: 17 // Creates a dropdown of 15 years to control year
+  selectMonths: true,
+  selectYears: 70,
+  max: 10,
+  format: 'yyyy-mm-dd',
+  labelMonthNext: 'Mes Siguient',
+  labelMonthPrev: 'Mes Anterior',
+  labelMonthSelect: 'Seleccione un Mes',
+  labelYearSelect: 'Seleccione un Año',
+  monthsFull: [ 'Enero', 'Febrerp', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Dieciembre' ],
+  monthsShort: [ 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Oct', 'Nov', 'Dic' ],
+  weekdaysFull: [ 'Domingo', 'Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado' ],
+  weekdaysShort: [ 'Dom', 'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab' ],
+  weekdaysLetter: [ 'D', 'L', 'M', 'M', 'J', 'V', 'S' ],
+  today: 'Hoy',
+  clear: 'Limpiar',
+  close: 'Cerrar'
 });

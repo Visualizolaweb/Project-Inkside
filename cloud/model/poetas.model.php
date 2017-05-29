@@ -24,6 +24,30 @@ class PoetasModel{
     return $result;
   }
 
+  public function actualizarPoeta($data){
+    try{
+      $sql = "UPDATE inkside_poetas
+              SET
+                  poet_nombre = ?,
+                  poet_apellido = ?,
+                  poet_nick = ?,
+                  poet_email = ?,
+                  poet_fecha_nac = ?,
+                  poet_sexo = ?,
+                  poet_celular = ?,
+                  poet_descripcion = ?
+              WHERE poet_codigo = '1020'";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($data[1],$data[2],$data[3],$data[4],$data[6],$data[7],$data[8],$data[9]));
+
+      $result = array(1,"Su cuenta se ha actualizado correctamente");
+    }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
   public function crearPoetaSocial($data){
     try{
       $sp = "CALL registroPoetaSocial(?,?,?,?,?,?,?,?,?,?,?,?,?)";
@@ -60,7 +84,7 @@ class PoetasModel{
       $query = $this->pdo->prepare($sql);
       $query->execute(array($data));
 
-      $result = array(1,"Su cuenta se a activado correctamente");
+      $result = array(1,"Su cuenta se ha activado correctamente");
     }catch(PDOException $e){
       $result = array(0,$e->getMessage(),$e->getCode());
     }
