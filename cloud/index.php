@@ -15,7 +15,7 @@ require_once 'controller/init.controller.php';
 
     call_user_func(array($controller, $action));
   }else{
-
+    
     $controller = "views";
     require_once "controller/$controller.controller.php";
 

@@ -2,27 +2,23 @@
 @import "forms.css";
 
 body{
-   background-color: #edf2f6;}
+   background-color: #edf2f6; }
 
 .fixed-sidebar{
   position: fixed;
   width: 250px;
   z-index: 22;
-  min-height: 1000vh;
-}
+  min-height: 1000vh;}
 
 .fixed-sidebar-left {
     position: absolute;
     height: 100%;
     background-color: #fff;
-    width: 250px;
-}
+    width: 250px;}
 
 .logo-inkside{
   padding: 10px 5px;
-
-    height: 70px;
-}
+  height: 70px;}
 
 header{
   height: 70px;
@@ -33,56 +29,77 @@ header{
   left: 0;
   right: 0;
   z-index: 21;
-  margin-left: 250px;
-}
+  margin-left: 250px;}
 
 .profile{
-  margin-top:10px;
-}
+  margin-top:10px;}
 
 .profile img{
-  height: 50px;
-}
+  height: 50px;}
 
 .profile span{
-  margin-right: 10px;
-}
+  margin-right: 10px;}
 
 .profile i{
-  margin-left: 10px;
-}
+  margin-left: 10px;}
+
 .profile span, .profile i{
   position: relative;
   top: -20px;
-  color: #fff;
-}
+  color: #fff;}
 
 .dropdown-content{
-  top:70px !important;
-}
+  top:70px !important;}
 
 #wrap-container{
   margin-left: 250px;
-  padding-top: 70px;
-}
+  padding-top: 70px;}
 
 
 #wrap-container .container-fluid{
-  width: 95%;
-}
+  width: 95%;}
 
 #wrap-container .container-fluid .panel{
   background-color: #fff;
-  border-radius: 8px;
-}
+  border-radius: 8px;}
 
 .bg-account{
-  background-image: url("../images/background-banner/top-header3-min.png");
-}
+  background-image: url("../images/background-banner/top-header3-min.png");}
 
 .main-header {
     padding: 70px 0 190px 0;
     position: relative;
-    background-position: 50% 50%;
+    background-position: 50% 50%;}
 
+.fixed-sidebar .mCustomScrollbar{
+    max-height: calc(100vh - 70px);
+}
+
+.left-menu li{
+  margin: 0;
+  padding: 20px;
+  transition: 0.6s;
+  color: #3D464D;
+  text-transform: uppercase;
+  font-family: "Roboto Condensed"
+}
+
+.left-menu li:hover{
+  background-color:#F0F0DD;
+}
+
+#menuPoet{
+  min-width: 230px !important;
+  box-shadow: none;
+  border-radius: 0 0 10px 10px;
+  background: #0a6d78;
+}
+
+#menuPoet li a{
+  color: #edf2f6;
+}
+
+#menuPoet li:hover{
+  background-color:#409ca7;
+  transition: 0.2s;
 }

@@ -11,6 +11,7 @@
     <link type="text/css" rel="stylesheet" href="views/assets/materialize/css/materialize.min.css"/>
     <link type="text/css" rel="stylesheet" href="views/assets/font-icons/css/font-awesome.css"/>
     <link type="text/css" rel="stylesheet" href="views/assets/js/sweetmodal/min/jquery.sweet-modal.min.css" />
+    <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,900|Roboto|Roboto+Condensed:400,700"/>
     <link type="text/css" rel="stylesheet" href="views/assets/css/main-dashboard.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
@@ -20,20 +21,22 @@
         <div class="logo-inkside primary-default">
           <a href="#!" class="brand-logo"><img src="views/assets/images/Logo-Inkside@150.png" alt="InkSide" class="responsive-img"></a>
         </div>
+        <div class="mCustomScrollbar ps ps--theme_default ps--active-x ps--active-y">
+          <?php include("views/include/scop-navigation.php"); ?>
+        </div>
       </div>
     </div>
     <header>
       <div class="container-fluid">
         <div class="row ">
           <div class="col 14 offset-l8 right">
-            <div class="profile">
-              <a class="dropdown-button" href="#!" data-activates="menuPoet">
+            <a class="dropdown-button" href="#!" data-activates="menuPoet">
+              <div class="profile">
                 <span class="title"><?php echo $_SESSION["poeta"]["poet_nick"]; ?></span>
                 <img src="<?php echo $_SESSION["poeta"]["poet_foto"] ?>" alt="" class="circle">
                 <i class="fa fa-caret-down "></i>
-              </a>
-            </div>
-
+              </div>
+            </a>
 
             <ul id="menuPoet" class="dropdown-content">
                <?php include("views/include/scop-navigation-poet.php"); ?>

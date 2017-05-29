@@ -40,6 +40,13 @@ RewriteRule ^completa-perfil$ index.php?c=views&a=completaPerfil
 RewriteRule ^dashboard$ index.php?c=views&a=dashboard
 RewriteRule ^mis-datos$ index.php?c=views&a=actualizarPerfil
 
+#Menu Principal
+RewriteRule ^crea-tu-poema$ index.php?c=views
+RewriteRule ^mi-comunidad$ index.php?c=views
+RewriteRule ^favoritos$ index.php?c=views
+RewriteRule ^mensajes$ index.php?c=views
+RewriteRule ^mis-publicaciones$ index.php?c=views  
+
 #Redirecciones Procesos
 RewriteRule ^registro-poeta$ index.php?c=auth&a=registroPoeta
 RewriteRule ^registro-activo/(\w+)/?$ index.php?c=auth&a=activoCuenta&token=$1
