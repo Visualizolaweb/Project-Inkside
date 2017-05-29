@@ -19,9 +19,9 @@ class ViewsController{
   }
 
   public function actualizarPerfil(){
-    require_once 'views/include/structure-header.php';
+    require_once 'views/include/structure-header-dashboard.php';
     require_once 'views/section/users/user-info.php';
-    require_once 'views/include/structure-footer.php';
+    require_once 'views/include/structure-footer-dashboard.php';
   }
 
   public function dashboard(){
