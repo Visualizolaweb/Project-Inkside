@@ -25,10 +25,8 @@ class ViewsController{
   }
 
   public function dashboard(){
-
-      require_once 'views/include/structure-header.php';
-    require_once 'views/section/dashboard/main.php';
-    require_once 'views/include/structure-footer.php';
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/include/structure-footer-dashboard.php';
   }
 
 }

@@ -1,0 +1,62 @@
+@import "colorsInkside.css";
+@import "forms.css";
+
+body{
+   background-color: #edf2f6;}
+
+.fixed-sidebar{
+  position: fixed;
+  width: 250px;
+  z-index: 22;
+  min-height: 1000vh;
+}
+
+.fixed-sidebar-left {
+    position: absolute;
+    height: 100%;
+    background-color: #fff;
+    width: 250px;
+}
+
+.logo-inkside{
+  padding: 10px 5px;
+
+    height: 70px;
+}
+
+header{
+  height: 70px;
+  background-color: #064148;
+  padding-right: 70px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 21;
+  margin-left: 250px;
+}
+
+.profile{
+  margin-top:10px;
+}
+
+.profile img{
+  height: 50px;
+}
+
+.profile span{
+  margin-right: 10px;
+}
+
+.profile i{
+  margin-left: 10px;
+}
+.profile span, .profile i{
+  position: relative;
+  top: -20px;
+  color: #fff;
+}
+
+.dropdown-content{
+  top:70px !important;
+}

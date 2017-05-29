@@ -97,15 +97,11 @@ class AuthController extends InitController{
           }else{
             $datos = "1";
           }
-
      }else{
        $datos = "0";
      }
-
      echo $datos;
-
   }
-
 
   function cerrarSesion(){
     session_destroy();
