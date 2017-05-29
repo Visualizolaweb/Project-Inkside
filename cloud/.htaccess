@@ -34,10 +34,11 @@ RewriteRule ^inkside-slider-2$ website/views/assets/images/slider/blond-1866951_
 RewriteRule ^inkside-slider-3$ website/views/assets/images/slider/book-1210027_1920-compressor.jpg
 RewriteRule ^inkside-slider-4$ website/views/assets/images/slider/leave-1957302_1920-compressor.jpg
 
-#Redirecciones Vistas 
+#Redirecciones Vistas
 RewriteRule ^registro$ index.php?c=views&a=registro
 RewriteRule ^completa-perfil$ index.php?c=views&a=completaPerfil
 RewriteRule ^dashboard$ index.php?c=views&a=dashboard
+RewriteRule ^mis-datos$ index.php?c=views&a=actualizarPerfil
 
 #Redirecciones Procesos
 RewriteRule ^registro-poeta$ index.php?c=auth&a=registroPoeta

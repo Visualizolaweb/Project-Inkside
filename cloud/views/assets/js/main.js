@@ -86,3 +86,10 @@ $("#txt_password").keydown(function(e) {
 $("#txt_clave_confirm").keydown(function(e) {
     if (ctrlDown && (e.keyCode == vKey || e.keyCode == cKey)) return false;
 });
+
+///fecha nacimiento
+
+$('.datepicker').pickadate({
+  selectMonths: true, // Creates a dropdown to control month
+  selectYears: 17 // Creates a dropdown of 15 years to control year
+});

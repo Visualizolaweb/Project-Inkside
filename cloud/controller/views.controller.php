@@ -18,6 +18,12 @@ class ViewsController{
     echo "perfil";
   }
 
+  public function actualizarPerfil(){
+    require_once 'views/include/structure-header.php';
+    require_once 'views/section/users/user-info.php';
+    require_once 'views/include/structure-footer.php';
+  }
+
   public function dashboard(){
 
       require_once 'views/include/structure-header.php';

@@ -60,7 +60,6 @@
            <a href="auth.php?p=twitter"><i class="fa fa-twitter"> </i></a>
        </div>
 
-
     </form>
   </div>
 </div>
