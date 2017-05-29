@@ -1,3 +1,8 @@
+<?php
+  if(!isset($_SESSION["poeta"])){
+    header("Location: ./");
+  }
+?>
 <!DOCTYPE html>
 <html lang="es">
   <head>
@@ -23,8 +28,8 @@
           <div class="col 14 offset-l8 right">
             <div class="profile">
               <a class="dropdown-button" href="#!" data-activates="menuPoet">
-                <span class="title">Guillermo León </span>
-                <img src="views/assets/images/perfil/img_default@50.png" alt="" class="circle">
+                <span class="title"><?php echo $_SESSION["poeta"]["poet_nick"]; ?></span>
+                <img src="<?php echo $_SESSION["poeta"]["poet_foto"] ?>" alt="" class="circle">
                 <i class="fa fa-caret-down "></i>
               </a>
             </div>

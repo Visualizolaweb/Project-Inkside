@@ -23,11 +23,10 @@
       <div class="col m6 btn-register blue-grey white-text">
         <a href="registro">Registrar Cuenta</a>
       </div>
+      <a href="auth.php?p=facebook"><div class="col m2 social-icons"><i class="fa fa-facebook-official"> </i></div></a>
+      <a href="auth.php?p=twitter"><div class="col m2 social-icons"><i class="fa fa-twitter"> </i></div></a> 
 
-      <!-- <a href=""><div class="col m2 social-icons"><i class="fa fa-facebook-f"></i></div></a>
-      <a href=""><div class="col m2 social-icons"><i class="fa fa-twitter"></i></div></a>
-      <a href=""><div class="col m2 social-icons"><i class="fa fa-google-plus"></i></div></a> -->
-
+      </div>
     </form>
   </div>
 </div>
