@@ -1,5 +1,5 @@
-<section id="pag_login">
-<div class="row container">
+<section id="wrap-container">
+<div class="row container-fluid">
 
   <div class="col m12 " id="wrap-login">
     <h5>Perfil de Poeta</h5>
