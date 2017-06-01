@@ -28,8 +28,17 @@
     </div>
     <header>
       <div class="container-fluid">
-        <div class="row ">
-          <div class="col 14 offset-l8 right">
+        <div class="row" style="padding: 0 25px;">
+          <div class="col l8">
+            <div class="search">
+              <form>
+                <label>Buscar</label>
+                <input type="text"/>
+                <a href="" class="white-text"><i class="fa fa-search"></i></a>
+              </form>
+            </div>
+          </div>
+          <div class="col l4  right-align">
             <a class="dropdown-button" href="#!" data-activates="menuPoet">
               <div class="profile">
                 <span class="title"><?php echo $_SESSION["poeta"]["poet_nick"]; ?></span>

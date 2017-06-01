@@ -23,7 +23,6 @@ body{
 header{
   height: 70px;
   background-color: #208d8f;
-  padding-right: 70px;
   position: fixed;
   top: 0;
   left: 0;
@@ -64,6 +63,7 @@ header{
   border-radius: 8px;
   border: 1px solid #e6ecf5;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .bg-account{
@@ -146,3 +146,230 @@ header{
 .collection .collection-item.avatar{
   min-height: inherit;
 }
+
+.panel .icon-message{
+  width: 60px;
+  height: 60px;
+  border-radius: 8px 0 0 8px;
+  color: #fff;
+  font-size: 24px;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.panel.message{
+  min-height: 60px;
+  display: flex;
+  align-items: center;
+}
+
+.panel.message p{
+  padding: 0 10px;
+  color: #b0bec5;
+}
+
+.post__author img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    overflow: hidden;
+    margin-right: 12px;
+}
+
+.post .post__author-name {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.inline-items > * {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.poem .post__author{
+  padding: 15px;
+}
+
+.post__content{
+  font-family: "Roboto";
+  font-size: 15px;
+  padding: 0 32px 0 20px;
+  color: #686c82;
+  text-align: justify;
+  border-top: 1px solid #e6ecf5 !important;
+}
+
+.post__content h3{
+  font-size: 30px;
+  font-family: "Lato Light";
+  text-transform: uppercase;
+  text-align: center;
+}
+.post__aditional{
+  padding:10px 20px;
+  border-top: 1px solid #e6ecf5 !important;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+}
+.post__aditional .pic-profiles{
+  float: left;
+}
+ .post__aditional .user-likes ul{
+   display: inline-flex;
+   width: 120px;
+   margin: 0;
+ }
+ .post__aditional .user-likes ul li{
+   margin-right: -15px;
+ }
+ .post__aditional .user-likes ul li img{
+   width: 35px;
+   border-radius: 100%;
+   border: 1px solid #fff;
+ }
+
+ .post__aditional .poets-like{
+   font-size: 12px;
+ }
+
+ .control-button{
+   position: absolute;
+   right: -15px;
+ }
+
+ .control-button li{
+   background: #b7c9d8;
+   height: 35px;
+   width: 35px;
+   border-radius: 100%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   color: #fff;
+   margin-bottom: 5px;
+ }
+
+ .control-button a:hover >  li{
+   background-color: #4db6ac;
+   transition: 0.2s;
+ }
+
+ .poem-create{
+   height: 300px;
+   background: #9C1A82;
+   color: #fff;
+ }
+ .poem-create div{
+ }
+
+ .poem-create div h4{
+   margin: 0;
+  font-size: 30px;
+  font-family: "Roboto Condensed";
+ }
+ .poem-create{
+   padding: 50px 15px 0 15px;
+ }
+
+ .poem-create i{
+   display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  margin-bottom:30px;
+ }
+
+ .poem-create .btn-link{
+  position: relative;
+  padding: 7px 20px;
+  background-color: #eceff1;
+  top: 20px;
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "Roboto Condensed";
+  font-weight: bold;
+  color: purple;
+  transition: 0.3s;
+  border-radius: 3px;
+ }
+
+ .poem-create .btn-link:hover{
+   background: #520e45;
+   color: #ffF;
+   transition: 0.3s;
+ }
+
+ .panel.followers{
+   margin-top: 20px;
+ }
+
+ .followers .panel-title{
+   border-bottom: 1px solid #e6ecf5 !important;
+ }
+
+ .followers ul{
+   display: block;
+   padding: 20px;
+ }
+
+ .followers ul li{
+   width: 40px;
+   height: 40px;
+   display: inline-flex;
+ }
+
+ .followers ul li img{
+   width: 100%;
+ }
+ .search form{
+   margin-top: 12px;
+ }
+ .search label, .search input{
+   display: inline-flex;
+ }
+
+ .search label{
+   color: #fff;
+    font-size: 15px;
+    font-family: "Roboto Condensed";
+    margin-right: 10px;
+ }
+
+ .search input[type="text"]{
+   width: 500px;
+    border: none;
+    background-color: #0a6d78;
+    border-radius: 4px;
+    color: #eee;
+    padding: 5px 30px 5px 5px;
+    box-sizing: border-box;
+    margin-right: -30px
+ }
+
+.comments form{
+    border-top: 1px solid #e6ecf5 !important;
+    margin-bottom: 0;
+}
+.comments{
+  border-radius: 8px 8px 0 0 !important;
+
+}
+.comments form textarea{
+  height: 200px;
+  border: none;
+  background: #c5d1da;
+  padding: 15px;
+  color: white;
+  margin-bottom: -10px;
+}
+
+.comments form textarea::-webkit-input-placeholder { color: white; } /* WebKit */
+.comments form textarea:-moz-placeholder { color: white; } /* Firefox 18- */
+.comments form textarea::-moz-placeholder { color: white; } /* Firefox 19+ */
+.comments form textarea:-ms-input-placeholder { color: white; } /* IE 10+ */

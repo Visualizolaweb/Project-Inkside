@@ -45,7 +45,7 @@ RewriteRule ^crea-tu-poema$ index.php?c=views
 RewriteRule ^mi-comunidad$ index.php?c=views
 RewriteRule ^favoritos$ index.php?c=views
 RewriteRule ^mensajes$ index.php?c=views
-RewriteRule ^mis-publicaciones$ index.php?c=views  
+RewriteRule ^mis-publicaciones$ index.php?c=views
 
 #Redirecciones Procesos
 RewriteRule ^registro-poeta$ index.php?c=auth&a=registroPoeta
@@ -55,3 +55,7 @@ RewriteRule ^valido-email$   index.php?c=auth&a=validoEmail
 RewriteRule ^iniciar-sesion$   index.php?c=auth&a=inicioSesion
 RewriteRule ^cerrar-sesion$   index.php?c=auth&a=cerrarSesion
 RewriteRule ^actualizar-perfil$   index.php?c=poetas&a=actualizarDatoPoeta
+
+#Detalle Poemas
+RewriteRule ^poemas$ index.php?c=views&a=poemas
+RewriteRule ^cuando-ya-no-este$   index.php?c=poemas&a=detalle

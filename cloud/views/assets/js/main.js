@@ -2,7 +2,7 @@ var ctrlDown = false, ctrlKey = 17, cmdKey = 91, vKey = 86, cKey = 67;
 
  $(".button-collapse").sideNav();
  $("#publicaciones").modal();
-
+ $('.tooltipped').tooltip({delay: 50});
 
  // VALIDACION PARA INICIO DE SESION A TRAVES DEL FORMULARIO DE INKSIDE
  $("#frmlogin").submit(function(e) {
