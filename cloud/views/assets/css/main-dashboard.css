@@ -22,7 +22,7 @@ body{
 
 header{
   height: 70px;
-  background-color: #052e33;
+  background-color: #208d8f;
   padding-right: 70px;
   position: fixed;
   top: 0;
@@ -61,7 +61,10 @@ header{
 
 #wrap-container .container-fluid .panel{
   background-color: #fff;
-  border-radius: 8px;}
+  border-radius: 8px;
+  border: 1px solid #e6ecf5;
+  margin-bottom: 20px;
+}
 
 .bg-account{
   background-image: url("../images/background-banner/top-header3-min.png");}
@@ -102,4 +105,44 @@ header{
 #menuPoet li:hover{
   background-color:#409ca7;
   transition: 0.2s;
+}
+
+.wrap-panes{
+  display: flex;
+  margin-top: 30px;
+}
+
+.panel .collection{
+  border-top: 1px solid #e6ecf5 !important;
+  border-bottom: 0 !important;
+  border-left: 0 !important;
+  border-right: 0 !important;
+  margin-top:0;
+  margin-bottom: 5px;
+  font-size: 13px;
+}
+
+.panel .collection-item .title {
+  font-weight: bold;
+  font-family: "Roboto Condensed";
+  font-size: 15px !important;
+  color: #515365;
+}
+.panel .panel-title{
+  min-height: 60px;
+  align-items: center;
+  display: flex;
+  padding: 0 20px;
+  font-size: 16px;
+  font-weight: bold;
+  font-family: "Roboto Condensed";
+  color: #515365;
+}
+
+.panel .add-poet{
+  font-size: 15px;
+}
+
+.collection .collection-item.avatar{
+  min-height: inherit;
 }

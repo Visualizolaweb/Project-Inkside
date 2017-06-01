@@ -15,15 +15,15 @@ var ctrlDown = false, ctrlKey = 17, cmdKey = 91, vKey = 86, cKey = 67;
           if(result == 0){
             $.sweetModal({
             	content: "El usuario no se encuentra registrado en Inkside o lo ha realizado a traves de una red social",
-            	icon: $.sweetModal.ICON_SUCCESS
+            	icon: $.sweetModal.ICON_ERROR
             });
           }else if(result == 1){
             $.sweetModal({
             	content: "La contraseña no es la correcta, por favor verifique nuevamente",
-            	icon: $.sweetModal.ICON_SUCCESS
+            	icon: $.sweetModal.ICON_ERROR
             });
           }else{
-            document.location.href="../app/dashboard.php";
+            document.location.href="../cloud/dashboard";
           }
         });
     }
@@ -106,4 +106,12 @@ $('.datepicker').pickadate({
   today: 'Hoy',
   clear: 'Limpiar',
   close: 'Cerrar'
+});
+
+$('.add-poet').hover(function(){
+  $(this).find( "i:last" ).remove();
+  $(this).append($( "<i class='fa fa-heart'></i>" ));
+},function() {
+  $(this).find( "i:last" ).remove();
+  $(this).append($( "<i class='fa fa-heart-o'></i>" ));
 });
