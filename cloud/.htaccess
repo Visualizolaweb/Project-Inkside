@@ -56,6 +56,9 @@ RewriteRule ^iniciar-sesion$   index.php?c=auth&a=inicioSesion
 RewriteRule ^cerrar-sesion$   index.php?c=auth&a=cerrarSesion
 RewriteRule ^actualizar-perfil$   index.php?c=poetas&a=actualizarDatoPoeta
 
+RewriteRule ^cargar-departamento$   index.php?c=localizacion&a=cargarDepartamentos
+RewriteRule ^cargar-ciudad$   index.php?c=localizacion&a=cargarCiudades
+
 #Detalle Poemas
 RewriteRule ^poemas$ index.php?c=views&a=poemas
 RewriteRule ^cuando-ya-no-este$   index.php?c=poemas&a=detalle

@@ -1,3 +1,7 @@
+<?php
+  $localizacion = new localizacionController();
+?>
+
 <section id="wrap-container">
 <div class="row container-fluid">
 
@@ -7,8 +11,17 @@
       <h6>Ingresa tus datos</h6>
 
       <div class="input-field col s12">
-        <input id="txt_ciudad" name="data[0]" type="text" required autocomplete="off">
-        <label for="txt_ciudad">Ciudad</label>
+        <?php $localizacion->cargarPaises(); ?>
+      </div>
+
+      <div class="input-field col s12">
+          <option value=''>Seleccione un Departamento</option>
+        </select>
+      </div>
+
+      <div class="input-field col s12">
+          <option value=''>Seleccione una Ciudad</option>
+        </select>
       </div>
 
       <div class="input-field col s12">

@@ -115,3 +115,29 @@ $('.add-poet').hover(function(){
   $(this).find( "i:last" ).remove();
   $(this).append($( "<i class='fa fa-heart-o'></i>" ));
 });
+
+// COMBOS DEPENDIENTES
+
+// Carga Departamento
+$("#txt-pais").change(function(){
+  var pais = $(this).val();
+
+  $("#txt-departamento").prop("disabled", false);
+  $.post("cargar-departamento",{idPais:pais}, function(data){
+      $("#txt-departamento").html(data);
+  });
+
+  $("#txt-ciudad").val($('#txt-ciudad > option:first').val());
+  $("#txt-ciudad").prop("disabled", true);
+
+})
+
+// Carga Ciudad
+$("#txt-departamento").change(function(){
+  var dpto = $(this).val();
+
+  $("#txt-ciudad").prop("disabled", false);
+  $.post("cargar-ciudad",{idDpto:dpto}, function(data){
+      $("#txt-ciudad").html(data);
+  });
+})
