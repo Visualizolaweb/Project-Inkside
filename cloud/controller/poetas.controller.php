@@ -14,5 +14,10 @@ class PoetasController extends InitController{
      $result = $this->poetas->actualizarPoeta($data);
   }
 
+  public function buscarDatoPoeta(){
+     $result = $this->poetas->datosPoeta($_SESSION["poeta"]["poet_codigo"]);
+     return $result;
+  }
+
 }
 ?>

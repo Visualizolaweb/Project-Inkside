@@ -28,20 +28,46 @@ class PoetasModel{
     try{
       $sql = "UPDATE inkside_poetas
               SET
+                  ciu_codigo = ?,
                   poet_nombre = ?,
                   poet_apellido = ?,
                   poet_nick = ?,
                   poet_email = ?,
                   poet_fecha_nac = ?,
                   poet_sexo = ?,
-                  poet_celular = ?,
-                  poet_descripcion = ?
-              WHERE poet_codigo = '1020'";
+                  poet_celular = ?
+              WHERE poet_codigo = ?";
       $query = $this->pdo->prepare($sql);
-      $query->execute(array($data[1],$data[2],$data[3],$data[4],$data[6],$data[7],$data[8],$data[9]));
+      $query->execute(array($data[0],$data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8]));
 
       $result = array(1,"Su cuenta se ha actualizado correctamente");
     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+    return $result;
+  }
+
+  public function datosPoeta($poet_codigo){
+    try{
+       $sql = "SELECT
+                  poet_nombre,
+                  poet_apellido,
+                  poet_nick,
+                  poet_email,
+                  poet_fecha_nac,
+                  poet_sexo,
+                  poet_celular,
+                  poet_descripcion,
+                  ciu_codigo
+              FROM
+                  inkside_poetas
+              WHERE
+                  poet_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($poet_codigo));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
       $result = array(0,$e->getMessage(),$e->getCode());
     }
 
