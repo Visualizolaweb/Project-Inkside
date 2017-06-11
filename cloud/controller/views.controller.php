@@ -36,6 +36,12 @@ class ViewsController{
     require_once 'views/include/structure-footer-dashboard.php';
   }
 
+  public function misPublicaciones(){
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/poems/mypoem.php';
+    require_once 'views/include/structure-footer-dashboard.php';
+  }
+
   public function crearPoema(){
     require_once 'views/include/structure-header-dashboard.php';
     require_once 'views/section/poems/create_poem.php';

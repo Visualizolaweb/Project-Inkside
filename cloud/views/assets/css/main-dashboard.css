@@ -198,6 +198,7 @@ header{
   color: #686c82;
   text-align: justify;
   border-top: 1px solid #e6ecf5 !important;
+  min-height: 230px;
 }
 
 .post__content h3{

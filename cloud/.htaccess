@@ -40,15 +40,8 @@ RewriteRule ^completa-perfil$ index.php?c=views&a=completaPerfil
 RewriteRule ^dashboard$ index.php?c=views&a=dashboard
 RewriteRule ^mis-datos$ index.php?c=views&a=actualizarPerfil
 RewriteRule ^crear-poema$ index.php?c=views&a=crearPoema
-RewriteRule ^mis-publicaciones$ index.php?c=views&a=crearPublicacion
+RewriteRule ^mis-publicaciones$ index.php?c=views&a=misPublicaciones
 RewriteRule ^editar-poema$ index.php?c=views&a=actualizarPoema&pub_codigo=$pub_codigo
-
-#Menu Principal
-RewriteRule ^crea-tu-poema$ index.php?c=views
-RewriteRule ^mi-comunidad$ index.php?c=views
-RewriteRule ^favoritos$ index.php?c=views
-RewriteRule ^mensajes$ index.php?c=views
-RewriteRule ^mis-publicaciones$ index.php?c=views
 
 #Redirecciones Procesos
 RewriteRule ^registro-poeta$ index.php?c=auth&a=registroPoeta

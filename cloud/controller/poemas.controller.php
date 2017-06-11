@@ -63,6 +63,11 @@ class PoemasController extends InitController{
     return $result;
   }
 
+  public function poemas(){
+    $result = $this->poemas->cargaPoemas();
+    return $result;
+  }
+
   public function getSubString($string, $length=NULL){
     if ($length == NULL)
         $length = 390;
