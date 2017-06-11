@@ -182,7 +182,7 @@
           <div>
             <i class="fa fa-pencil"></i>
             <h4>Crea tu poema y expresa tus pensamientos</h4>
-            <a class="btn-link">Crea tu poema</a>
+            <a href="crear-poema" class="btn-link">Crea tu poema</a>
           </div>
         </div>
 

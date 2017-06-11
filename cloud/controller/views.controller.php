@@ -36,6 +36,24 @@ class ViewsController{
     require_once 'views/include/structure-footer-dashboard.php';
   }
 
+  public function crearPoema(){
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/poems/create_poem.php';
+    require_once 'views/include/structure-footer-dashboard.php';
+  }
+
+  public function actualizarPoema(){
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/poems/edit_poem.php';
+    require_once 'views/include/structure-footer-dashboard.php';
+  }
+
+  public function crearPublicacion(){
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/publications/create_publication.php';
+    require_once 'views/include/structure-footer-dashboard.php';
+  }
+
 }
 
 

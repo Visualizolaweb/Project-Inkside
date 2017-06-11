@@ -38,7 +38,6 @@ class PoetasModel{
     return $result;
   }
 
-
   public function __DESTRUCT(){
     DataBase::disconnect();
   }

@@ -1,12 +1,12 @@
 <?php
- require_once 'model/poemas.model.php';
+ require_once 'model/articulos.model.php';
 
-class PoemasController extends InitController{
+class ArticulosController extends InitController{
 
-  private $poemas;
+  private $articulos;
 
   public function __CONSTRUCT(){
-      $this->poemas = new PoemasModel();
+      $this->articulos = new ArticulosModel();
   }
 
   public function detalle(){
@@ -15,7 +15,7 @@ class PoemasController extends InitController{
       require_once 'views/include/structure-footer-dashboard.php';
   }
 
-  public function guardarPoema(){
+  public function guardarArticulo(){
     $data = $_POST["data"];
     $categorias = $_POST["cat"];
     $cat_text = implode(', ', $categorias);
@@ -55,24 +55,8 @@ class PoemasController extends InitController{
               echo "Error: " . $_FILES["txt_imgPortada"]["error"];
           }
       }
-     $result = $this->poemas->crearPoema($data,$cat_text,$filename);
+     $result = $this->articulos->crearArticulo($data,$cat_text,$filename);
   }
-
-  public function poetasByPoeta(){
-    $result = $this->poemas->poemasPorPoeta($_SESSION["poeta"]["poet_codigo"]);
-    return $result;
-  }
-
-  public function getSubString($string, $length=NULL){
-    if ($length == NULL)
-        $length = 390;
-    $stringDisplay = substr(strip_tags($string), 0, $length);
-    if (strlen(strip_tags($string)) > $length)
-        $stringDisplay .= ' ...';
-    return $stringDisplay;
- }
-
-
 
 }
 ?>

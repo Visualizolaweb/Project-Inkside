@@ -39,6 +39,9 @@ RewriteRule ^registro$ index.php?c=views&a=registro
 RewriteRule ^completa-perfil$ index.php?c=views&a=completaPerfil
 RewriteRule ^dashboard$ index.php?c=views&a=dashboard
 RewriteRule ^mis-datos$ index.php?c=views&a=actualizarPerfil
+RewriteRule ^crear-poema$ index.php?c=views&a=crearPoema
+RewriteRule ^mis-publicaciones$ index.php?c=views&a=crearPublicacion
+RewriteRule ^editar-poema$ index.php?c=views&a=actualizarPoema&pub_codigo=$pub_codigo
 
 #Menu Principal
 RewriteRule ^crea-tu-poema$ index.php?c=views
@@ -55,6 +58,8 @@ RewriteRule ^valido-email$   index.php?c=auth&a=validoEmail
 RewriteRule ^iniciar-sesion$   index.php?c=auth&a=inicioSesion
 RewriteRule ^cerrar-sesion$   index.php?c=auth&a=cerrarSesion
 RewriteRule ^actualizar-perfil$   index.php?c=poetas&a=actualizarDatoPoeta
+RewriteRule ^guardar-poema$   index.php?c=poemas&a=guardarPoema
+RewriteRule ^guardar-articulo$   index.php?c=articulos&a=guardarArticulo
 
 RewriteRule ^cargar-departamento$   index.php?c=localizacion&a=cargarDepartamentos
 RewriteRule ^cargar-ciudad$   index.php?c=localizacion&a=cargarCiudades

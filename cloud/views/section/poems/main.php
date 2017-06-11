@@ -1,3 +1,8 @@
+<?php
+  require_once("controller/poemas.controller.php");
+  $poemas = new PoemasController();
+  $poemasContent = $poemas->poetasByPoeta();
+?>
 <section id="wrap-container">
   <div class="row container-fluid wrap-panes">
       <div class="col l3">
@@ -50,66 +55,69 @@
 
         <!-- Widget - Poemas -->
 
-        <div class="panel poem">
-          <div class="control-button">
-            <ul>
-              <a href="!#"><li><i class="fa fa-heart"></i></li></a>
-              <a href="!#"><li><i class="fa fa-comments"></i></li></a>
-              <a href="!#"><li><i class="fa fa-bullhorn"></i></li></a>
-            </ul>
-          </div>
+        <?php
+          foreach ($poemasContent as $content) {
+            $Content = $poemas->getSubString($content["pub_contenido"]);
+              echo '<div class="panel poem">
+                <div class="control-button">
+                  <ul>
+                    <a href="editar-poema"><li><i class="fa fa-pencil-square-o"></i></li></a>
+                    <a href="!#"><li><i class="fa fa-times"></i></li></a>
+                  </ul>
+                </div>
 
-           <div class="post__author author vcard inline-items">
-							<img src="views/assets/images/perfil/avatar46-sm.jpg" alt="author" data-pin-nopin="true">
+                 <div class="post__author author vcard inline-items">
+      							<img src="views/assets/images/perfil/avatar46-sm.jpg" alt="author" data-pin-nopin="true">
 
-							<div class="author-date">
-								<a class="h6 post__author-name fn" href="#">Luis Felipe Lagunes Aranda</a>
-								<div class="post__date">
-									<time class="published" datetime="2017-03-24T18:18">
-									   Publicado hace 36 min.
-									</time>
-								</div>
-							</div>
-  				</div>
+      							<div class="author-date">
+      								<a class="h6 post__author-name fn" href="#">'.$content["poet_nick"].'</a>
+      								<div class="post__date">
+      									<time class="published" datetime="2017-03-24T18:18">
+      									   Publicado hace 36 min.
+      									</time>
+      								</div>
+      							</div>
+        				</div>
 
-          <div class="post__content">
-            <h3>Cuando ya no esté</h3>
-            <p>Te veo, y aunque aun trato de comprenderte, siento que pierdo la cabeza siempre al entenderte. Te escucho, y sufro al ver frustrar mis paños de agua tibia frente al caos que tus penas me piden.</p>
+                <div class="post__content">
+                  <h3>'.$content["pub_titulo"].'</h3>
 
-            <p>Sentir tu presencia me llena, me destruye, me despoja de las fuerzas que necesito para hacerte frente a las miradas que entre sonrisas ocultan sentimientos. Tus ojos me desnudan pero aquello que las prendas no logran cubrir, mis mascaras se caen por la fuerza de las palabras que como tijeras cortaron los nudos que mi garganta cual secretos juro guardar. La curiosidad se esboza en tu sonrisa mientras, me escuchas intentar desenmarañar las verdades que mi corazón te grita a cada instante, incriptadas de inseguridades valientes, como cuando ya no queda mas nada que hacer para solucionar de ese impulso que desde adentro me atropella a la idea de no dejarte de mirar.</p>
+                  '.$Content.'
 
-            <div class="more-detail right-align "><a href="cuando-ya-no-este" class="teal-text"><i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i></a></div>
-          </div>
+                  <div class="more-detail right-align "><a href="cuando-ya-no-este" class="teal-text"><i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i></a></div>
+                </div>
 
-          <div class="post__aditional row">
-            <div class="favorite col l2">
-              <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A 21 personas les ha gustado este poema"><i class="fa fa-heart-o"></i> 21</a>
-            </div>
+                <div class="post__aditional row">
+                  <div class="favorite col l2">
+                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A 21 personas les ha gustado este poema"><i class="fa fa-heart-o"></i> 21</a>
+                  </div>
 
-            <div class="user-likes col l7">
-              <div class="pic-profiles">
-              <a href="!#">
-                <ul>
-                  <li><img src="views/assets/images/perfil/avatar1-sm.jpg"  class="thum-poem"/></li>
-                  <li><img src="views/assets/images/perfil/avatar41-sm.jpg" class="thum-poem"/></li>
-                  <li><img src="views/assets/images/perfil/avatar42-sm.jpg" class="thum-poem"/></li>
-                  <li><img src="views/assets/images/perfil/avatar43-sm.jpg" class="thum-poem"/></li>
-                  <li><img src="views/assets/images/perfil/avatar63-sm.jpg" class="thum-poem"/></li>
-                </ul>
-              </a>
-              </div>
-              <div class="poets-like"><b>Diana</b> y 20 más les ha gustado este poema</div>
-            </div>
-            <div class="comments col l3 center">
-              <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con 2 comentarios"><i class="fa fa-comments"></i> 2</a>
-              &nbsp;
-              <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A 13 personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> 13</a>
-            </div>
-          </div>
-        </div>
+                  <div class="user-likes col l7">
+                    <div class="pic-profiles">
+                    <a href="!#">
+                      <ul>
+                        <li><img src="views/assets/images/perfil/avatar1-sm.jpg"  class="thum-poem"/></li>
+                        <li><img src="views/assets/images/perfil/avatar41-sm.jpg" class="thum-poem"/></li>
+                        <li><img src="views/assets/images/perfil/avatar42-sm.jpg" class="thum-poem"/></li>
+                        <li><img src="views/assets/images/perfil/avatar43-sm.jpg" class="thum-poem"/></li>
+                        <li><img src="views/assets/images/perfil/avatar63-sm.jpg" class="thum-poem"/></li>
+                      </ul>
+                    </a>
+                    </div>
+                    <div class="poets-like"><b>Diana</b> y 20 más les ha gustado este poema</div>
+                  </div>
+                  <div class="comments col l3 center">
+                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con 2 comentarios"><i class="fa fa-comments"></i> 2</a>
+                    &nbsp;
+                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A 13 personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> 13</a>
+                  </div>
+                </div>
+              </div>';
+          }
+        ?>
 
         <!-- POEMA NUMERO 2 -->
-        <div class="panel poem">
+        <!-- <div class="panel poem">
           <div class="control-button">
             <ul>
               <a href="!#"><li><i class="fa fa-heart"></i></li></a>
@@ -174,7 +182,7 @@
               <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Se el primero en dedicar este poema"><i class="fa fa-bullhorn"></i> 0</a>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
 
       <div class="col l3">

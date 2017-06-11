@@ -141,3 +141,10 @@ $("#txt-departamento").change(function(){
       $("#txt-ciudad").html(data);
   });
 })
+
+// Inicializar los select
+
+$(document).ready(function() {
+  $('select').material_select();
+  $("#txt_contenido").jqte();
+});

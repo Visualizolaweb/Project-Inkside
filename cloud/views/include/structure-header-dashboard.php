@@ -13,6 +13,7 @@
     <link type="text/css" rel="stylesheet" href="views/assets/js/sweetmodal/min/jquery.sweet-modal.min.css" />
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,900|Roboto|Roboto+Condensed:400,700"/>
     <link type="text/css" rel="stylesheet" href="views/assets/css/main-dashboard.css"/>
+    <link type="text/css" rel="stylesheet" href="views/assets/css/jquery-te-1.4.0.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
