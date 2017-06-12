@@ -80,6 +80,7 @@ class PoemasModel{
                      inkside_publicaciones.pub_fechaPublicacion as pub_fechaPublicacion, inkside_poetas.poet_nick as poet_nick, inkside_poetas.poet_foto as poet_foto
               FROM   inkside_publicaciones
               INNER JOIN   inkside_poetas ON inkside_publicaciones.poet_codigo = inkside_poetas.poet_codigo
+              WHERE pub_estadoRevision = 'Aprobado' and pub_estado = 'Publicado'
               ORDER BY inkside_publicaciones.pub_fechaPublicacion DESC LIMIT 10";
       $query = $this->pdo->prepare($sql);
       $query->execute();

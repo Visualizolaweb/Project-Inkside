@@ -70,14 +70,11 @@ class PoemasController extends InitController{
 
   public function getSubString($string, $length=NULL){
     if ($length == NULL)
-        $length = 390;
+        $length = 250;
     $stringDisplay = substr(strip_tags($string), 0, $length);
     if (strlen(strip_tags($string)) > $length)
         $stringDisplay .= ' ...';
     return $stringDisplay;
  }
-
-
-
 }
 ?>

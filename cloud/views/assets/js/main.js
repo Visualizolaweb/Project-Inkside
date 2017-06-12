@@ -142,9 +142,11 @@ $("#txt-departamento").change(function(){
   });
 })
 
-// Inicializar los select
 
 $(document).ready(function() {
+  // Inicializar los select
   $('select').material_select();
+
+  // TEXT AREA ENRIQUECIDO CON HTML
   $("#txt_contenido").jqte();
 });
