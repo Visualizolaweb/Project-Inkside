@@ -65,6 +65,25 @@ class PublicacionesModel{
     return $result;
   }
 
+
+  public function cargabyId($pub_codigo){
+    try{
+      $sql = "SELECT inkside_poetas.poet_codigo, poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_titulo, pub_contenido
+        			 FROM inkside_poetas
+                     LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+                     JOIN inkside_publicaciones      ON inkside_poetas.poet_codigo = inkside_publicaciones.poet_codigo
+                    WHERE inkside_publicaciones.pub_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+			$query->execute(array($pub_codigo));
+			$result = $query->fetch(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
   public function __DESTRUCT(){
     DataBase::disconnect();
   }
