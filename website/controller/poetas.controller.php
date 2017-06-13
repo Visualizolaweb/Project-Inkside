@@ -27,5 +27,10 @@ class PoetasController{
      return $result;
   }
 
+  public function PoestasdelaComunidad(){
+     $result = $this->poetas->poetasComunidad();
+     return $result;
+  }
+
 }
 ?>
