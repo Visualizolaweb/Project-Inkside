@@ -6,6 +6,9 @@
   require_once("controller/poetas.controller.php");
   $poetas = new PoetasController();
 
+  require_once("controller/comentarios.controller.php");
+  $comentarios = new ComentariosController();
+
   if(!isset($_SESSION["poeta"]["poet_codigo"])){
      $codigoPoeta = $poetas->cargaCodigoPoeta();
      $_SESSION["poeta"]["poet_codigo"] = $codigoPoeta["poet_codigo"];
@@ -71,6 +74,9 @@
             $totalLikes = $likes->likes($content['pub_codigo']);
             $allLikes = count($totalLikes);
 
+            $totalcomentarios = $comentarios->comentarios($content['pub_codigo']);
+            $allCoementarios = count($totalcomentarios);
+
               foreach ($totalLikes as $milike) {
                 if($milike['codigo']==$_SESSION["poeta"]["poet_codigo"]){
                   $classLike = "fa fa-heart";
@@ -105,7 +111,7 @@
                 <div class="control-button">
                   <ul>
                   <a href="javascript:void(0)" onClick="addLikes(\''.$content["pub_codigo"].'\',\''.$accion.'\',\''.$allLikes.'\')"><li><i class="fa fa-heart"></i></li></a>
-                  <a href="!#"><li><i class="fa fa-comments"></i></li></a>
+                  <a href="pubID'.$content["pub_codigo"].'"><li><i class="fa fa-comments"></i></li></a>
                   <a href="!#"><li><i class="fa fa-bullhorn"></i></li></a>
                   </ul>
                 </div>
@@ -128,7 +134,7 @@
 
                   '.$Content.'
 
-                  <div class="more-detail right-align "><a href="cuando-ya-no-este" class="teal-text"><i class="fa fa-circle"></i> <i class="fa fa-circle"></i> <i class="fa fa-circle"></i></a></div>
+                  <div class="more-detail right-align "><a href="pubID'.$content["pub_codigo"].'" class="teal-text">Leer más</a></div>
                 </div>
 
                 <div class="post__aditional row">
@@ -142,7 +148,7 @@
                     $likes->likesConAvatar($content['pub_codigo']);
             echo '</div>
                   <div class="comments col l3 center">
-                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con 2 comentarios"><i class="fa fa-comments"></i> 2</a>
+                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con '.$allCoementarios.' comentarios"><i class="fa fa-comments"></i> '.$allCoementarios.'</a>
                     &nbsp;
                     <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A 13 personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> 13</a>
                   </div>
