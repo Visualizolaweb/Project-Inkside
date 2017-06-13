@@ -166,8 +166,9 @@ $(document).ready(function() {
 
 // Like o Unlike publicacion
 function addLikes(id,action,total) {
-  $.post("index.php?c=likes&a=likePublicacion",{pub_codigo : id, accion: action}, function(e){
 
+   $.post("index.php?c=likes&a=likePublicacion",{pub_codigo : id, accion: action}, function(e){
+   
     if(e == 'like'){
       total = parseInt(total) + 1;
       $("#like-"+id).html('<a  href="javascript:void(0)" onClick="addLikes(\''+id+'\',\'unlike\','+total+')" data-position="top" data-delay="50" data-tooltip="A '+total+' personas les ha gustado este poema"> <i class="fa fa-heart"></i> '+ total +' </a>');

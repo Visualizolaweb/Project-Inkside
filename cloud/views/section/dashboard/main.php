@@ -193,7 +193,7 @@
                     $avatarSeguidor = $seguidor["pdesc_avatar"]; }
 
                   echo '
-                  <li><img src="'.$avatarSeguidor.'"/></li>';
+                  <li><img src="'.$avatarSeguidor.'" class="tooltipped blue-grey-text" data-position="bottom" data-delay="50" data-tooltip="'.$seguidor["poet_nick"].'"/></li>';
               }
             ?>
 

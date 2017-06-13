@@ -423,3 +423,7 @@ h5.title{
 tr.odd {
     background-color: #f5f5f5 !important;
   }
+
+#content .col.m6.s12{
+  min-height: 410px !important;
+}

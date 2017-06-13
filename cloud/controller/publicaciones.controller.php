@@ -118,7 +118,7 @@ class PublicacionesController extends InitController{
              </div>
 
              <div class="post__aditional row">
-               <div class="favorite col l2">
+               <div class="favorite col l2" id="like-'.$content["pub_codigo"].'">
                <a  href="javascript:void(0)" onClick="addLikes(\''.$content["pub_codigo"].'\',\''.$accion.'\',\''.$allLikes.'\')" data-position="top" data-delay="50" data-tooltip="A '. $allLikes .' personas les ha gustado este poema">
                  <i class="'.$classLike.'"></i> '.$allLikes.'
                </a>

@@ -8,16 +8,16 @@
       <div class="col l12">
 
         <!-- Widget - Bienvenido -->
-        <div class="panel message">
-          <div class="icon-message cyan accent-3"><i class="fa fa-star"></i></div>
-          <p>Aquí podrás ver los poemas sugeridos según tus gustos</p>
+        <div class="col m12 header-section">
+          <h5 class="title">Encuentra todos los poemas de la comunidad</h5>
         </div>
+
 
         <!-- Widget - Poemas -->
 
           <div id="content">
             <?php
-                $publicaciones->paginarPublicaciones(); 
+                $publicaciones->paginarPublicaciones();
             ?>
           </div>
 
