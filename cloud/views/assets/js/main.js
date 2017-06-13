@@ -161,11 +161,11 @@ function addLikes(id,action,total) {
 
     if(e == 'like'){
       total = parseInt(total) + 1;
-      $("#like-"+id).html('<a  href="javascript:void(0)" onClick="addLikes(\''+id+'\',\'unlike\','+total+')" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A '+total+' personas les ha gustado este poema"> <i class="fa fa-heart"></i> '+ total +' </a>');
+      $("#like-"+id).html('<a  href="javascript:void(0)" onClick="addLikes(\''+id+'\',\'unlike\','+total+')" data-position="top" data-delay="50" data-tooltip="A '+total+' personas les ha gustado este poema"> <i class="fa fa-heart"></i> '+ total +' </a>');
     }else{
 
       total = parseInt(total) - 1;
-      $("#like-"+id).html('<a  href="javascript:void(0)" onClick="addLikes(\''+id+'\',\'like\','+total+')" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A '+total+' personas les ha gustado este poema"> <i class="fa fa-heart-o"></i> '+ total +'</a>');
+      $("#like-"+id).html('<a  href="javascript:void(0)" onClick="addLikes(\''+id+'\',\'like\','+total+')" data-position="top" data-delay="50" data-tooltip="A '+total+' personas les ha gustado este poema"> <i class="fa fa-heart-o"></i> '+ total +'</a>');
     }
   });
 

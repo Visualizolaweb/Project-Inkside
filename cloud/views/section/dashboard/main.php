@@ -69,14 +69,23 @@
         <?php
           foreach ($poemasContent as $content) {
             $totalLikes = $likes->likes($content['pub_codigo']);
-            $allLikes = count($totalLikes['poet_codigo']);
-            if($totalLikes['poet_codigo']==$_SESSION["poeta"]["poet_codigo"]){
-              $classLike = "fa fa-heart";
-              $accion = "unlike";
-            }else{
+            $allLikes = count($totalLikes);
+
+              foreach ($totalLikes as $milike) {
+                if($milike['codigo']==$_SESSION["poeta"]["poet_codigo"]){
+                  $classLike = "fa fa-heart";
+                  $accion = "unlike";
+                }else{
+                  $classLike = "fa fa-heart-o";
+                  $accion = "like";
+                }
+              }
+
+            if($allLikes <= 0){
               $classLike = "fa fa-heart-o";
               $accion = "like";
             }
+
 
             if($content['pdesc_avatar']!=''){
               $avatarPublic = $content['pdesc_avatar'];
@@ -95,7 +104,7 @@
               echo '<div class="panel poem">
                 <div class="control-button">
                   <ul>
-                  <a href="!#"><li><i class="fa fa-heart"></i></li></a>
+                  <a href="javascript:void(0)" onClick="addLikes(\''.$content["pub_codigo"].'\',\''.$accion.'\',\''.$allLikes.'\')"><li><i class="fa fa-heart"></i></li></a>
                   <a href="!#"><li><i class="fa fa-comments"></i></li></a>
                   <a href="!#"><li><i class="fa fa-bullhorn"></i></li></a>
                   </ul>
@@ -107,7 +116,7 @@
       							<div class="author-date">
       								<a class="h6 post__author-name fn" href="#">'.$content["poet_nick"].'</a>
       								<div class="post__date">
-      									<time class="published" datetime="2017-03-24T18:18">
+      									<time class="published" datetime="'.$content["pub_fechaPublicacion"].'T18:18">
       									   '.$content["pub_fechaPublicacion"].'
       									</time>
       								</div>
@@ -124,25 +133,14 @@
 
                 <div class="post__aditional row">
                   <div class="favorite col l2" id="like-'.$content["pub_codigo"].'">
-                    <a  href="javascript:void(0)" onClick="addLikes(\''.$content["pub_codigo"].'\',\''.$accion.'\',\''.$allLikes.'\')" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A '. $allLikes .' personas les ha gustado este poema">
+                    <a  href="javascript:void(0)" onClick="addLikes(\''.$content["pub_codigo"].'\',\''.$accion.'\',\''.$allLikes.'\')" data-position="top" data-delay="50" data-tooltip="A '. $allLikes .' personas les ha gustado este poema">
                       <i class="'.$classLike.'"></i> '.$allLikes.'
                     </a>
                   </div>
 
-                  <div class="user-likes col l7">
-                    <div class="pic-profiles">
-                    <a href="!#">
-                      <ul>
-                        <li><img src="views/assets/images/perfil/avatar1-sm.jpg"  class="thum-poem"/></li>
-                        <li><img src="views/assets/images/perfil/avatar41-sm.jpg" class="thum-poem"/></li>
-                        <li><img src="views/assets/images/perfil/avatar42-sm.jpg" class="thum-poem"/></li>
-                        <li><img src="views/assets/images/perfil/avatar43-sm.jpg" class="thum-poem"/></li>
-                        <li><img src="views/assets/images/perfil/avatar63-sm.jpg" class="thum-poem"/></li>
-                      </ul>
-                    </a>
-                    </div>
-                    <div class="poets-like"><b>Diana</b> y 20 más les ha gustado este poema</div>
-                  </div>
+                  <div class="user-likes col l7">';
+                    $likes->likesConAvatar($content['pub_codigo']);
+            echo '</div>
                   <div class="comments col l3 center">
                     <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con 2 comentarios"><i class="fa fa-comments"></i> 2</a>
                     &nbsp;

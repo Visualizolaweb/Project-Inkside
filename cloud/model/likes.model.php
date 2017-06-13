@@ -13,7 +13,23 @@ class LikesModel{
 
   public function likesByPublicacion($pub_codigo){
     try{
-      $sql = "SELECT poet_codigo FROM inkside_likes WHERE pub_codigo = ?";
+      $sql = "SELECT poet_codigo as 'codigo' FROM inkside_likes WHERE pub_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($pub_codigo));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    }catch (Exception $e){
+      $result = array(0,$e->getMessage());
+    }
+    return $result;
+  }
+
+  public function likesAvatar($pub_codigo){
+    try{
+      $sql = "SELECT inkside_poetas.poet_codigo, inkside_poetas.poet_nombre, inkside_poetas.poet_nick, inkside_poetas.poet_foto,
+                     inkside_likes.poet_codigo
+              FROM inkside_poetas
+              INNER JOIN inkside_likes ON inkside_poetas.poet_codigo = inkside_likes.poet_codigo
+              WHERE inkside_likes.pub_codigo = ?";
       $query = $this->pdo->prepare($sql);
       $query->execute(array($pub_codigo));
       $result = $query->fetch(PDO::FETCH_BOTH);
