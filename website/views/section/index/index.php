@@ -1,3 +1,7 @@
+<?php
+   require_once 'website/controller/publicaciones.controller.php';
+   $publicaciones = new PublicacionesController();
+?>
 <div class="container">
   <div class="form-register right-align" style="position:relative;">
     <section>
@@ -16,7 +20,7 @@
         <div class="input-field col s12">
           <input class="fieldBD" id="txt_clave" type="password" name="data[5]" placeholder="Contraseña" required>
         </div>
-        <span class="terms">Al hacer clic en <b>regístrate</b> acepto todos los <b>Términos legales</b> al igual que las <b>Politicas de privacidad</b></span>
+        <span class="t require_once 'model/publicaciones.model.php';erms">Al hacer clic en <b>regístrate</b> acepto todos los <b>Términos legales</b> al igual que las <b>Politicas de privacidad</b></span>
         <button class="waves-effect waves-light btn primary-button z-depth-0 btn-icon"><i class="fa fa-user icon-button"></i> Registrate en Inkside</button>
       </form>
     </section>
@@ -57,140 +61,31 @@
        <h6>Alguien en la comunidad ha escrito</h6>
 
        <div class="row">
-          <div class="col s12 m6 l4 panel">
-            <div class="white">
-              <h2>poema del moribundo que no tiene quién le escriba</h2>
-              <span class="date">Publicado en Jun 12, 2016</span>
-              <article>
-                <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear claw oa  sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear clt...</p>
-                <div class="more"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba" class="read-more">Seguir Leyendo</a></div>
-              </article>
-              <div class="bypoeta">
-                  <img src="app/view/assets/images/perfil/img_default.png" class="circle"/>
-                  <h3>Matilde la peligrosa</h3>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l4 panel">
-            <div class="white">
-              <h2>poema del moribundo que no tiene quién le escriba</h2>
-              <span class="date">Publicado en Jun 12, 2016</span>
-              <article>
-                <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear claw oa  sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear clt...</p>
-                <div class="more"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba" class="read-more">Seguir Leyendo</a></div>
-              </article>
-              <div class="bypoeta">
-                  <img src="app/view/assets/images/perfil/img_default.png" class="circle"/>
-                  <h3>Matilde la peligrosa</h3>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l4 panel ">
-            <div class="white">
-              <h2>poema del moribundo que no tiene quién le escriba</h2>
-              <span class="date">Publicado en Jun 12, 2016</span>
-              <article>
-                <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear claw oa  sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear clt...</p>
-                <div class="more"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba" class="read-more">Seguir Leyendo</a></div>
-              </article>
-              <div class="bypoeta">
-                  <img src="app/view/assets/images/perfil/img_default.png" class="circle"/>
-                  <h3>Matilde la peligrosa</h3>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l4 panel">
-            <div class="white">
-              <h2>poema del moribundo que no tiene quién le escriba</h2>
-              <span class="date">Publicado en Jun 12, 2016</span>
-              <article>
-                <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear claw oa  sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear clt...</p>
-                <div class="more"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba" class="read-more">Seguir Leyendo</a></div>
-              </article>
-              <div class="bypoeta">
-                  <img src="app/view/assets/images/perfil/img_default.png" class="circle"/>
-                  <h3>Matilde la peligrosa</h3>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l4 panel">
-            <div class="white">
-              <h2>poema del moribundo que no tiene quién le escriba</h2>
-              <span class="date">Publicado en Jun 12, 2016</span>
-              <article>
-                <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear claw oa  sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear clt...</p>
-                <div class="more"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba" class="read-more">Seguir Leyendo</a></div>
-              </article>
-              <div class="bypoeta">
-                  <img src="app/view/assets/images/perfil/img_default.png" class="circle"/>
-                  <h3>Matilde la peligrosa</h3>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l4 panel ">
-            <div class="white">
-              <h2>poema del moribundo que no tiene quién le escriba</h2>
-              <span class="date">Publicado en Jun 12, 2016</span>
-              <article>
-                <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear claw oa  sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear clt...</p>
-                <div class="more"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba" class="read-more">Seguir Leyendo</a></div>
-              </article>
-              <div class="bypoeta">
-                  <img src="app/view/assets/images/perfil/img_default.png" class="circle"/>
-                  <h3>Matilde la peligrosa</h3>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l4 panel">
-            <div class="white">
-              <h2>poema del moribundo que no tiene quién le escriba</h2>
-              <span class="date">Publicado en Jun 12, 2016</span>
-              <article>
-                <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear claw oa  sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear clt...</p>
-                <div class="more"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba" class="read-more">Seguir Leyendo</a></div>
-              </article>
-              <div class="bypoeta">
-                  <img src="app/view/assets/images/perfil/img_default.png" class="circle"/>
-                  <h3>Matilde la peligrosa</h3>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l4 panel">
-            <div class="white">
-              <h2>poema del moribundo que no tiene quién le escriba</h2>
-              <span class="date">Publicado en Jun 12, 2016</span>
-              <article>
-                <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear claw oa  sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear clt...</p>
-                <div class="more"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba" class="read-more">Seguir Leyendo</a></div>
-              </article>
-              <div class="bypoeta">
-                  <img src="app/view/assets/images/perfil/img_default.png" class="circle"/>
-                  <h3>Matilde la peligrosa</h3>
-              </div>
-            </div>
-          </div>
-
-          <div class="col s12 m6 l4 panel ">
-            <div class="white">
-              <h2>poema del moribundo que no tiene quién le escriba</h2>
-              <span class="date">Publicado en Jun 12, 2016</span>
-              <article>
-                <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear claw oa  sweet roll liquorice marshmallow. Chupa chups carrot cake brownie gingerbread pudding. Marshmallow toffee ice cream bear clt...</p>
-                <div class="more"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba" class="read-more">Seguir Leyendo</a></div>
-              </article>
-              <div class="bypoeta">
-                  <img src="app/view/assets/images/perfil/img_default.png" class="circle"/>
-                  <h3>Matilde la peligrosa</h3>
-              </div>
-            </div>
-          </div>
+         <?php
+                $poemas = $publicaciones->poemas();
+                foreach ($poemas as $row) {
+                  if ($row['pdesc_avatar']=='') {
+                    $avatar = $row['poet_foto'];
+                  }else{
+                    $avatar = $row['pdesc_avatar'];
+                  }
+                  $contenido = $publicaciones->getSubString($row['pub_contenido']);
+                  echo '<div class="col s12 m6 l4 panel">
+                    <div class="white">
+                      <h2>'.$row['pub_titulo'].'</h2>
+                      <span class="date">Publicado el '.$row['pub_fechaPublicacion'].'</span>
+                      <article>
+                      '.$contenido.'
+                      <div class="more"><a href="pubID'.$row['pub_codigo'].'" class="read-more">Seguir Leyendo</a></div>
+                      </article>
+                      <div class="bypoeta">
+                          <img src="cloud/'.$avatar.'" class="circle"/>
+                          <h3>'.$row['poet_nick'].'</h3>
+                      </div>
+                    </div>
+                  </div>';
+                }
+         ?>
        </div>
    </div>
 </section>
