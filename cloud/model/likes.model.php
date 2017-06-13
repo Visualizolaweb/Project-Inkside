@@ -25,14 +25,14 @@ class LikesModel{
 
   public function likesAvatar($pub_codigo){
     try{
-      $sql = "SELECT inkside_poetas.poet_codigo, inkside_poetas.poet_nombre, inkside_poetas.poet_nick, inkside_poetas.poet_foto,
-                     inkside_likes.poet_codigo
+      $sql = "SELECT inkside_poetas.poet_codigo as poet_codigo, inkside_poetas.poet_nombre, inkside_poetas.poet_nick,
+                     inkside_poetas.poet_foto
               FROM inkside_poetas
               INNER JOIN inkside_likes ON inkside_poetas.poet_codigo = inkside_likes.poet_codigo
               WHERE inkside_likes.pub_codigo = ?";
       $query = $this->pdo->prepare($sql);
       $query->execute(array($pub_codigo));
-      $result = $query->fetch(PDO::FETCH_BOTH);
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
     }catch (Exception $e){
       $result = array(0,$e->getMessage());
     }
