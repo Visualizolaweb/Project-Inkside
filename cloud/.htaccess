@@ -62,6 +62,7 @@ RewriteRule ^actualizar-perfil$   index.php?c=poetas&a=actualizarDatoPoeta
 RewriteRule ^guardar-poema$   index.php?c=poemas&a=guardarPoema
 RewriteRule ^guardar-articulo$   index.php?c=articulos&a=guardarArticulo
 RewriteRule ^paginar-publicaciones$   index.php?c=publicaciones&a=paginarPublicaciones
+RewriteRule ^crear-comentario$   index.php?c=comentarios&a=crearComentario
 
 RewriteRule ^cargar-departamento$   index.php?c=localizacion&a=cargarDepartamentos
 RewriteRule ^cargar-ciudad$   index.php?c=localizacion&a=cargarCiudades

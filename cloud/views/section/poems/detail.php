@@ -86,22 +86,34 @@ $cargacomentarios = $comentarios->comentarios($_GET["pid"]);
       <div class="col l4">
            <div class="panel comments">
             <div class="panel-title">Deja tu comentario!
-            <div style="position: absolute; right: 15px;"><a class="btn-floating right waves-effect waves-light amber darken-2 z-depth-0"><i class="fa fa-save"></i></a></div></div>
-            <form>
-              <textarea placeholder="Comparte tus ideas con el autor..."></textarea>
+            <div style="position: absolute; right: 15px;"><a id="btncomentarios" class="btn-floating right waves-effect waves-light amber darken-2 z-depth-0"><i class="fa fa-save"></i></a></div></div>
+            <form id="frmcomentario" method="post" action="crear-comentario">
+              <input type="hidden" name="data[0]" value="<?php echo $_SESSION["poeta"]["poet_codigo"]?>">
+              <input type="hidden" name="data[1]" value="<?php echo $_GET["pid"] ?>">
+              <textarea placeholder="Comparte tus ideas con el autor..." name="data[2]"></textarea>
             </form>
         </div>
 
         <div class="panel">
          <div class="panel-title">Comentarios sobre esta publicación</div>
          <ul class="collection">
-             <li class="collection-item avatar">
-               <img src="views/assets/images/perfil/avatar38-sm.jpg" alt="" class="circle">
-               <span class="title">Nicolás Ramírez</span>
-               <p>Que gústo volver a saber de vos por aquí. Ya habían pasado años que no publicabas. No te pierdas poeta. Saludos.</p>
-               <!-- <a href="#!"><small>+ 8</small> <i class="fa fa-thumbs-o-up"></i> </a>
-               <a href="#!"><small>0</small> <i class="fa fa-thumbs-o-down"></i></a> -->
-             </li>
+            <?php
+            foreach ($cargacomentarios as $comentario) {
+
+              if($comentario["pdesc_avatar"] == ""){
+                 $avatarComentario = $comentario["poet_foto"];
+              }else{
+                $avatarComentario = $comentario["pdesc_avatar"];
+              }
+
+              echo '<li class="collection-item avatar">
+                    <img src="'.$avatarComentario.'" alt="" class="circle">
+                    <span class="title">'.$comentario["poet_nick"].'</span>
+                    <p>'.$comentario["com_comentario"].'</p>
+                  </li>';
+            }
+
+            ?>
 
           </ul>
        </div>

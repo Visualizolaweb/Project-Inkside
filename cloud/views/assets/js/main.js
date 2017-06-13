@@ -9,6 +9,9 @@
  //                  }
  // });
 
+ $("#btncomentarios").click(function(){
+   $("#frmcomentario").submit();
+ })
  // VALIDACION PARA INICIO DE SESION A TRAVES DEL FORMULARIO DE INKSIDE
  $("#frmlogin").submit(function(e) {
     e.preventDefault();
