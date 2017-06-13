@@ -38,7 +38,7 @@
               </div>
 
                <div class="post__author author vcard inline-items">
-                  <img src="'.$content["poet_foto"].'" alt="author" data-pin-nopin="true">
+                  <img src="views/assets/images/portadasPoemas/'.$content["poet_foto"].'" alt="author" data-pin-nopin="true">
 
                   <div class="author-date">
                     <a class="h6 post__author-name fn" href="#">'.$content["poet_nick"].'</a>

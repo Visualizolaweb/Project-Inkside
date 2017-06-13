@@ -74,6 +74,49 @@ class PoetasModel{
     return $result;
   }
 
+  public function poetasSugeridos($poetasAleatorios){
+    try{
+       $sql = "SELECT inkside_poetas.poet_codigo,
+                      inkside_poetas.poet_nombre,
+                      inkside_poetas.poet_apellido,
+                      inkside_poetas.poet_nick,
+                      inkside_poetas.poet_foto,
+                      inkside_poeta_descripcion.pdesc_avatar,
+                      inkside_ciudad.ciu_nombre
+              FROM
+                    inkside_poetas
+              JOIN
+                    inkside_poeta_descripcion
+              ON
+                    inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+              JOIN
+                    inkside_ciudad
+              ON
+                    inkside_ciudad.ciu_codigo = inkside_poetas.ciu_codigo
+              ORDER BY RAND() LIMIT 3";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($poetasAleatorios));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
+  public function contarPoetas(){
+    try{
+       $sql = "SELECT count(poet_codigo) AS totalPoetas FROM inkside_poetas";
+      $query = $this->pdo->prepare($sql);
+      $query->execute();
+      $result = $query->fetch(PDO::FETCH_BOTH);
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
   public function crearPoetaSocial($data){
     try{
       $sp = "CALL registroPoetaSocial(?,?,?,?,?,?,?,?,?,?,?,?,?)";
