@@ -1,10 +1,15 @@
 <?php
 class DataBase{
 
-  private static $db_host = "dnjs2.wnkserver2.com:3306";
-	private static $db_name = "bsstudio_inkside";
-	private static $db_user = "bsstudio_develop";
-	private static $db_pass = "#OpXINsM@[Tp";
+  // private static $db_host = "dnjs2.wnkserver2.com:3306";
+	// private static $db_name = "bsstudio_inkside";
+	// private static $db_user = "bsstudio_develop";
+	// private static $db_pass = "#OpXINsM@[Tp";
+
+  private static $db_host = "localhost";
+  private static $db_name = "bsstudio_inkside";
+  private static $db_user = "root";
+  private static $db_pass = "";
 
 
 private static $cont    = null;

@@ -1,6 +1,8 @@
+
+
 <section class="sec-publicaciones secundary-default">
   <div class="container">
-      <h1>Publicaciones de la comunidad</h1>
+      <h1>Publicaciones de la comunidad></h1>
 
       <div class="row">
          <div class="col s12 m6 l4 panel">

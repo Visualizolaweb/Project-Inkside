@@ -38,6 +38,34 @@ class PoetasModel{
     return $result;
   }
 
+  public function datosPoeta($poet_codigo){
+    try{
+       $sql = "SELECT
+                  poet_nombre,
+                  poet_apellido,
+                  poet_nick,
+                  poet_email,
+                  poet_fecha_nac,
+                  poet_sexo,
+                  poet_celular,
+                  poet_descripcion,
+                  poet_foto,
+                  ciu_codigo
+              FROM
+                  inkside_poetas
+              WHERE
+                  poet_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($poet_codigo));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
   public function __DESTRUCT(){
     DataBase::disconnect();
   }

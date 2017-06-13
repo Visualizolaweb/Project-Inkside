@@ -3,7 +3,7 @@ require_once 'website/model/poetas.model.php';
 
 class PoetasController{
 
-  private $poetas; 
+  private $poetas;
 
   public function __CONSTRUCT(){
       $this->poetas = new PoetasModel();
@@ -22,7 +22,10 @@ class PoetasController{
       echo json_encode($result);
   }
 
-
+  public function buscarDatoPoeta($poet_codigo){
+     $result = $this->poetas->datosPoeta($poet_codigo);
+     return $result;
+  }
 
 }
 ?>
