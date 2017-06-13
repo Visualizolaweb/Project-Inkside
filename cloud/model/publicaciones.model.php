@@ -45,7 +45,7 @@ class PublicacionesModel{
       $sql = "SELECT
                      inkside_publicaciones.pub_codigo as pub_codigo, inkside_publicaciones.pub_contenido as pub_contenido,
                      inkside_publicaciones.pub_imgPortada as pub_imgPortada, inkside_publicaciones.pub_titulo as pub_titulo,
-                     inkside_publicaciones.pub_fechaPublicacion as pub_fechaPublicacion, inkside_poetas.poet_nick as poet_nick,
+                     inkside_publicaciones.pub_dedicatorias as pub_dedicatorias, inkside_publicaciones.pub_fechaPublicacion as pub_fechaPublicacion, inkside_poetas.poet_nick as poet_nick,
                      inkside_poetas.poet_foto as poet_foto
               FROM
                     inkside_publicaciones

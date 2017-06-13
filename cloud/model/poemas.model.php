@@ -78,7 +78,7 @@ class PoemasModel{
       $sql = "SELECT inkside_publicaciones.pub_codigo as pub_codigo, inkside_publicaciones.pub_contenido as pub_contenido,
                      inkside_publicaciones.pub_imgPortada as pub_imgPortada, inkside_publicaciones.pub_titulo as pub_titulo,
                      inkside_publicaciones.pub_fechaPublicacion as pub_fechaPublicacion, inkside_poetas.poet_nick as poet_nick,
-                     inkside_poetas.poet_foto as poet_foto, inkside_poeta_descripcion.pdesc_avatar
+                     inkside_publicaciones.pub_dedicatorias as pub_dedicatorias, inkside_poetas.poet_foto as poet_foto, inkside_poeta_descripcion.pdesc_avatar
               FROM   inkside_publicaciones
               INNER JOIN inkside_poetas ON inkside_publicaciones.poet_codigo = inkside_poetas.poet_codigo
               INNER JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo

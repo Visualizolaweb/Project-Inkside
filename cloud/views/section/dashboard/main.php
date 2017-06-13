@@ -14,9 +14,7 @@
      $_SESSION["poeta"]["poet_codigo"] = $codigoPoeta["poet_codigo"];
   }
 
-
   $topMisPoemas = $poemas->misMasleidos($_SESSION["poeta"]["poet_codigo"]);
-
 
   require_once("controller/likes.controller.php");
   $likes = new likesController();
@@ -163,7 +161,7 @@
                   <div class="comments col l3 center">
                     <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con '.$allCoementarios.' comentarios"><i class="fa fa-comments"></i> '.$allCoementarios.'</a>
                     &nbsp;
-                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A 13 personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> 13</a>
+                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A '.$content["pub_dedicatorias"].' personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> '.$content["pub_dedicatorias"].'</a>
                   </div>
                 </div>
               </div>';
