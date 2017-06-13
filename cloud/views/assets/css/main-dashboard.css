@@ -220,8 +220,7 @@ header{
 }
  .post__aditional .user-likes ul{
    display: inline-flex;
-   width: 120px;
-   margin: 0;
+   margin: 0 20px 0 0;;
  }
  .post__aditional .user-likes ul li{
    margin-right: -15px;
