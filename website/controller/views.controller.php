@@ -10,8 +10,7 @@ class ViewsController{
   }
 
   public function index(){
-
-    $poetas = $this->poetas->ultimosPoetas();
+    $poetas = $this->poetas->poetasComunidad();
     require_once 'website/views/include/structure-header.php';
     require_once 'website/views/section/index/index.php';
     include_once 'website/views/include/scop-community.php';

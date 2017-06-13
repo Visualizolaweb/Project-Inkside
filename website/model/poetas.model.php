@@ -11,9 +11,13 @@ class PoetasModel{
     }
   }
 
-  public function ultimosPoetas(){
+  public function poetasComunidad(){
     try{
-      $sql = "SELECT * FROM inkside_poetas ORDER BY poet_fecha_creacion LIMIT 7";
+      $sql = "SELECT *,pdesc_acerca,pdesc_avatar
+              FROM inkside_poetas
+              JOIN inkside_poeta_descripcion
+              ON inkside_poeta_descripcion.poet_codigo = inkside_poetas.poet_codigo
+              ORDER BY poet_fecha_creacion LIMIT 12";
       $query = $this->pdo->prepare($sql);
       $query->execute();
       $result = $query->fetchALL(PDO::FETCH_BOTH);
@@ -50,11 +54,14 @@ class PoetasModel{
                   poet_celular,
                   poet_descripcion,
                   poet_foto,
-                  ciu_codigo
+                  ciu_codigo,
+                  pdesc_acerca,pdesc_avatar
               FROM
                   inkside_poetas
+                  JOIN inkside_poeta_descripcion
+                  ON inkside_poeta_descripcion.poet_codigo = inkside_poetas.poet_codigo
               WHERE
-                  poet_codigo = ?";
+                  inkside_poetas.poet_codigo = ?";
       $query = $this->pdo->prepare($sql);
       $query->execute(array($poet_codigo));
       $result = $query->fetch(PDO::FETCH_BOTH);
