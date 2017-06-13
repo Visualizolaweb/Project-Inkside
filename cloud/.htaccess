@@ -27,6 +27,8 @@ RewriteEngine on
 </IfModule>
 # FIN
 
+ErrorDocument 404 http://localhost/Github/visualizolaweb/Project-Inkside/cloud/404.php
+
 #Imagenes del Slider
 
 RewriteRule ^inkside-slider-1$ website/views/assets/images/slider/sliderMobile.jpg
