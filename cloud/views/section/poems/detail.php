@@ -1,13 +1,37 @@
 <?php
 require_once("controller/publicaciones.controller.php");
 require_once("controller/comentarios.controller.php");
+require_once("controller/poetas.controller.php");
+require_once("controller/likes.controller.php");
 
+$likes = new likesController();
+$poetas = new PoetasController();
 $publicaciones = new PublicacionesController();
 $comentarios   = new ComentariosController();
 
-
 $detalle = $publicaciones->cargarPublicacionbyID($_GET["pid"]);
 $publicaciones->guardarHits($_GET["pid"]);
+
+$totalLikes = $likes->likes($_GET["pid"]);
+$allLikes = count($totalLikes);
+
+$totalcomentarios = $comentarios->comentarios($_GET["pid"]);
+$allCoementarios = count($totalcomentarios);
+
+foreach ($totalLikes as $milike) {
+  if($milike['codigo']==$_SESSION["poeta"]["poet_codigo"]){
+    $classLike = "fa fa-heart";
+    $accion = "unlike";
+  }else{
+    $classLike = "fa fa-heart-o";
+    $accion = "like";
+  }
+}
+
+if($allLikes <= 0){
+  $classLike = "fa fa-heart-o";
+  $accion = "like";
+}
 
 if($detalle["pdesc_avatar"] == ""){
    $avatar = $detalle["poet_foto"];
@@ -42,7 +66,7 @@ $cargacomentarios = $comentarios->comentarios($_GET["pid"]);
 							<div class="author-date">
 								<a class="h6 post__author-name fn" href="#"><?php echo $detalle["poet_nick"] ?></a>
 								<div class="post__date">
-									<time class="published" datetime="2017-03-24T18:18">
+									<time class="published" datetime="<?php echo $detalle["pub_fechaPublicacion"]; ?>T18:18">
 									   Publicado el <?php echo $detalle["pub_fechaPublicacion"] ?>.
 									</time>
 								</div>
@@ -55,23 +79,14 @@ $cargacomentarios = $comentarios->comentarios($_GET["pid"]);
           </div>
 
           <div class="post__aditional row">
-            <div class="favorite col l2">
-              <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A 21 personas les ha gustado este poema"><i class="fa fa-heart-o"></i> 21</a>
+            <div class="favorite col l2"  id="like-<?php echo $_GET["pid"]?>">
+              <a href="javascript:void(0)" onClick="<?php echo 'addLikes(\''.$_GET["pid"].'\',\''.$accion.'\',\''.$allLikes.'\')' ?>" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A <?php echo $allLikes?> personas les ha gustado este poema">
+                <i class="<?php echo $classLike ?>"></i> <?php echo $allLikes ?>
+              </a>
             </div>
 
             <div class="user-likes col l7">
-              <div class="pic-profiles">
-              <a href="!#">
-                <ul>
-                  <li><img src="views/assets/images/perfil/avatar1-sm.jpg"  class="thum-poem"/></li>
-                  <li><img src="views/assets/images/perfil/avatar41-sm.jpg" class="thum-poem"/></li>
-                  <li><img src="views/assets/images/perfil/avatar42-sm.jpg" class="thum-poem"/></li>
-                  <li><img src="views/assets/images/perfil/avatar43-sm.jpg" class="thum-poem"/></li>
-                  <li><img src="views/assets/images/perfil/avatar63-sm.jpg" class="thum-poem"/></li>
-                </ul>
-              </a>
-              </div>
-              <div class="poets-like"><b>Diana</b> y 20 más les ha gustado este poema</div>
+              <?php $likes->likesConAvatar($_GET["pid"]); ?>
             </div>
             <div class="comments col l3 center">
               <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con <?php echo count($cargacomentarios)?> comentarios"><i class="fa fa-comments"></i> <?php echo count($cargacomentarios)?></a>

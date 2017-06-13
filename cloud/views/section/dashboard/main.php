@@ -90,14 +90,14 @@
             $allCoementarios = count($totalcomentarios);
 
             foreach ($totalLikes as $milike) {
-                if($milike['codigo']==$_SESSION["poeta"]["poet_codigo"]){
-                  $classLike = "fa fa-heart";
-                  $accion = "unlike";
-                }else{
-                  $classLike = "fa fa-heart-o";
-                  $accion = "like";
-                }
+              if($milike['codigo']==$_SESSION["poeta"]["poet_codigo"]){
+                $classLike = "fa fa-heart";
+                $accion = "unlike";
+              }else{
+                $classLike = "fa fa-heart-o";
+                $accion = "like";
               }
+            }
 
             if($allLikes <= 0){
               $classLike = "fa fa-heart-o";
