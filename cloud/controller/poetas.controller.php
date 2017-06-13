@@ -12,11 +12,17 @@ class PoetasController extends InitController{
   public function actualizarDatoPoeta(){
      $data = $_POST["data"];
      $result = $this->poetas->actualizarPoeta($data);
+     header("Location: mis-datos");
   }
 
   public function buscarDatoPoeta(){
      $result = $this->poetas->datosPoeta($_SESSION["poeta"]["poet_codigo"]);
      return $result;
+  }
+
+  public function cargaCodigoPoeta(){
+    $result = $this->poetas->cargaCodigobySocialID($_SESSION["poeta"]["acc_social_id"]);
+    return $result;
   }
 
 }
