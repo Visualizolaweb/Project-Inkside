@@ -22,7 +22,7 @@
         <div class="logo-inkside primary-default">
           <a href="#!" class="brand-logo"><img src="views/assets/images/Logo-Inkside@150.png" alt="InkSide" class="responsive-img"></a>
         </div>
-        <div class="mCustomScrollbar ps ps--theme_default ps--active-x ps--active-y">
+        <div class=" ">
           <?php include("views/include/scop-navigation.php"); ?>
         </div>
       </div>
@@ -48,7 +48,7 @@
               </div>
             </a>
 
-            <ul id="menuPoet" class="dropdown-content">
+            <ul id="menuPoet" class="dropdown-content" >
                <?php include("views/include/scop-navigation-poet.php"); ?>
             </ul>
           </div>

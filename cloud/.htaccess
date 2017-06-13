@@ -39,6 +39,11 @@ RewriteRule ^registro$ index.php?c=views&a=registro
 RewriteRule ^completa-perfil$ index.php?c=views&a=completaPerfil
 RewriteRule ^dashboard$ index.php?c=views&a=dashboard
 RewriteRule ^mis-datos$ index.php?c=views&a=actualizarPerfil
+
+
+
+RewriteRule ^mis-datos/(\w+)/?$ index.php?c=views&a=actualizarPerfil&result=$1
+
 RewriteRule ^crear-poema$ index.php?c=views&a=crearPoema
 RewriteRule ^mis-publicaciones$ index.php?c=views&a=crearPublicacion
 

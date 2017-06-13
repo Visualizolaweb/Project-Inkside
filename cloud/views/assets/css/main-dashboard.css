@@ -374,3 +374,19 @@ header{
 .comments form textarea:-moz-placeholder { color: white; } /* Firefox 18- */
 .comments form textarea::-moz-placeholder { color: white; } /* Firefox 19+ */
 .comments form textarea:-ms-input-placeholder { color: white; } /* IE 10+ */
+
+h5.title{
+  font-family: "Lato";
+}
+
+.header-section{
+  padding-bottom: 30px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+  display: inline;
+}
+
+.dropdown-content{
+  left: initial !important;
+  right: 10px;
+}

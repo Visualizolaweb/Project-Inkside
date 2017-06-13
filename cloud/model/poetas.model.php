@@ -28,17 +28,14 @@ class PoetasModel{
     try{
       $sql = "UPDATE inkside_poetas
               SET
-                  ciu_codigo = ?,
                   poet_nombre = ?,
                   poet_apellido = ?,
                   poet_nick = ?,
                   poet_email = ?,
-                  poet_fecha_nac = ?,
-                  poet_sexo = ?,
-                  poet_celular = ?
+                  poet_sexo = ?
               WHERE poet_codigo = ?";
       $query = $this->pdo->prepare($sql);
-      $query->execute(array($data[0],$data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8]));
+      $query->execute(array($data[1],$data[2],$data[3],$data[4],$data[6],$data[8]));
 
       $result = array(1,"Su cuenta se ha actualizado correctamente");
     }catch(PDOException $e){
@@ -174,6 +171,22 @@ class PoetasModel{
 
     return $result;
   }
+
+  public function cargaCodigobySocialID($acc_social_id){
+    try{
+       $sql = "SELECT poet_codigo FROM inkside_acceso WHERE acc_social_id = ?";
+       $query = $this->pdo->prepare($sql);
+       $query->execute(array($acc_social_id));
+
+       $result = $query->fetch(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
 
   public function __DESTRUCT(){
     DataBase::disconnect();
