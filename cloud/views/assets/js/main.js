@@ -161,6 +161,8 @@ $(document).ready(function() {
   $('select').material_select();
   // TEXT AREA ENRIQUECIDO CON HTML
   $("#txt_contenido").jqte();
+
+  $("#resultadoBusqueda").html('');
 });
 
 
@@ -178,7 +180,16 @@ function addLikes(id,action,total) {
       $("#like-"+id).html('<a  href="javascript:void(0)" onClick="addLikes(\''+id+'\',\'like\','+total+')" data-position="top" data-delay="50" data-tooltip="A '+total+' personas les ha gustado este poema"> <i class="fa fa-heart-o"></i> '+ total +'</a>');
     }
   });
-
-
-
 }
+
+// Buscador Autocompletar
+function buscar() {
+    var textoBusqueda = $("input#busqueda").val();
+    if (textoBusqueda != "") {
+        $.post("index.php?c=publicaciones&a=Buscador", {valorBusqueda: textoBusqueda}, function(mensaje) {
+            $("#resultadoBusqueda").html(mensaje);
+        });
+    } else {
+        ("#resultadoBusqueda").html('');
+	};
+};

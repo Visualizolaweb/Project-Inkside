@@ -35,9 +35,10 @@
             <div class="search">
               <form>
                 <label>Buscar</label>
-                <input type="text"/>
+                <input id="busqueda" onKeyUp="buscar();" name="busqueda" type="text"/>
                 <a href="" class="white-text"><i class="fa fa-search"></i></a>
               </form>
+              <div id="resultadoBusqueda"></div>
             </div>
           </div>
           <div class="col l4  right-align">

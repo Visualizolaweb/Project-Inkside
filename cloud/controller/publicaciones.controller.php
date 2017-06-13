@@ -183,5 +183,37 @@ class PublicacionesController extends InitController{
   public function misMasleidos($poet_codigo){
       return $this->publicaciones->masLeidos($poet_codigo);
   }
+
+  public function Buscador(){
+    $consultaBusqueda = $_POST['valorBusqueda'];
+    //Filtro anti-XSS
+    $caracteres_malos = array("<", ">", "\"", "'", "/", "<", ">", "'", "/");
+    $caracteres_buenos = array("& lt;", "& gt;", "& quot;", "& #x27;", "& #x2F;", "& #060;", "& #062;", "& #039;", "& #047;");
+    $consultaBusqueda = str_replace($caracteres_malos, $caracteres_buenos, $consultaBusqueda);
+
+    //Variable vacía (para evitar los E_NOTICE)
+    $mensaje = "";
+    if (isset($consultaBusqueda)) {
+      $buscarPublicaciones = $this->publicaciones->buscarPublicacion($consultaBusqueda);
+      if (count($buscarPublicaciones) === 0) {
+        $mensaje = "<p>No hay ningún usuario con ese nombre y/o apellido</p>";
+      } else {
+        //Si existe alguna fila que sea igual a $consultaBusqueda, entonces mostramos el siguiente mensaje
+        echo 'Resultados para <strong>'.$consultaBusqueda.'</strong>';
+
+        //La variable $resultado contiene el array que se genera en la consulta, así que obtenemos los datos y los mostramos en un bucle
+        foreach ($buscarPublicaciones as $row) {
+          $nombre = $row['pub_contenido'];
+    			$apellido = $row['pub_titulo'];
+        }
+
+      } //Fin else $filas
+
+      }//Fin isset $consultaBusqueda
+
+      //Devolvemos el mensaje que tomará jQuery
+      echo $mensaje;
+    }
+
 }
 ?>
