@@ -5,6 +5,12 @@
 
   require_once("controller/poetas.controller.php");
   $poetas = new PoetasController();
+
+  if(!isset($_SESSION["poeta"]["poet_codigo"])){
+     $codigoPoeta = $poetas->cargaCodigoPoeta();
+     $_SESSION["poeta"]["poet_codigo"] = $codigoPoeta["poet_codigo"];
+  }
+
   $poetasSugeridos = $poetas->cargaPoetasSugeridos();
 
   require_once("controller/likes.controller.php");

@@ -1,3 +1,5 @@
+<?php
+$_GET["pid"]?>
 <section id="wrap-container">
   <div class="row container-fluid wrap-panes">
 

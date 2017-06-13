@@ -66,4 +66,5 @@ RewriteRule ^cargar-ciudad$   index.php?c=localizacion&a=cargarCiudades
 
 #Detalle Poemas
 RewriteRule ^poemas$ index.php?c=views&a=poemas
-RewriteRule ^cuando-ya-no-este$   index.php?c=poemas&a=detalle
+
+RewriteRule ^pubID(\w+.+)/?$ index.php?c=poemas&a=detalle&pid=$1

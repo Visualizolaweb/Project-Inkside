@@ -26,9 +26,9 @@ class PublicacionesModel{
 
   public function cargarMisPublicaciones($poet_codigo){
     try{
-      $sql = 'SELECT pub_titulo as "publicacion", "Poema" as "Categoria", pub_estadoRevision as "Revision", pub_estado as "Estado" FROM bsstudio_inkside.inkside_publicaciones WHERE poet_codigo = ?
+      $sql = 'SELECT pub_codigo as "codigo", pub_titulo as "publicacion", "Poema" as "Categoria", pub_estadoRevision as "Revision", pub_estado as "Estado" FROM bsstudio_inkside.inkside_publicaciones WHERE poet_codigo = ?
               UNION
-              SELECT not_titulo as "publicacion", "Noticia" as "Categoria", not_estadoRevision as "Revision", not_estado as "Estado" FROM bsstudio_inkside.inkside_noticias  WHERE poet_codigo = ?';
+              SELECT not_codigo as "codigo", not_titulo as "publicacion", "Noticia" as "Categoria", not_estadoRevision as "Revision", not_estado as "Estado" FROM bsstudio_inkside.inkside_noticias  WHERE poet_codigo = ?';
 
       $query = $this->pdo->prepare($sql);
       $query->execute(array($poet_codigo,$poet_codigo));

@@ -77,7 +77,12 @@
                   echo "<td>".$icon.' '.$row['Categoria']."</td>";
                   echo "<td>".$row['Revision']."</td>";
                   echo "<td>".$row['Estado']."</td>";
-                  echo "<td></td>";
+                  echo "<td>
+
+                  <a href='pubID".$row['codigo']."'><i class='fa fa-eye'></i></a>
+
+
+                  </td>";
             echo "</tr>";
 
             $item++;
