@@ -181,12 +181,22 @@
         <div class="panel followers">
             <div class="panel-title">Poetas que te siguen!</div>
             <ul>
-              <li><img src="views/assets/images/perfil/avatar42-sm.jpg"/></li>
-              <li><img src="views/assets/images/perfil/avatar1-sm.jpg"/></li>
-              <li><img src="views/assets/images/perfil/avatar41-sm.jpg"/></li>
-              <li><img src="views/assets/images/perfil/avatar43-sm.jpg"/></li>
-              <li><img src="views/assets/images/perfil/avatar46-sm.jpg"/></li>
-              <li><img src="views/assets/images/perfil/avatar60-sm.jpg"/></li>
+              <?php
+              require_once("controller/seguidores.controller.php");
+              $seguidores = new SeguidoresController();
+
+              foreach ($seguidores->misSeguidores($_SESSION["poeta"]["poet_codigo"]) as $seguidor) {
+
+                  if($seguidor["pdesc_avatar"] == ""){
+                     $avatarSeguidor = $seguidor["poet_foto"];
+                  }else{
+                    $avatarSeguidor = $seguidor["pdesc_avatar"]; }
+
+                  echo '
+                  <li><img src="'.$avatarSeguidor.'"/></li>';
+              }
+            ?>
+
             </ul>
         </div>
       </div>

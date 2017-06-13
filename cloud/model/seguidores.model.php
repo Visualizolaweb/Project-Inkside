@@ -47,6 +47,21 @@ class SeguidoresModel{
     return $result;
   }
 
+  public function seguidores($poet_codigo){
+    try{
+      $sql = "SELECT inkside_seguidores.poet_codigo, poet_foto, pdesc_avatar
+		          FROM inkside_poetas
+              LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+	            JOIN inkside_seguidores ON inkside_seguidores.poet_codigo = inkside_poetas.poet_codigo
+              WHERE  seg_seguidores LIKE '%".$poet_codigo."%'";
+      $query = $this->pdo->prepare($sql);
+      $query->execute();
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    }catch (Exception $e){
+      $result = array(0,$e->getMessage());
+    }
+    return $result;
+  }
 
   public function __DESTRUCT(){
     DataBase::disconnect();

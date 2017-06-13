@@ -102,6 +102,7 @@ $cargacomentarios = $comentarios->comentarios($_GET["pid"]);
            <div class="panel comments">
             <div class="panel-title">Deja tu comentario!
             <div style="position: absolute; right: 15px;"><a id="btncomentarios" class="btn-floating right waves-effect waves-light amber darken-2 z-depth-0"><i class="fa fa-save"></i></a></div></div>
+
             <form id="frmcomentario" method="post" action="crear-comentario">
               <input type="hidden" name="data[0]" value="<?php echo $_SESSION["poeta"]["poet_codigo"]?>">
               <input type="hidden" name="data[1]" value="<?php echo $_GET["pid"] ?>">
