@@ -91,7 +91,7 @@
             $totalcomentarios = $comentarios->comentarios($content['pub_codigo']);
             $allCoementarios = count($totalcomentarios);
 
-              foreach ($totalLikes as $milike) {
+            foreach ($totalLikes as $milike) {
                 if($milike['codigo']==$_SESSION["poeta"]["poet_codigo"]){
                   $classLike = "fa fa-heart";
                   $accion = "unlike";
@@ -105,7 +105,6 @@
               $classLike = "fa fa-heart-o";
               $accion = "like";
             }
-
 
             if($content['pdesc_avatar']!=''){
               $avatarPublic = $content['pdesc_avatar'];

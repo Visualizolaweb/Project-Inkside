@@ -16,7 +16,9 @@
         <!-- Widget - Poemas -->
 
           <div id="content">
-            <?php $publicaciones->paginarPublicaciones(); ?>
+            <?php
+                $publicaciones->paginarPublicaciones(); 
+            ?>
           </div>
 
 
