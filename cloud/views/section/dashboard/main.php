@@ -63,6 +63,14 @@
         <?php
           foreach ($poemasContent as $content) {
             $totalLikes = $likes->likes($content['pub_codigo']);
+            $allLikes = count($totalLikes['poet_codigo']);
+            if($totalLikes['poet_codigo']==$_SESSION["poeta"]["poet_codigo"]){
+              $classLike = "fa fa-heart";
+              $accion = "unlike";
+            }else{
+              $classLike = "fa fa-heart-o";
+              $accion = "like";
+            }
 
             if($content['pdesc_avatar']!=''){
               $avatarPublic = $content['pdesc_avatar'];
@@ -109,8 +117,10 @@
                 </div>
 
                 <div class="post__aditional row">
-                  <div class="favorite col l2">
-                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A "'. $totalLikes['likes'] .'" personas les ha gustado este poema"><i class="fa fa-heart-o"></i> '.$totalLikes['likes'].'</a>
+                  <div class="favorite col l2" id="like-'.$content["pub_codigo"].'">
+                    <a  href="javascript:void(0)" onClick="addLikes(\''.$content["pub_codigo"].'\',\''.$accion.'\',\''.$allLikes.'\')" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A '. $allLikes .' personas les ha gustado este poema">
+                      <i class="'.$classLike.'"></i> '.$allLikes.'
+                    </a>
                   </div>
 
                   <div class="user-likes col l7">

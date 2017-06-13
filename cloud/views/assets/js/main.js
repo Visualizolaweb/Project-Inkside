@@ -3,11 +3,11 @@
  $(".button-collapse").sideNav();
  $("#publicaciones").modal();
  $('.tooltipped').tooltip({delay: 50});
- $('#dataGrid').DataTable({
-      "language": {
-                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
-                  }
- });
+ // $('#dataGrid').DataTable({
+ //      "language": {
+ //                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+ //                  }
+ // });
 
  // VALIDACION PARA INICIO DE SESION A TRAVES DEL FORMULARIO DE INKSIDE
  $("#frmlogin").submit(function(e) {
@@ -153,3 +153,22 @@ $(document).ready(function() {
   // TEXT AREA ENRIQUECIDO CON HTML
   $("#txt_contenido").jqte();
 });
+
+
+// Like o Unlike publicacion
+function addLikes(id,action,total) {
+  $.post("index.php?c=likes&a=likePublicacion",{pub_codigo : id, accion: action}, function(e){
+
+    if(e == 'like'){
+      total = parseInt(total) + 1;
+      $("#like-"+id).html('<a  href="javascript:void(0)" onClick="addLikes(\''+id+'\',\'unlike\','+total+')" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A '+total+' personas les ha gustado este poema"> <i class="fa fa-heart"></i> '+ total +' </a>');
+    }else{
+
+      total = parseInt(total) - 1;
+      $("#like-"+id).html('<a  href="javascript:void(0)" onClick="addLikes(\''+id+'\',\'like\','+total+')" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A '+total+' personas les ha gustado este poema"> <i class="fa fa-heart-o"></i> '+ total +'</a>');
+    }
+  });
+
+
+
+}
