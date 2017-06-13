@@ -140,6 +140,16 @@ class PublicacionesController extends InitController{
       return $publicaciones;
   }
 
+  public function guardarHits($pub_codigo){
+      $this->publicaciones->guardarHit($pub_codigo);
+  }
 
+  public function guardarDedicatoria($pub_codigo){
+      $this->publicaciones->dedicatoria($pub_codigo);
+  }
+
+  public function misMasleidos($poet_codigo){
+      return $this->publicaciones->masLeidos($poet_codigo);
+  }
 }
 ?>

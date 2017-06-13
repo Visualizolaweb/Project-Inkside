@@ -113,14 +113,20 @@ $('.datepicker').pickadate({
   close: 'Cerrar'
 });
 
-$('.add-poet').hover(function(){
-  $(this).find( "i:last" ).remove();
-  $(this).append($( "<i class='fa fa-heart'></i>" ));
-},function() {
-  $(this).find( "i:last" ).remove();
-  $(this).append($( "<i class='fa fa-heart-o'></i>" ));
-});
+function add_poet(micodigo, poet_codigo){
+  $.post("index.php?c=seguidores&a=seguirPoeta",{micodigo:micodigo, poet_codigo:poet_codigo},function(){
+      $("#"+poet_codigo).slideUp();
+  })
+}
 
+function dedicaPoema(codigopoema,codigopoeta){
+  $.sweetModal.prompt('Deseas dedicar este poema?, escribe el correo del destinatario', null, null, function(val) {
+  $.post("index.php?c=envios&a=dedicatoria",{pub_codigo: codigopoema, poet_codigo: codigopoeta, email: val}, function(confirm){
+      $.sweetModal(confirm);
+  })
+
+  });
+}
 // COMBOS DEPENDIENTES
 
 // Carga Departamento

@@ -1,29 +1,38 @@
 <?php
 require_once("controller/publicaciones.controller.php");
+require_once("controller/comentarios.controller.php");
+
 $publicaciones = new PublicacionesController();
+$comentarios   = new ComentariosController();
+
+
 $detalle = $publicaciones->cargarPublicacionbyID($_GET["pid"]);
+$publicaciones->guardarHits($_GET["pid"]);
 
 if($detalle["pdesc_avatar"] == ""){
    $avatar = $detalle["poet_foto"];
 }else{
   $avatar = $detalle["pdesc_avatar"];
 }
-?>
 
+$cargacomentarios = $comentarios->comentarios($_GET["pid"]);
+
+?>
 
 <section id="wrap-container">
   <div class="row container-fluid wrap-panes">
 
       <div class="col l8">
-
-
         <!-- Widget - Poemas -->
 
         <div class="panel poem">
           <div class="control-button">
             <ul>
-              <a href="!#"><li><i class="fa fa-heart"></i></li></a>
-              <a href="!#"><li><i class="fa fa-bullhorn"></i></li></a>
+              <?php
+
+        echo '  <a href="javascript:void(0)" onClick="dedicaPoema(\''.$_GET["pid"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')"><li><i class="fa fa-bullhorn"></i></li></a>';
+
+               ?>
             </ul>
           </div>
 
@@ -65,9 +74,9 @@ if($detalle["pdesc_avatar"] == ""){
               <div class="poets-like"><b>Diana</b> y 20 más les ha gustado este poema</div>
             </div>
             <div class="comments col l3 center">
-              <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con 2 comentarios"><i class="fa fa-comments"></i> 2</a>
+              <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con <?php echo count($cargacomentarios)?> comentarios"><i class="fa fa-comments"></i> <?php echo count($cargacomentarios)?></a>
               &nbsp;
-              <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A 13 personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> 13</a>
+              <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A <?php echo $detalle["pub_dedicatorias"]; ?> personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> <?php echo $detalle["pub_dedicatorias"]; ?></a>
             </div>
           </div>
         </div>

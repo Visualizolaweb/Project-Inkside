@@ -76,5 +76,10 @@ class PoemasController extends InitController{
         $stringDisplay .= ' ...';
     return $stringDisplay;
  }
+
+ public function misMasleidos($poet_codigo){
+     return $this->poemas->masLeidos($poet_codigo);
+ }
+
 }
 ?>

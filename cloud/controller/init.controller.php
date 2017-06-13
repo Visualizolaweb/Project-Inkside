@@ -74,7 +74,37 @@
         }
 
         return $message;
+    }
 
+
+    public function sendDedicatoria($poeta, $pub_codigo, $email){
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        // $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = "inksidepoesiaapp@gmail.com";
+        $mail->Password = "1nk51d3p03514";
+        $mail->setFrom('inksidepoesiaapp@gmail.com', 'Inkside Poesia');
+        $mail->addAddress($email);
+        $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
+
+        $mail->Subject = "Hola te han dedicado un poema!";
+        include 'views/section/tmpMailer/dedicatoria.php';
+
+
+        if (!$mail->send()) {
+            $message = array(0, "Mailer Error: " . $mail->ErrorInfo);
+        } else {
+            $message = array(1, "La dedicatoria se ha enviado correctamente, Gracias por hacer que la comunidad crezca." . $mail->ErrorInfo);
+        }
+
+        return $message;
     }
 
 

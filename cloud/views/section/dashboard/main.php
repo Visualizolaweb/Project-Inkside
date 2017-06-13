@@ -14,7 +14,9 @@
      $_SESSION["poeta"]["poet_codigo"] = $codigoPoeta["poet_codigo"];
   }
 
-  $poetasSugeridos = $poetas->cargaPoetasSugeridos();
+
+  $topMisPoemas = $poemas->misMasleidos($_SESSION["poeta"]["poet_codigo"]);
+
 
   require_once("controller/likes.controller.php");
   $likes = new likesController();
@@ -28,19 +30,20 @@
         <div class="panel">
           <div class="panel-title">Poetas Sugeridos</div>
 
-          <ul class="collection">
+          <ul class="collection" id="Suggest">
             <?php
+                $poetasSugeridos = $poetas->cargaPoetasSugeridos();
                 foreach ($poetasSugeridos as $sugeridos) {
                   if($sugeridos['pdesc_avatar']!=''){
                     $avatar = $sugeridos['pdesc_avatar'];
                   }else{
                     $avatar = $sugeridos['poet_foto'];
                   }
-                  echo '<li class="collection-item avatar">
+                  echo '<li class="collection-item avatar" id='.$sugeridos['poet_codigo'].'>
                     <img src="'.$avatar.'" alt="" class="circle">
                     <span class="title">'.$sugeridos['poet_nick'].'</span>
                     <p>'.$sugeridos['ciu_nombre'].'</p>
-                    <a href="#!" class="secondary-content add-poet"><i class="fa fa-heart-o"></i></a>
+                    <a href="javascript:void(0)" onclick="add_poet(\''.$_SESSION["poeta"]["poet_codigo"].'\',\''.$sugeridos['poet_codigo'].'\')" class="secondary-content "><i class="fa fa-heart-o"></i></a>
                   </li>';
                 }
             ?>
@@ -50,11 +53,22 @@
 
         <!-- Widget - Tu publicaciones mas vistas -->
         <div class="panel">
-          <div class="panel-title">Tus publicaciones más vistas</div>
+          <div class="panel-title">Tus 5 poemas más leidos</div>
           <div class="collection">
-              <a href="#!" class="collection-item"><span class="new badge green" data-badge-caption="Vistas">18</span>Besos Con sonrisa</a>
-              <a href="#!" class="collection-item"><span class="new badge" data-badge-caption="Vistas">4</span>Emanuel Luna</a>
-              <a href="#!" class="collection-item"><span class="new badge blue-grey lighten-5 black-text"  data-badge-caption="Vista">1</span>Preguntas de Dos Amantes</a>
+            <?php
+              foreach ($topMisPoemas as $puesto) {
+                if($puesto["pub_hits"] >= 10){
+                  $color = "green";
+                }elseif($puesto["pub_hits"] == 1){
+                  $color = "blue-grey lighten-5 black-text";
+                }else{
+                  $color = "";
+                }
+
+                echo '<a href="#!" class="collection-item"><span class="new badge '.$color.'" data-badge-caption="Vistas">'.$puesto["pub_hits"].'</span>'.$puesto["pub_titulo"].'</a>';
+              }
+
+            ?>
             </div>
         </div>
       </div>
@@ -112,7 +126,7 @@
                   <ul>
                   <a href="javascript:void(0)" onClick="addLikes(\''.$content["pub_codigo"].'\',\''.$accion.'\',\''.$allLikes.'\')"><li><i class="fa fa-heart"></i></li></a>
                   <a href="pubID'.$content["pub_codigo"].'"><li><i class="fa fa-comments"></i></li></a>
-                  <a href="!#"><li><i class="fa fa-bullhorn"></i></li></a>
+                  <a href="javascript:void(0)" onClick="dedicaPoema(\''.$content["pub_codigo"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')"><li><i class="fa fa-bullhorn"></i></li></a>
                   </ul>
                 </div>
 

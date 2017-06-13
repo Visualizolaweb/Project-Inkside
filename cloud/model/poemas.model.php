@@ -93,6 +93,20 @@ class PoemasModel{
     return $result;
   }
 
+  public function masLeidos($poet_codigo){
+    try{
+      $sql = "SELECT pub_titulo, pub_hits FROM inkside_publicaciones WHERE poet_codigo = ? ORDER BY pub_hits desc LIMIT 5";
+      $query = $this->pdo->prepare($sql);
+     $query->execute(array($poet_codigo));
+     $result = $query->fetchALL(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
   public function __DESTRUCT(){
     DataBase::disconnect();
   }

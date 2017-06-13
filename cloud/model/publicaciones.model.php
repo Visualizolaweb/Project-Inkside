@@ -68,7 +68,7 @@ class PublicacionesModel{
 
   public function cargabyId($pub_codigo){
     try{
-      $sql = "SELECT inkside_poetas.poet_codigo, poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_titulo, pub_contenido
+      $sql = "SELECT inkside_poetas.poet_codigo,  poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_titulo, pub_contenido, pub_dedicatorias
         			 FROM inkside_poetas
                      LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
                      JOIN inkside_publicaciones      ON inkside_poetas.poet_codigo = inkside_publicaciones.poet_codigo
@@ -84,6 +84,26 @@ class PublicacionesModel{
     return $result;
   }
 
+
+  public function guardarHit($pub_codigo){
+    try{
+      $sql = "UPDATE inkside_publicaciones SET pub_hits = pub_hits + 1 WHERE pub_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($pub_codigo));
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+  }
+
+  public function dedicatoria($pub_codigo){
+    try{
+      $sql = "UPDATE inkside_publicaciones SET pub_dedicatorias = pub_dedicatorias + 1 WHERE pub_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($pub_codigo));
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+  }
   public function __DESTRUCT(){
     DataBase::disconnect();
   }
