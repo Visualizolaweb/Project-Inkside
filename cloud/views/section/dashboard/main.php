@@ -2,6 +2,14 @@
   require_once("controller/poemas.controller.php");
   $poemas = new PoemasController();
   $poemasContent = $poemas->poemas();
+
+  require_once("controller/poetas.controller.php");
+  $poetas = new PoetasController();
+  $poetasSugeridos = $poetas->cargaPoetasSugeridos();
+
+  require_once("controller/likes.controller.php");
+  $likes = new likesController();
+
 ?>
 <section id="wrap-container">
   <div class="row container-fluid wrap-panes">
@@ -10,28 +18,25 @@
         <!-- Widget Poetas Sugeridos -->
         <div class="panel">
           <div class="panel-title">Poetas Sugeridos</div>
+
           <ul class="collection">
-              <li class="collection-item avatar">
-                <img src="views/assets/images/perfil/avatar38-sm.jpg" alt="" class="circle">
-                <span class="title">Nicolás Ramírez</span>
-                <p>Medellín, CO.</p>
-                <a href="#!" class="secondary-content add-poet"><i class="fa fa-heart-o"></i></a>
-              </li>
-
-              <li class="collection-item avatar">
-                <img src="views/assets/images/perfil/avatar39-sm.jpg" alt="" class="circle">
-                <span class="title">Jesus Daniel Toro</span>
-                <p>Medellín, CO.</p>
-                <a href="#!" class="secondary-content add-poet"><i class="fa fa-heart-o"></i></a>
-              </li>
-
-              <li class="collection-item avatar">
-                <img src="views/assets/images/perfil/avatar40-sm.jpg" alt="" class="circle">
-                <span class="title">Mario A. Garcia</span>
-                <p>Medellín, CO.</p>
-                <a href="#!" class="secondary-content add-poet"><i class="fa fa-heart-o"></i></a>
-              </li>
+            <?php
+                foreach ($poetasSugeridos as $sugeridos) {
+                  if($sugeridos['pdesc_avatar']!=''){
+                    $avatar = $sugeridos['pdesc_avatar'];
+                  }else{
+                    $avatar = $sugeridos['poet_foto'];
+                  }
+                  echo '<li class="collection-item avatar">
+                    <img src="'.$avatar.'" alt="" class="circle">
+                    <span class="title">'.$sugeridos['poet_nick'].'</span>
+                    <p>'.$sugeridos['ciu_nombre'].'</p>
+                    <a href="#!" class="secondary-content add-poet"><i class="fa fa-heart-o"></i></a>
+                  </li>';
+                }
+            ?>
           </ul>
+
         </div>
 
         <!-- Widget - Tu publicaciones mas vistas -->
@@ -57,6 +62,14 @@
 
         <?php
           foreach ($poemasContent as $content) {
+            $totalLikes = $likes->likes($content['pub_codigo']);
+
+            if($content['pdesc_avatar']!=''){
+              $avatarPublic = $content['pdesc_avatar'];
+            }else{
+              $avatarPublic = $content['poet_foto'];
+            }
+
             $Content = $poemas->getSubString($content["pub_contenido"]);
 
               if($content["pub_fechaPublicacion"]==(date('Y-m-d'))){
@@ -75,7 +88,7 @@
                 </div>
 
                  <div class="post__author author vcard inline-items">
-      							<img src="'.$content["poet_foto"].'" alt="author" data-pin-nopin="true">
+      							<img src="'.$avatarPublic.'" alt="author" data-pin-nopin="true">
 
       							<div class="author-date">
       								<a class="h6 post__author-name fn" href="#">'.$content["poet_nick"].'</a>
@@ -97,7 +110,7 @@
 
                 <div class="post__aditional row">
                   <div class="favorite col l2">
-                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A 21 personas les ha gustado este poema"><i class="fa fa-heart-o"></i> 21</a>
+                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A "'. $totalLikes['likes'] .'" personas les ha gustado este poema"><i class="fa fa-heart-o"></i> '.$totalLikes['likes'].'</a>
                   </div>
 
                   <div class="user-likes col l7">
