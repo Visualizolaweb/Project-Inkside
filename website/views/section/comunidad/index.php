@@ -1,16 +1,25 @@
 <?php
    require_once 'website/controller/poetas.controller.php';
    $poetas = new PoetasController();
+
+   require_once 'website/controller/publicaciones.controller.php';
+   $publicaciones = new PublicacionesController();
 ?>
 <div class="container">
   <?php
   $poetasComunidad = $poetas->PoestasdelaComunidad();
   foreach ($poetasComunidad as $row) {
+     $contenido = $publicaciones->getSubString($row['pdesc_acerca']);
+    if ($row['pdesc_avatar']=='') {
+      $avatar = $row['poet_foto'];
+    }else{
+      $avatar = $row['pdesc_avatar'];
+    }
     echo '<figure class="snip1559">
-          <div class="profile-image"><img src="cloud/'.$row['poet_foto'].'" alt="'.$row['poet_nick'].'" /></div>
+          <div class="profile-image"><img src="cloud/'.$avatar.'" alt="'.$row['poet_nick'].'" /></div>
           <figcaption>
             <h3>'.$row['poet_nick'].'</h3>
-            <p>'.$row['poet_descripcion'].'</p>
+            <p>'.$contenido.'</p>
           </figcaption>
         </figure>';
   }

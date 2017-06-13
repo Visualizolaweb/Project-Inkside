@@ -13,8 +13,9 @@ class PublicacionesModel{
 
   public function cargarPoemas(){
     try{
-      $sql = "SELECT *,poet_nick,poet_foto FROM inkside_publicaciones
-              JOIN inkside_poetas ON inkside_poetas.poet_codigo = inkside_publicaciones.poet_codigo
+      $sql = "SELECT *,pdesc_acerca,pdesc_avatar,poet_nick FROM inkside_publicaciones
+              JOIN inkside_poeta_descripcion ON inkside_poeta_descripcion.poet_codigo = inkside_publicaciones.poet_codigo
+              JOIN inkside_poetas ON inkside_poeta_descripcion.poet_codigo = inkside_poetas.poet_codigo
               WHERE pub_estado = 'publicado' ORDER BY pub_fechaPublicacion DESC LIMIT 12";
       $query = $this->pdo->prepare($sql);
 			$query->execute();
