@@ -24,6 +24,22 @@ class PublicacionesModel{
     return $result;
   }
 
+  public function cargarMisPublicaciones($poet_codigo){
+    try{
+      $sql = 'SELECT pub_titulo as "publicacion", "Poema" as "Categoria", pub_estadoRevision as "Revision", pub_estado as "Estado" FROM bsstudio_inkside.inkside_publicaciones WHERE poet_codigo = ?
+              UNION
+              SELECT not_titulo as "publicacion", "Noticia" as "Categoria", not_estadoRevision as "Revision", not_estado as "Estado" FROM bsstudio_inkside.inkside_noticias  WHERE poet_codigo = ?';
+
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($poet_codigo,$poet_codigo));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+    return $result;
+  }
+
   public function mostrarPoemas($position, $rows_for_page){
     try{
       $sql = "SELECT

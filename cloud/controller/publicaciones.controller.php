@@ -13,6 +13,11 @@ class PublicacionesController extends InitController{
       $this->poemas = new PoemasController();
   }
 
+  public function misPublicaciones(){
+      $publicaciones = $this->publicaciones->cargarMisPublicaciones($_SESSION["poeta"]["poet_codigo"]);
+      return $publicaciones;
+  }
+
   public function paginarPublicaciones(){
     $Publicaciones = $this->publicaciones->cargarPoemas();
     $num_total_registros = count($Publicaciones);
@@ -22,7 +27,7 @@ class PublicacionesController extends InitController{
     $pagina = @$_GET["pagina"];
     if (!$pagina) {
        $inicio = 0;
-       $pagina = 1;
+       $pagina = 0;
     } else {
        $inicio = ($pagina - 1) * $TAMANO_PAGINA;
     }

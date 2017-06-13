@@ -14,6 +14,7 @@
     <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,900|Roboto|Roboto+Condensed:400,700"/>
     <link type="text/css" rel="stylesheet" href="views/assets/css/main-dashboard.css"/>
     <link type="text/css" rel="stylesheet" href="views/assets/css/jquery-te-1.4.0.css" />
+    <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>

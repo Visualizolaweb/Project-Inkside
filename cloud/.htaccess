@@ -45,7 +45,8 @@ RewriteRule ^mis-datos$ index.php?c=views&a=actualizarPerfil
 RewriteRule ^mis-datos/(\w+)/?$ index.php?c=views&a=actualizarPerfil&result=$1
 
 RewriteRule ^crear-poema$ index.php?c=views&a=crearPoema
-RewriteRule ^mis-publicaciones$ index.php?c=views&a=crearPublicacion
+RewriteRule ^crear-Publicacion$ index.php?c=views&a=crearPublicacion
+RewriteRule ^mis-publicaciones$ index.php?c=views&a=misPublicaciones
 
 
 #Redirecciones Procesos

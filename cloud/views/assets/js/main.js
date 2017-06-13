@@ -1,8 +1,13 @@
-var ctrlDown = false, ctrlKey = 17, cmdKey = 91, vKey = 86, cKey = 67;
+ var ctrlDown = false, ctrlKey = 17, cmdKey = 91, vKey = 86, cKey = 67;
 
  $(".button-collapse").sideNav();
  $("#publicaciones").modal();
  $('.tooltipped').tooltip({delay: 50});
+ $('#dataGrid').DataTable({
+      "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                  }
+ });
 
  // VALIDACION PARA INICIO DE SESION A TRAVES DEL FORMULARIO DE INKSIDE
  $("#frmlogin").submit(function(e) {
@@ -144,9 +149,7 @@ $("#txt-departamento").change(function(){
 
 
 $(document).ready(function() {
-  // Inicializar los select
   $('select').material_select();
-
   // TEXT AREA ENRIQUECIDO CON HTML
   $("#txt_contenido").jqte();
 });
