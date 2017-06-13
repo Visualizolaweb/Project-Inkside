@@ -36,6 +36,7 @@ class ViewsController{
     require_once 'views/include/structure-footer-dashboard.php';
   }
 
+ 
   public function misPublicaciones(){
     require_once 'views/include/structure-header-dashboard.php';
     require_once 'views/section/publications/mypublish.php';
@@ -57,6 +58,12 @@ class ViewsController{
   public function crearPublicacion(){
     require_once 'views/include/structure-header-dashboard.php';
     require_once 'views/section/publications/create_publication.php';
+    require_once 'views/include/structure-footer-dashboard.php';
+  }
+
+  public function crearEventos(){
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/events/create_evento.php';
     require_once 'views/include/structure-footer-dashboard.php';
   }
 

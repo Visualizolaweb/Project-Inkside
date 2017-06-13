@@ -3,11 +3,11 @@
  $(".button-collapse").sideNav();
  $("#publicaciones").modal();
  $('.tooltipped').tooltip({delay: 50});
- // $('#dataGrid').DataTable({
- //      "language": {
- //                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
- //                  }
- // });
+ $('#dataGrid').DataTable({
+      "language": {
+                    "url": "//cdn.datatables.net/plug-ins/1.10.15/i18n/Spanish.json"
+                  }
+ });
 
  $("#btncomentarios").click(function(){
    $("#frmcomentario").submit();
@@ -168,7 +168,7 @@ $(document).ready(function() {
 function addLikes(id,action,total) {
 
    $.post("index.php?c=likes&a=likePublicacion",{pub_codigo : id, accion: action}, function(e){
-   
+
     if(e == 'like'){
       total = parseInt(total) + 1;
       $("#like-"+id).html('<a  href="javascript:void(0)" onClick="addLikes(\''+id+'\',\'unlike\','+total+')" data-position="top" data-delay="50" data-tooltip="A '+total+' personas les ha gustado este poema"> <i class="fa fa-heart"></i> '+ total +' </a>');

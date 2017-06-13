@@ -75,6 +75,11 @@ $cargacomentarios = $comentarios->comentarios($_GET["pid"]);
 
           <div class="post__content">
             <h3><?php echo $detalle["pub_titulo"]; ?></h3>
+                <?php
+                  if($detalle["pub_imgPortada"]!=""){
+                    echo "<div class='portada center'><img src='views/assets/images/portadasPoemas/".$detalle["pub_imgPortada"]."' class='responsive-img'></div>";
+                  }
+                ?>
                 <?php echo $detalle["pub_contenido"]; ?>
           </div>
 

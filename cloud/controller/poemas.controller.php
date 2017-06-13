@@ -56,6 +56,7 @@ class PoemasController extends InitController{
           }
       }
      $result = $this->poemas->crearPoema($data,$cat_text,$filename);
+     header("Location: mis-publicaciones");
   }
 
   public function poetasByPoeta(){

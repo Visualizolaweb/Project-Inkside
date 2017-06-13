@@ -32,6 +32,29 @@ class ArticulosModel{
     return $result;
   }
 
+
+  public function crearEvento($data,$imagenPortada){
+    $fecha = date('Y-m-d');
+    try{
+      $sql = "INSERT INTO inkside_eventos
+                          (poet_codigo,
+                          event_fechaPublicacion,
+                          event_imgPortada,
+                          event_titulo,
+                          event_contenido,
+                          event_fechaEvento)
+            VALUES(?,?,?,?,?,?)";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($_SESSION["poeta"]["poet_codigo"],$fecha,$imagenPortada,$data[2],$data[3],$data[4]));
+
+      $result = array(1,"Se ha registrado correctamente");
+      }catch (Exception $e){
+      $result = array(0,$e->getMessage());
+    }
+    return $result;
+  }
+
+
   public function actualizarPoeta($data){
     try{
       $sql = "UPDATE inkside_poetas

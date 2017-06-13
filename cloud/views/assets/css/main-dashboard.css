@@ -427,3 +427,24 @@ tr.odd {
 #content .col.m6.s12{
   min-height: 410px !important;
 }
+
+.jqte{
+  border:1px solid #d6d6d6 !important;
+  box-shadow: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  margin-bottom: 0 !important;
+}
+
+.jqte_editor, .jqte_source{
+  min-height: 250px !important;
+  background-color: #fafafa !important;
+}
+
+.jqte_tool.jqte_tool_1 .jqte_tool_label{
+  height: 25px !important;
+}
+
+#categorias  label{
+  padding-left: 30px !important;
+}
