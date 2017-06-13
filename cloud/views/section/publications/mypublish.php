@@ -64,6 +64,7 @@
 
         <tbody>
           <?php
+
           foreach ($misPublicaciones as $row) {
 
             switch ($row['Categoria']) {
@@ -71,16 +72,45 @@
               case 'Evento': $icon = "<i class='fa fa-calendar'></i>"; break;
               default:   $icon = "<i class='fa fa-lightbulb-o'></i>"; break;
             }
+
+            switch ($row['Revision']) {
+              case 'Aprobado':
+                $color = "green-text";
+              break;
+
+              case 'Por Revisar':
+                $color = "amber-text";
+              break;
+
+              default:
+                $color = "red-text";
+                break;
+            }
             echo "<tr>";
                   echo "<td>".$item."</td>";
                   echo "<td>".$row['publicacion']."</td>";
                   echo "<td>".$icon.' '.$row['Categoria']."</td>";
-                  echo "<td>".$row['Revision']."</td>";
+                  echo "<td><i class='fa fa-circle ".$color." '></i> ".$row['Revision']."</td>";
                   echo "<td>".$row['Estado']."</td>";
                   echo "<td>
 
-                  <a href='pubID".$row['codigo']."'><i class='fa fa-eye'></i></a>
+                  <a href='pubID".$row['codigo']."'><i class='fa fa-eye'></i></a>&nbsp;&nbsp;";
 
+                  switch ($row['Categoria']) {
+                    case 'Poema':
+                        echo "<a href='edita-poema-".$row['codigo']."' class='red-text'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;";
+                    break;
+
+                    case 'Noticia':
+                        echo "<a href='pubID".$row['codigo']."' class='red-text'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;";
+                    break;
+
+                    case 'Evento':
+                        echo "<a href='pubID".$row['codigo']."' class='red-text'><i class='fa fa-edit'></i></a>&nbsp;&nbsp;";
+                    break;
+
+                  }
+                  echo "<a href='elimino-pubID".$row['codigo']."'><i class='fa fa-trash-o'></i></a>&nbsp;&nbsp;
 
                   </td>";
             echo "</tr>";

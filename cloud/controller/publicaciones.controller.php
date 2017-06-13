@@ -32,8 +32,9 @@ class PublicacionesController extends InitController{
       return $publicaciones;
   }
 
-  public function paginarPublicaciones(){
-    $Publicaciones = $this->publicaciones->cargarPoemas();
+  public function paginarPublicaciones($tipoArticulo){
+
+    $Publicaciones = $this->publicaciones->cargarPoemas($tipoArticulo);
     $num_total_registros = count($Publicaciones);
 
     $TAMANO_PAGINA = 8;
@@ -47,8 +48,9 @@ class PublicacionesController extends InitController{
     }
       $total_paginas = ceil($num_total_registros / $TAMANO_PAGINA);
 
-       $poemasContent = $this->publicaciones->mostrarPoemas($inicio, $TAMANO_PAGINA);
+       $poemasContent = $this->publicaciones->mostrarPoemas($inicio, $TAMANO_PAGINA, $tipoArticulo);
 
+       if(count($poemasContent)>0){
        foreach ($poemasContent as $content) {
          $totalLikes = $this->likes->likes($content['pub_codigo']);
          $allLikes = count($totalLikes);
@@ -90,9 +92,13 @@ class PublicacionesController extends InitController{
            <div class="control-button">
              <ul>
              <a href="javascript:void(0)" onClick="addLikes(\''.$content["pub_codigo"].'\',\''.$accion.'\',\''.$allLikes.'\')"><li><i class="fa fa-heart"></i></li></a>
-             <a href="pubID'.$content["pub_codigo"].'"><li><i class="fa fa-comments"></i></li></a>
-             <a href="javascript:void(0)" onClick="dedicaPoema(\''.$content["pub_codigo"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')"><li><i class="fa fa-bullhorn"></i></li></a>
-             </ul>
+             <a href="pubID'.$content["pub_codigo"].'"><li><i class="fa fa-comments"></i></li></a>';
+
+             if($tipoArticulo == 'Poema'){
+              echo '<a href="javascript:void(0)" onClick="dedicaPoema(\''.$content["pub_codigo"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')"><li><i class="fa fa-bullhorn"></i></li></a>';
+             }
+
+          echo '</ul>
            </div>
 
             <div class="post__author author vcard inline-items">
@@ -128,15 +134,19 @@ class PublicacionesController extends InitController{
                 $this->likes->likesConAvatar($content['pub_codigo']);
                  echo '</div>
                  <div class="comments col l3 center">
-                   <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con '.$allCoementarios.' comentarios"><i class="fa fa-comments"></i> '.$allCoementarios.'</a>
-                   &nbsp;
-                   <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A '.$content["pub_dedicatorias"].' personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> '.$content["pub_dedicatorias"].'</a>
-                 </div>
+                   <a href="pubID'.$content["pub_codigo"].'" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con '.$allCoementarios.' comentarios"><i class="fa fa-comments"></i> '.$allCoementarios.'</a>
+                   &nbsp;';
+                   if($tipoArticulo == 'Poema'){
+                   echo '<a href="javascript:void(0)" onClick="dedicaPoema(\''.$content["pub_codigo"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A '.$content["pub_dedicatorias"].' personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> '.$content["pub_dedicatorias"].'</a>';
+                    }
+                 echo '</div>
              </div>
            </div>
          </div>';
        }
-
+     }else{
+       echo "<div class='center'>Aun no hay publicaciones de esta categoría</div>";
+     }
        echo '<p><hr></p>
       <div style="width:100%; text-align:center;">';
       //si posicion es mayor o igual a 1 quiere decir que muestre la parte Primero y Anterior de la paginación
@@ -183,6 +193,31 @@ class PublicacionesController extends InitController{
   public function misMasleidos($poet_codigo){
       return $this->publicaciones->masLeidos($poet_codigo);
   }
+
+  public function apruebo(){
+      $pub_codigo = $_GET["pid"];
+      $revision = "Aprobado";
+      $estado   = "Publicado";
+      $this->publicaciones->actualizoestado($pub_codigo,$revision, $estado );
+
+              header("Location: mis-publicaciones");
+  }
+
+  public function rechazo(){
+      $pub_codigo = $_GET["pid"];
+      $revision = "Rechazado";
+      $estado   = "Borrador";
+      $this->publicaciones->actualizoestado($pub_codigo,$revision, $estado );
+
+              header("Location: mis-publicaciones");
+  }
+
+    public function elimino(){
+        $codigo = $_GET['pid'];
+        $this->publicaciones->eliminoPublicacion($codigo);
+
+        header("Location: mis-publicaciones");
+    }
 
   public function Buscador(){
     $consultaBusqueda = $_POST['valorBusqueda'];

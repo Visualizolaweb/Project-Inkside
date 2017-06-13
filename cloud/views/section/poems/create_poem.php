@@ -13,7 +13,7 @@
     </div>
 
     <form class="row" enctype="multipart/form-data" action="guardar-poema" method="post" data-parsley-validate id="poemas">
-
+  <input type="hidden" name="data[777]" value="Poema" />
     <div class="col m6">
       <div class="file-field input-field">
          <div class="btn z-depth-0" style="margin-top: 4px;">
@@ -31,7 +31,7 @@
         <input id="txt_titulo" name="data[2]" type="text" required autocomplete="off">
         <label for="txt_titulo">Bautizalo</label>
       </div>
- 
+
       <div class="input-field col s12">
         <label for="txt_contenido">Inspirate y escribe</label><br>
         <textarea rows="20" name="data[3]" id="txt_contenido" required></textarea>

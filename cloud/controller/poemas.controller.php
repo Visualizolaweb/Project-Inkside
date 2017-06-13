@@ -56,8 +56,20 @@ class PoemasController extends InitController{
           }
       }
      $result = $this->poemas->crearPoema($data,$cat_text,$filename);
-     header("Location: mis-publicaciones");
+
+       header("Location: mis-publicaciones");
   }
+
+
+  public function actualizarPoema(){
+    $data = $_POST["data"];
+    $categorias = $_POST["cat"];
+    $cat_text = implode(', ', $categorias);
+
+    $result = $this->poemas->actualizoPoema($data,$cat_text);
+      header("Location: mis-publicaciones");
+  }
+
 
   public function poetasByPoeta(){
     $result = $this->poemas->poemasPorPoeta($_SESSION["poeta"]["poet_codigo"]);

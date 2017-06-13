@@ -47,7 +47,10 @@ RewriteRule ^mis-datos$ index.php?c=views&a=actualizarPerfil
 RewriteRule ^mis-datos/(\w+)/?$ index.php?c=views&a=actualizarPerfil&result=$1
 
 RewriteRule ^crear-poema$ index.php?c=views&a=crearPoema
+RewriteRule ^edita-poema-(\w+.+)/?$ index.php?c=views&a=editaPoema&pid=$1
+
 RewriteRule ^crear-Publicacion$ index.php?c=views&a=crearPublicacion
+RewriteRule ^crear-Eventos$ index.php?c=views&a=crearEventos
 RewriteRule ^mis-publicaciones$ index.php?c=views&a=misPublicaciones
 
 
@@ -60,6 +63,7 @@ RewriteRule ^iniciar-sesion$   index.php?c=auth&a=inicioSesion
 RewriteRule ^cerrar-sesion$   index.php?c=auth&a=cerrarSesion
 RewriteRule ^actualizar-perfil$   index.php?c=poetas&a=actualizarDatoPoeta
 RewriteRule ^guardar-poema$   index.php?c=poemas&a=guardarPoema
+RewriteRule ^actualizar-poema$   index.php?c=poemas&a=actualizarPoema
 RewriteRule ^guardar-articulo$   index.php?c=articulos&a=guardarArticulo
 RewriteRule ^paginar-publicaciones$   index.php?c=publicaciones&a=paginarPublicaciones
 RewriteRule ^crear-comentario$   index.php?c=comentarios&a=crearComentario
@@ -68,6 +72,11 @@ RewriteRule ^cargar-departamento$   index.php?c=localizacion&a=cargarDepartament
 RewriteRule ^cargar-ciudad$   index.php?c=localizacion&a=cargarCiudades
 
 #Detalle Poemas
-RewriteRule ^poemas$ index.php?c=views&a=poemas
+RewriteRule ^poemas$ index.php?c=views&a=poemas&t=Poema
+RewriteRule ^noticias$ index.php?c=views&a=poemas&t=Noticia
+RewriteRule ^eventos$ index.php?c=views&a=poemas&t=Evento
 
 RewriteRule ^pubID(\w+.+)/?$ index.php?c=poemas&a=detalle&pid=$1
+RewriteRule ^elimino-pubID(\w+.+)/?$ index.php?c=publicaciones&a=elimino&pid=$1
+RewriteRule ^apruebo-pubID(\w+.+)/?$ index.php?c=publicaciones&a=apruebo&pid=$1
+RewriteRule ^rechazo-pubID(\w+.+)/?$ index.php?c=publicaciones&a=rechazo&pid=$1

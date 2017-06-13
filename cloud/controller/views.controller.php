@@ -31,12 +31,13 @@ class ViewsController{
   }
 
   public function poemas(){
+    $tipoArticulo = $_GET["t"];
     require_once 'views/include/structure-header-dashboard.php';
     require_once 'views/section/poems/main.php';
     require_once 'views/include/structure-footer-dashboard.php';
   }
 
- 
+
   public function misPublicaciones(){
     require_once 'views/include/structure-header-dashboard.php';
     require_once 'views/section/publications/mypublish.php';
@@ -46,6 +47,12 @@ class ViewsController{
   public function crearPoema(){
     require_once 'views/include/structure-header-dashboard.php';
     require_once 'views/section/poems/create_poem.php';
+    require_once 'views/include/structure-footer-dashboard.php';
+  }
+
+  public function editaPoema(){
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/poems/update_poem.php';
     require_once 'views/include/structure-footer-dashboard.php';
   }
 

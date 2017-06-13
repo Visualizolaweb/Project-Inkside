@@ -11,27 +11,11 @@ class PublicacionesModel{
     }
   }
 
-  public function cargarPoemas(){
+  public function cargarPoemas($tipoArticulo){
     try{
-      $sql = "SELECT * FROM inkside_publicaciones WHERE pub_estadoRevision = 'Aprobado' and pub_estado = 'Publicado'";
+      $sql = "SELECT * FROM inkside_publicaciones WHERE pub_estadoRevision = 'Aprobado' and pub_estado = 'Publicado' and pub_categoria = ?";
       $query = $this->pdo->prepare($sql);
-      $query->execute();
-      $result = $query->fetchALL(PDO::FETCH_BOTH);
-
-     }catch(PDOException $e){
-      $result = array(0,$e->getMessage(),$e->getCode());
-    }
-    return $result;
-  }
-
-  public function buscarPublicacion($consultaBusqueda){
-    try{
-      $sql = "SELECT * FROM inkside_publicaciones
-              WHERE pub_contenido
-              LIKE '%$consultaBusqueda%' or pub_titulo  LIKE '%$consultaBusqueda%'
-              and pub_estadoRevision = 'Aprobado' and pub_estado = 'Publicado'";
-      $query = $this->pdo->prepare($sql);
-      $query->execute(array($consultaBusqueda));
+      $query->execute(array($tipoArticulo));
       $result = $query->fetchALL(PDO::FETCH_BOTH);
 
      }catch(PDOException $e){
@@ -45,7 +29,7 @@ class PublicacionesModel{
       $sql = 'SELECT pub_codigo as "codigo", pub_titulo as "publicacion", pub_categoria as "Categoria", pub_estadoRevision as "Revision", pub_estado as "Estado" FROM bsstudio_inkside.inkside_publicaciones WHERE poet_codigo = ?';
 
       $query = $this->pdo->prepare($sql);
-      $query->execute(array($poet_codigo,$poet_codigo));
+      $query->execute(array($poet_codigo));
       $result = $query->fetchALL(PDO::FETCH_BOTH);
 
      }catch(PDOException $e){
@@ -54,18 +38,19 @@ class PublicacionesModel{
     return $result;
   }
 
-  public function mostrarPoemas($position, $rows_for_page){
+  public function mostrarPoemas($position, $rows_for_page, $tipoArticulo){
     try{
       $sql = "SELECT
                      inkside_publicaciones.pub_codigo as pub_codigo, inkside_publicaciones.pub_contenido as pub_contenido,
                      inkside_publicaciones.pub_imgPortada as pub_imgPortada, inkside_publicaciones.pub_titulo as pub_titulo,
                      inkside_publicaciones.pub_dedicatorias as pub_dedicatorias, inkside_publicaciones.pub_fechaPublicacion as pub_fechaPublicacion, inkside_poetas.poet_nick as poet_nick,
-                     inkside_poetas.poet_foto as poet_foto
+                     inkside_poetas.poet_foto as poet_foto, inkside_poeta_descripcion.pdesc_avatar as pdesc_avatar
               FROM
                     inkside_publicaciones
               INNER JOIN
                     inkside_poetas ON inkside_publicaciones.poet_codigo = inkside_poetas.poet_codigo
-              WHERE pub_estadoRevision = 'Aprobado' and pub_estado = 'Publicado'
+                    LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+              WHERE pub_estadoRevision = 'Aprobado' and pub_estado = 'Publicado' and pub_categoria = '".$tipoArticulo."'
     				  ORDER BY
     				        inkside_publicaciones.pub_fechaPublicacion DESC LIMIT $position, $rows_for_page";
       $query = $this->pdo->prepare($sql);
@@ -82,7 +67,7 @@ class PublicacionesModel{
 
   public function cargabyId($pub_codigo){
     try{
-      $sql = "SELECT inkside_poetas.poet_codigo,  poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_titulo, pub_contenido, pub_dedicatorias
+      $sql = "SELECT inkside_poetas.poet_codigo,  poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_titulo, pub_contenido, pub_dedicatorias, catePub_codigo
         			 FROM inkside_poetas
                      LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
                      JOIN inkside_publicaciones      ON inkside_poetas.poet_codigo = inkside_publicaciones.poet_codigo
@@ -102,6 +87,26 @@ class PublicacionesModel{
   public function guardarHit($pub_codigo){
     try{
       $sql = "UPDATE inkside_publicaciones SET pub_hits = pub_hits + 1 WHERE pub_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($pub_codigo));
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+  }
+
+  public function actualizoestado($pub_codigo, $revision, $estado){
+    try{
+      $sql = "UPDATE inkside_publicaciones SET pub_estadoRevision = ?, pub_estado = ? WHERE pub_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($revision, $estado, $pub_codigo));
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+  }
+
+  public function eliminoPublicacion($pub_codigo){
+    try{
+      $sql = "DELETE FROM inkside_publicaciones WHERE pub_codigo = ?";
       $query = $this->pdo->prepare($sql);
       $query->execute(array($pub_codigo));
      }catch(PDOException $e){

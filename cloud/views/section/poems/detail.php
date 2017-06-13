@@ -94,9 +94,12 @@ $cargacomentarios = $comentarios->comentarios($_GET["pid"]);
               <?php $likes->likesConAvatar($_GET["pid"]); ?>
             </div>
             <div class="comments col l3 center">
-              <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con <?php echo count($cargacomentarios)?> comentarios"><i class="fa fa-comments"></i> <?php echo count($cargacomentarios)?></a>
+              <a href="javascript:void(0)" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con <?php echo count($cargacomentarios)?> comentarios"><i class="fa fa-comments"></i> <?php echo count($cargacomentarios)?></a>
               &nbsp;
-              <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A <?php echo $detalle["pub_dedicatorias"]; ?> personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> <?php echo $detalle["pub_dedicatorias"]; ?></a>
+              <a  href="javascript:void(0)" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A <?php echo $detalle["pub_dedicatorias"]; ?> personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> <?php echo $detalle["pub_dedicatorias"]; ?></a>&nbsp;
+              <a href="apruebo-pubID<?php echo $_GET["pid"]?>" class="tooltipped green-text" data-position="top" data-delay="50" data-tooltip="Aprueba la publicación de este articulo"><i class="fa fa-flag"></i></a>&nbsp;
+              <a href="rechazo-pubID<?php echo $_GET["pid"]?>" class="tooltipped red-text" data-position="top" data-delay="50" data-tooltip="Rechaza la publicacion de este articulo"><i class="fa fa-flag"></i></a>
+
             </div>
           </div>
         </div>

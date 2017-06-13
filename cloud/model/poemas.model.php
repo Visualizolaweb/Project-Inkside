@@ -21,10 +21,25 @@ class PoemasModel{
                           pub_titulo,
                           pub_contenido,
                           pub_audio,
-                          catePub_codigo)
-            VALUES(?,?,?,?,?,?,?)";
+                          catePub_codigo,
+                          pub_categoria)
+            VALUES(?,?,?,?,?,?,?,?)";
       $query = $this->pdo->prepare($sql);
-      $query->execute(array($_SESSION["poeta"]["poet_codigo"],$fecha,$imagenPortada,$data[2],$data[3],$data[4],$cat));
+      $query->execute(array($_SESSION["poeta"]["poet_codigo"],$fecha,$imagenPortada,$data[2],$data[3],$data[4],$cat,$data[777]));
+
+      $result = array(1,"Se ha registrado correctamente");
+      }catch (Exception $e){
+      $result = array(0,$e->getMessage());
+    }
+    return $result;
+  }
+
+  public function actualizoPoema($data,$cat){
+    $fecha = date('Y-m-d');
+    try{
+      $sql = "UPDATE inkside_publicaciones SET pub_titulo = ?,  pub_contenido = ?, catePub_codigo = ?  WHERE pub_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($data[2],$data[3],$cat,$data[0]));
 
       $result = array(1,"Se ha registrado correctamente");
       }catch (Exception $e){

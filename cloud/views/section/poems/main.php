@@ -9,7 +9,26 @@
 
         <!-- Widget - Bienvenido -->
         <div class="col m12 header-section">
-          <h5 class="title">Encuentra todos los poemas de la comunidad</h5>
+
+          <?php
+
+            switch ($tipoArticulo) {
+              case 'Poema':
+                echo "<h5 class='title'>Encuentra todos los poemas de la comunidad</h5>";
+              break;
+
+              case 'Noticia':
+                echo "<h5 class='title'>Conoce las ultimas noticias de Inkside</h5>";
+              break;
+
+              case 'Evento':
+                echo "<h5 class='title'>Asiste a los eventos de nuestros integrantes</h5>";
+              break;
+            }
+
+           ?>
+
+
         </div>
 
 
@@ -17,7 +36,8 @@
 
           <div id="content">
             <?php
-                $publicaciones->paginarPublicaciones();
+
+                $publicaciones->paginarPublicaciones($tipoArticulo);
             ?>
           </div>
 

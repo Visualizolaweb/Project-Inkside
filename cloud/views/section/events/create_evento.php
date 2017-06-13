@@ -8,16 +8,16 @@
 
   <div class=" col m12 " id="wrap-login">
     <div class="col m12 header-section">
-      <h5 class="title">Crear Evento</h5>
-      <p><em>Comparte tus eventos con nosotros</em></p>
+      <h5 class="title">Comparte tus Eventos</h5>
+      <p><em>Vas a realizar algún evento? compartelo con la comunidad</em></p>
     </div>
 
-    <form class="row" enctype="multipart/form-data" action="guardar-evento" method="post" data-parsley-validate id="poemas">
+    <form class="row" enctype="multipart/form-data" action="guardar-poema" method="post" data-parsley-validate id="poemas">
 
       <div class="col m6">
          <div class="file-field input-field">
             <div class="btn z-depth-0" style="margin-top: 4px;">
-               <span>Agregar Flyer</span>
+               <span>Agregar Portada</span>
                <input type="file" name="txt_imgPortada">
             </div>
             <div class="file-path-wrapper">
@@ -26,24 +26,23 @@
          </div>
       </div>
 
-      <div class="input-field col m3">
+      <div class="input-field col m6">
         <input id="txt_titulo" name="data[2]" type="text" required autocomplete="off">
         <label for="txt_titulo">Ponle un título a tu evento</label>
       </div>
 
-      <div class="input-field col m3">
-        <input id="txt_fecha" name="data[4]" type="text" required autocomplete="off">
-        <label for="txt_fecha">Dia Ej. Sabado 19 de Junio</label>
-      </div>
-
       <div class="input-field col s12">
-        <label for="txt_contenido">Escribe una breve descripción del evento (Incluir: dirección)</label><br>
+        <label for="txt_contenido">Cuentanos un resumen del evento, dia, hora, precio y lugar. </label><br>
         <textarea rows="20" name="data[3]" id="txt_contenido" required></textarea>
+        <input type="hidden" name="data[777]" value="Evento" />
       </div>
 
+      <div class="input-field col s12" id="categorias">
+        <?php $categorias->cargarCategorias(); ?>
+      </div>
 
       <div class="input-field col m12" style="margin-bottom:20px">
-        <button id="signup" style="width:100%" class="waves-effect waves-light btn right  light-blue lighten-1" >Crear Noticia</button>
+        <button id="signup" style="width:100%" class="waves-effect waves-light btn right  light-blue lighten-1" >Crear Evento</button>
       </div>
     </form>
   </div>
