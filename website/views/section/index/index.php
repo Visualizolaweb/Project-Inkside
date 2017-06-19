@@ -95,50 +95,28 @@
     <h2>Artículos, Noticias y Eventos</h2>
     <p>Lo último de la actividad literaria y poética en el mundo</p>
     <div class="row">
-      <div class="col l3">
-        <article>
-          <div class="title label-event">Evento</div>
-          <div class="cover"><img src="app/view/assets/images/events/cover.jpg" class="responsive-img"></div>
-          <div class="content white">
-            <h4>Festival de Poesía</h4>
-            <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie... </p>
-            <div class="detail"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba">Ver Mas</a></div>
-          </div>
-        </article>
-      </div>
-      <div class="col l3">
-        <article>
-          <div class="title label-news">Evento</div>
-          <div class="cover"><img src="app/view/assets/images/events/cover.jpg" class="responsive-img"></div>
-          <div class="content white">
-            <h4>Festival de Poesía</h4>
-            <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie... </p>
-            <div class="detail"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba">Ver Mas</a></div>
-          </div>
-        </article>
-      </div>
-      <div class="col l3">
-        <article>
-          <div class="title label-article">Evento</div>
-          <div class="cover"><img src="app/view/assets/images/events/cover.jpg" class="responsive-img"></div>
-          <div class="content white">
-            <h4>Festival de Poesía</h4>
-            <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie... </p>
-            <div class="detail"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba">Ver Mas</a></div>
-          </div>
-        </article>
-      </div>
-      <div class="col l3">
-        <article>
-          <div class="title label-event">Evento</div>
-          <div class="cover"><img src="app/view/assets/images/events/cover.jpg" class="responsive-img"></div>
-          <div class="content white">
-            <h4>Festival de Poesía</h4>
-            <p>Marzipan cotton candy chocolate bonbon caramels sweet roll liquorice marshmallow. Chupa chups carrot cake brownie... </p>
-            <div class="detail"><a href="poema-del-moribundo-que-no-tiene-quien-le-escriba">Ver Mas</a></div>
-          </div>
-        </article>
-      </div>
+      <?php
+             $articulos = $publicaciones->articulos();
+
+             if(count($articulos) <= 0){
+               echo "<p>Aun no tenemos articulos para mostrar</p>";
+             }else{
+             foreach ($articulos as $row) {
+               $conten = $publicaciones->getSubString($row["pub_contenido"]);
+             echo '<div class="col l3">
+                     <article>
+                       <div class="title label-event">'.$row["pub_categoria"].'</div>
+
+                       <div class="content white">
+                         <h4>'.$row["pub_titulo"].'</h4>
+                         <p>'.$conten.'</p>
+                         <div class="detail"><a href="pubID'.$row['pub_codigo'].'">Ver Mas</a></div>
+                       </div>
+                     </article>
+                   </div>';
+             }
+           }
+      ?>
     </div>
   </div>
 </section>

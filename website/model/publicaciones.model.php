@@ -49,7 +49,7 @@ class PublicacionesModel{
 
   public function ultimaPublicacion($poet_codigo){
     try{
-      $sql = "SELECT inkside_poetas.poet_codigo,  poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_codigo, pub_titulo, pub_contenido, pub_dedicatorias, catePub_nombre
+      $sql = "SELECT inkside_poetas.poet_codigo, poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_codigo, pub_titulo, pub_contenido, pub_dedicatorias, catePub_nombre
                FROM inkside_poetas
                LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
                JOIN inkside_publicaciones ON inkside_poetas.poet_codigo = inkside_publicaciones.poet_codigo
@@ -65,6 +65,18 @@ class PublicacionesModel{
     return $result;
   }
 
+  public function cargarArticulos(){
+    try{
+      $sql = "SELECT * FROM inkside_publicaciones WHERE pub_categoria != 'Poema' and pub_estado = 'Publicado' LIMIT 4";
+      $query = $this->pdo->prepare($sql);
+      $query->execute();
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+    return $result;
+  }
   public function __DESTRUCT(){
     DataBase::disconnect();
   }

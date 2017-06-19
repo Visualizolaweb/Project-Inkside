@@ -11,6 +11,7 @@
   $poetas = new PoetasController();
   $poeta = $poetas->buscarDatoPoeta($contenido['poet_codigo']);
 
+
   if ($poeta['pdesc_avatar']=='') {
     $avatar = $poeta['poet_foto'];
   }else{
@@ -58,7 +59,7 @@
             <img width="100" src="cloud/<?php echo $avatar?>" class="circle">
             <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 0;"><?php echo $poeta['poet_nick']?></h2>
             <p><?php echo $poeta['pdesc_acerca']?></p>
-            <button class="center waves-effect waves-light btn amber accent-3 z-depth-0 btn-icon"><i class="fa fa-plus icon-button orange"></i>Seguir al poeta</button>
+            <!-- <button class="center waves-effect waves-light btn amber accent-3 z-depth-0 btn-icon"><i class="fa fa-plus icon-button orange"></i>Seguir al poeta</button> -->
           </div>
            <div class="col m12">
              <h3  style="font-size:15px" class="center">Otras publicaciones del autor</h3>

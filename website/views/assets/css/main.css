@@ -342,11 +342,12 @@ footer #redes a + div{
 
 .sec-wrap-news article{
   position: relative;
+  margin-top: 30px;
 }
 
 .sec-wrap-news div.title{
   position: absolute;
-  top: 10px;
+  top: -32px;
   width: 100px;
   padding: 5px;
   text-align: center;
@@ -399,7 +400,7 @@ footer #redes a + div{
   color: #727376;
   text-align: center;
   font-size: 16px;
-  height: 415px;
+  height: 415px !important;
 }
 
 .snip1559 * {

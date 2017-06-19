@@ -14,6 +14,11 @@ class PublicacionesController{
     return $result;
   }
 
+  public function articulos(){
+    $result = $this->publicaciones->cargarArticulos();
+    return $result;
+  }
+
   public function cargarPublicacionbyID(){
      $pub_codigo = $_GET['pid'];
       $publicaciones = $this->publicaciones->cargabyId($pub_codigo);
