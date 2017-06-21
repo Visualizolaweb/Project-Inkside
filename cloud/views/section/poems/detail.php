@@ -97,9 +97,14 @@ $cargacomentarios = $comentarios->comentarios($_GET["pid"]);
               <a href="javascript:void(0)" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con <?php echo count($cargacomentarios)?> comentarios"><i class="fa fa-comments"></i> <?php echo count($cargacomentarios)?></a>
               &nbsp;
               <a  href="javascript:void(0)" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A <?php echo $detalle["pub_dedicatorias"]; ?> personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> <?php echo $detalle["pub_dedicatorias"]; ?></a>&nbsp;
-              <a href="apruebo-pubID<?php echo $_GET["pid"]?>" class="tooltipped green-text" data-position="top" data-delay="50" data-tooltip="Aprueba la publicación de este articulo"><i class="fa fa-flag"></i></a>&nbsp;
-              <a href="rechazo-pubID<?php echo $_GET["pid"]?>" class="tooltipped red-text" data-position="top" data-delay="50" data-tooltip="Rechaza la publicacion de este articulo"><i class="fa fa-flag"></i></a>
-
+              <?php
+                if($rol_codigo==109900){
+              ?>
+                      <a href="apruebo-pubID<?php echo $_GET["pid"]?>" class="tooltipped green-text" data-position="top" data-delay="50" data-tooltip="Aprueba la publicación de este articulo"><i class="fa fa-flag"></i></a>&nbsp;
+                      <a href="rechazo-pubID<?php echo $_GET["pid"]?>" class="tooltipped red-text" data-position="top" data-delay="50" data-tooltip="Rechaza la publicacion de este articulo"><i class="fa fa-flag"></i></a>
+              <?php
+                }
+              ?>
             </div>
           </div>
         </div>

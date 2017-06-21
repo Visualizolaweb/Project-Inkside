@@ -89,6 +89,7 @@ class AuthController extends InitController{
             $_SESSION["poeta"]["poet_fecha_nac"]       = $result[6];
             $_SESSION["poeta"]["poet_sexo"]            = $result[7];
             $_SESSION["poeta"]["poet_descripcion"]     = $result[9];
+            $_SESSION["poeta"]["rol_codigo"]           = $result[13];
             $_SESSION["poeta"]["acc_token"]            = $result[14];
             $_SESSION["poeta"]["acc_primera_vez"]      = $result[20];
             $_SESSION["poeta"]["acc_origen_conexion"]  = $result[21];
