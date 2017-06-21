@@ -40,8 +40,8 @@
                   echo '<li class="collection-item avatar" id='.$sugeridos['poet_codigo'].'>
                     <img src="'.$avatar.'" alt="" class="circle">
                     <span class="title">'.$sugeridos['poet_nick'].'</span>
-                    <p>'.$sugeridos['ciu_nombre'].'</p>
-                    <a href="javascript:void(0)" onclick="add_poet(\''.$_SESSION["poeta"]["poet_codigo"].'\',\''.$sugeridos['poet_codigo'].'\')" class="secondary-content "><i class="fa fa-heart-o"></i></a>
+                    <p>'.$sugeridos['ciu_nombre'].'
+                    <a href="javascript:void(0)" onclick="add_poet(\''.$_SESSION["poeta"]["poet_codigo"].'\',\''.$sugeridos['poet_codigo'].'\')"><span class="new badge" data-badge-caption="Seguir">+</span></p></a>
                   </li>';
                 }
             ?>
@@ -115,7 +115,7 @@
               if($content["pub_fechaPublicacion"]==(date('Y-m-d'))){
                 $content["pub_fechaPublicacion"] = "Publicado hoy";
               }else{
-                $content["pub_fechaPublicacion"] = "Publicado el: ".$content["pub_fechaPublicacion"];
+                $content["pub_fechaPublicacion"] = "Publicado el: ".$poemas->fechaesp($content["pub_fechaPublicacion"]);
               }
 
               echo '<div class="panel poem">

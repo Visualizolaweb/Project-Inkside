@@ -1,6 +1,7 @@
-<li><a href="../">Inicio</a></li>
-<li><a href="#!">Comunidad</a></li>
-<li><a href="#!">Poemas</a></li>
-<li><a href="#!">Articulos</a></li>
-<li><a href="#!">Noticias</a></li>
-<li><a href="#!">Eventos</a></li>
+<li><a href="../">Mi Inicio</a></li>
+<li><a href="">Mis publicaciones</a></li>
+<li><a href="#!">Mi Comunidad</a></li>
+<li><a href="#!">Últimos Poemas (Buscar poetas a seguir)</a></li>
+<li><a href="#!">Últimos Articulos</a></li>
+<li><a href="#!">Últimas Noticias</a></li>
+<li><a href="#!">Últimos Eventos</a></li>
