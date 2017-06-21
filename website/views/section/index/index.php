@@ -73,7 +73,7 @@
                   echo '<div class="col s12 m6 l4 panel">
                     <div class="white">
                       <h2>'.$row['pub_titulo'].'</h2>
-                      <span class="date">Publicado el '.$row['pub_fechaPublicacion'].'</span>
+                      <span class="date">Publicado el '.$publicaciones->fechaesp($row['pub_fechaPublicacion']).'</span>
                       <article>
                       '.$contenido.'
                       <div class="more"><a href="pubID'.$row['pub_codigo'].'" class="read-more">Seguir Leyendo</a></div>
