@@ -11,9 +11,17 @@
            $poemas = $publicaciones->poemas();
            foreach ($poemas as $row) {
              if ($row['pdesc_avatar']=='') {
-               $avatar = $row['poet_foto'];
+
+               $delimitador = explode("/",$row['poet_foto']);
+
+               if(($delimitador[0] == 'https:') OR ($delimitador[0] == 'http:')){
+                 $avatar = $row['poet_foto'];
+               }else{
+                 $avatar = "cloud/".$row['poet_foto'];
+               }
+
              }else{
-               $avatar = $row['pdesc_avatar'];
+               $avatar = 'cloud/'.$row['pdesc_avatar'];
              }
              $contenido = $publicaciones->getSubString($row['pub_contenido']);
              echo '<div class="col s12 m6 l4 panel">
@@ -25,7 +33,7 @@
                  <div class="more"><a href="pubID'.$row['pub_codigo'].'" class="read-more">Seguir Leyendo</a></div>
                  </article>
                  <div class="bypoeta">
-                     <img src="cloud/'.$avatar.'" class="circle"/>
+                     <img src="'.$avatar.'" class="circle"/>
                      <h3>'.$row['poet_nick'].'</h3>
                  </div>
                </div>
