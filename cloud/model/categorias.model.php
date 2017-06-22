@@ -13,7 +13,7 @@ class CategoriasModel{
 
   public function verCategorias(){
     try{
-      $sql = "SELECT * FROM inkside_categoriaPublicacion";
+      $sql = "SELECT * FROM inkside_categoriapublicacion";
       $query = $this->pdo->prepare($sql);
       $query->execute();
       $result = $query->fetchALL(PDO::FETCH_BOTH);
