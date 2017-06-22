@@ -193,3 +193,7 @@ function buscar() {
         ("#resultadoBusqueda").html('');
 	};
 };
+
+$(document).ready(function(){
+   $('.collapsible').collapsible();
+ });

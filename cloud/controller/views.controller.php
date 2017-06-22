@@ -24,6 +24,12 @@ class ViewsController{
     require_once 'views/include/structure-footer-dashboard.php';
   }
 
+  public function mensajes(){
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/messages/inbox.php';
+    require_once 'views/include/structure-footer-dashboard.php';
+  }
+
   public function dashboard(){
     require_once 'views/include/structure-header-dashboard.php';
     require_once 'views/section/dashboard/main.php';

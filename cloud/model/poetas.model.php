@@ -188,6 +188,25 @@ class PoetasModel{
   }
 
 
+  public function autenticarUsuarioSocial($acc_social_id){
+    try{
+       $sql = "SELECT inkside_acceso.*, inkside_poetas.*
+                 FROM inkside_poetas
+           INNER JOIN inkside_acceso ON inkside_acceso.poet_codigo = inkside_poetas.poet_codigo
+                WHERE inkside_acceso.acc_social_id = ?";
+                
+       $query = $this->pdo->prepare($sql);
+       $query->execute(array($acc_social_id));
+
+       $result = $query->fetch(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
   public function __DESTRUCT(){
     DataBase::disconnect();
   }

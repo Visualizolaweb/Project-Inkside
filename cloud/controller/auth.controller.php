@@ -43,6 +43,12 @@ class AuthController extends InitController{
       $data[12] = $_SESSION["poeta"]["acc_origen_conexion"];
 
       $result = $this->poetas->crearPoetaSocial($data);
+
+      if($result[0] == 1){
+        $dataSocial = $this->poetas->autenticarUsuarioSocial($data[11]);
+        $_SESSION["poeta"]["rol_codigo"] = $dataSocial["rol_codigo"];
+      }
+
       header("Location: dashboard");
   }
 

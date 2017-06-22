@@ -41,6 +41,7 @@ RewriteRule ^registro$ index.php?c=views&a=registro
 RewriteRule ^completa-perfil$ index.php?c=views&a=completaPerfil
 RewriteRule ^dashboard$ index.php?c=views&a=dashboard
 RewriteRule ^mis-datos$ index.php?c=views&a=actualizarPerfil
+RewriteRule ^mis-mensajes$ index.php?c=views&a=mensajes
 
 
 

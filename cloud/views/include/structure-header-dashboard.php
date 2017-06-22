@@ -2,7 +2,8 @@
   if(!isset($_SESSION["poeta"])){
     header("Location: ./");
   }else{
-    $rol_codigo = $_SESSION["poeta"]["rol_codigo"];    
+      $rol_codigo = $_SESSION["poeta"]["rol_codigo"];
+   
   }
 ?>
 <!DOCTYPE html>
@@ -34,14 +35,14 @@
       <div class="container-fluid">
         <div class="row" style="padding: 0 25px;">
           <div class="col l8">
-            <!-- <div class="search">
+            <div class="search">
               <form>
                 <label>Buscar</label>
                 <input id="busqueda" onKeyUp="buscar();" name="busqueda" type="text"/>
                 <a href="" class="white-text"><i class="fa fa-search"></i></a>
               </form>
               <div id="resultadoBusqueda"></div>
-            </div> -->
+            </div>
           </div>
           <div class="col l4  right-align">
             <a class="dropdown-button" href="#!" data-activates="menuPoet">
