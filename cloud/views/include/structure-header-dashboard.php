@@ -3,7 +3,6 @@
     header("Location: ./");
   }else{
       $rol_codigo = $_SESSION["poeta"]["rol_codigo"];
-   
   }
 ?>
 <!DOCTYPE html>
