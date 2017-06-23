@@ -11,16 +11,18 @@ class PublicacionesModel{
     }
   }
 
-  public function cargarPoemas(){
+  public function cargarPoemas($limit){
     try{
       $sql = "SELECT	inkside_publicaciones.pub_codigo as pub_codigo, inkside_publicaciones.pub_contenido as pub_contenido,
 		inkside_publicaciones.pub_imgPortada as pub_imgPortada, inkside_publicaciones.pub_titulo as pub_titulo,
 		inkside_publicaciones.pub_dedicatorias as pub_dedicatorias, inkside_publicaciones.pub_fechaPublicacion as pub_fechaPublicacion, inkside_poetas.poet_nick as poet_nick,
 		inkside_poetas.poet_foto as poet_foto, inkside_poeta_descripcion.pdesc_avatar as pdesc_avatar
+
   FROM  inkside_publicaciones
   INNER JOIN inkside_poetas ON inkside_publicaciones.poet_codigo = inkside_poetas.poet_codigo
    LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
-       WHERE pub_estadoRevision = 'Aprobado' and pub_estado = 'Publicado' ORDER BY pub_fechaPublicacion DESC LIMIT 12";
+       WHERE pub_estadoRevision = 'Aprobado' and pub_estado = 'Publicado' ORDER BY pub_fechaPublicacion DESC $limit";
+     
       $query = $this->pdo->prepare($sql);
 			$query->execute();
 			$result = $query->fetchALL(PDO::FETCH_BOTH);

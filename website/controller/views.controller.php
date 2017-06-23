@@ -10,10 +10,16 @@ class ViewsController{
   }
 
   public function index(){
-    $poetas = $this->poetas->poetasComunidad();
     require_once 'website/views/include/structure-header.php';
     require_once 'website/views/section/index/index.php';
-    include_once 'website/views/include/scop-community.php';
+    require_once 'website/views/include/structure-footer.php';
+  }
+
+  public function cargarPublicacion(){
+
+    $dataFilter = 'Poema';    
+    require_once 'website/views/include/structure-header.php';
+    require_once 'website/views/section/index/index.php';
     require_once 'website/views/include/structure-footer.php';
   }
 
@@ -29,11 +35,5 @@ class ViewsController{
     require_once 'website/views/include/structure-footer.php';
   }
 
-
-    public function todosPoemas(){
-      require_once 'website/views/include/structure-header.php';
-      require_once 'website/views/section/poemas/poemas.php';
-      require_once 'website/views/include/structure-footer.php';
-    }
 }
 ?>

@@ -11,9 +11,16 @@ a:visited, a:active, a:link{
 .brand-logo{
   max-width: 170px;
   margin-top: 5px;}
-
+nav{
+  position: fixed;
+  z-index: 200;
+}
 nav i{
   height: initial;}
+
+.wrap{
+  padding-top: 64px !important;
+}
 
 #menuinkside,#menuPoet {
   top:   64px  !important;
@@ -265,7 +272,7 @@ footer #redes a + div{
   font-size: 40px;
   color: #2b3942;
   text-align: center;
-  margin-bottom: 0;
+  margin: 0;
 }
 
 #sec_comunity p{
@@ -279,38 +286,24 @@ footer #redes a + div{
   margin-bottom: 30px;
 }
 
-  .sec-publicaciones .panel{
-    margin-bottom: 15px;
-  }
-
-.sec-publicaciones .panel div{
-  padding: 20px 20px 5px 20px;
-}
-
-.sec-publicaciones .panel h2{
-  font-size: 18px;
+.sec-publicaciones .white-panel h2{
+  font-size: 20px;
   font-weight: bold;
-  margin-top: 0;
   text-transform: uppercase;
   margin-bottom: 5px;
+  margin-top: 5px;
 }
-
-.sec-publicaciones .panel article{
-  border-top: 1px solid #cccccc;
-  margin-top: 10px;
-  font-size: 13px;
+.sec-publicaciones .white-panel p{
   text-align: justify;
-  border-bottom: 1px solid #cccccc;
-  padding-bottom: 10px;
 }
-
-.sec-publicaciones .panel article .more{
+.sec-publicaciones .white-panel .more{
   text-align: right;
   padding: 0;
 }
 
 .bypoeta{
   padding: 10px 0 0 0 !important;
+  border-top: 1px solid #cccccc;
 }
 
 .bypoeta img{
@@ -455,3 +448,27 @@ footer #redes a + div{
 .snip1559 .icons i a {
   text-decoration: none;
 }
+
+
+/*Begin Grid Layout stylesheet*/
+#pinBoot {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.white-panel {
+  position: absolute;
+  background: white;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 10px; 
+}
+
+
+/*End GridLayout Stylesheet*/

@@ -22,7 +22,7 @@
 
              }else{
                $avatar = 'cloud/'.$row['pdesc_avatar'];
-             }
+             } 
              $contenido = $publicaciones->getSubString($row['pub_contenido']);
              echo '<div class="col s12 m6 l4 panel">
                <div class="white">

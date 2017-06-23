@@ -9,10 +9,22 @@ class PublicacionesController{
       $this->publicaciones = new PublicacionesModel();
   }
 
-  public function poemas(){
-    $result = $this->publicaciones->cargarPoemas();
+  public function poemas($desde, $hasta){
+    if(!isset($hasta)){
+      $limit = "";
+    }else{
+      $limit = "LIMIT ".$desde." , ".$hasta;
+    }
+    $result = $this->publicaciones->cargarPoemas($limit);
     return $result;
   }
+
+  public function cuentaPoemas(){
+    $limit = "";
+    $result = $this->publicaciones->cargarPoemas($limit);
+    return count($result);
+  }
+
 
   public function articulos(){
     $result = $this->publicaciones->cargarArticulos();
