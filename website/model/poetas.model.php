@@ -11,13 +11,13 @@ class PoetasModel{
     }
   }
 
-  public function poetasComunidad(){
+  public function poetasComunidad($limit){
     try{
-      $sql = "SELECT *,pdesc_acerca,pdesc_avatar
+      $sql = "SELECT *, pdesc_acerca, pdesc_avatar
               FROM inkside_poetas
-              JOIN inkside_poeta_descripcion
-              ON inkside_poeta_descripcion.poet_codigo = inkside_poetas.poet_codigo
-              ORDER BY poet_fecha_creacion LIMIT 12";
+              LEFT JOIN inkside_poeta_descripcion ON inkside_poeta_descripcion.poet_codigo = inkside_poetas.poet_codigo
+              JOIN inkside_publicaciones ON inkside_publicaciones.poet_codigo = inkside_poetas.poet_codigo
+              WHERE inkside_publicaciones.pub_estado = 'Publicado' group by inkside_poetas.poet_codigo ORDER BY poet_fecha_creacion DESC $limit ";
       $query = $this->pdo->prepare($sql);
       $query->execute();
       $result = $query->fetchALL(PDO::FETCH_BOTH);

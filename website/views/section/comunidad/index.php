@@ -4,32 +4,81 @@
 
    require_once 'website/controller/publicaciones.controller.php';
    $publicaciones = new PublicacionesController();
+
+  //  INICIO PAGINACION
+
+    $totalPoetas =  $poetas->cuentaPoetas();
+    $cantRegistros = 30;
+
+    $pagina = @$_GET["pagina"];
+    if (!$pagina) {
+       $inicio = 0;
+       $pagina = 1;
+    } else {
+       $inicio = ($pagina - 1) * $cantRegistros;
+    }
+
+    $total_paginas = ceil($totalPoetas / $cantRegistros);
+
+    $poetasComunidad = $poetas->PoestasdelaComunidad($inicio,$cantRegistros);
 ?>
-<div class="container">
+<section class="sec-publicaciones ">
+<div class="container wrap">
+  <h1 style="margin-bottom:30px;">Comunidad de escritores InkSide</h1>
+  <section id="pinBoot">
   <?php
-  $poetasComunidad = $poetas->PoestasdelaComunidad();
+
   foreach ($poetasComunidad as $row) {
      $contenido = $publicaciones->getSubString($row['pdesc_acerca']);
+
     if ($row['pdesc_avatar']=='') {
-      $avatar = $row['poet_foto'];
+      $delimitador = explode("/",$row['poet_foto']);
+      if(($delimitador[0] == 'https:') OR ($delimitador[0] == 'http:')){
+        $avatar = $row['poet_foto'];
+      }else{
+        $avatar = "cloud/".$row['poet_foto'];
+      }
     }else{
-      $avatar = $row['pdesc_avatar'];
+      $avatar = 'cloud/'.$row['pdesc_avatar'];
     }
-    echo '<figure class="snip1559">
-          <div class="profile-image"><img src="cloud/'.$avatar.'" alt="'.$row['poet_nick'].'" /></div>
-          <figcaption>
+    echo '<article class="community-panel">
+          <div class="profile-image circle"><img src="'.$avatar.'" alt="'.$row['poet_nick'].'" /></div>
             <h3>'.$row['poet_nick'].'</h3>
             <p>'.$contenido.'</p>
-          </figcaption>
-        </figure>';
+
+        </article>';
+
   }
+
   ?>
-  <!-- <figure class="snip1559">
-    <div class="profile-image"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/331810/profile-sample2.jpg" alt="profile-sample2" /></div>
-    <figcaption>
-      <h3>Darina Arenas</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
-      <button class="center waves-effect waves-light btn amber accent-3 z-depth-0 btn-icon"><i class="fa fa-plus icon-button orange"></i>Seguir al poeta</button>
-    </figcaption>
-  </figure> -->
 </div>
+</div>
+</section>
+
+<?php
+
+  echo '<p><hr></p>
+ <div style="width:100%; text-align:center;">';
+ //si posicion es mayor o igual a 1 quiere decir que muestre la parte Primero y Anterior de la paginación
+ if ($pagina >= 1) {
+   $url = "index.php?c=views&a=comunidad&pagina=0";
+   echo "<a href=\"$url\">Primero</a>\n";
+   //para que el preius no termine con valor 0
+    $url = "index.php?c=views&a=comunidad&pagina=" .($pagina-1);
+   echo "<a href=\"$url\">Anterior</a>\n";
+ }
+
+ echo '<strong> Página '.($pagina).' de '.$total_paginas.' </strong>';
+
+ //si position es menor a el valor entre los parentesis muestra la parte (Siguiente Ultimo)
+ if ($pagina < ($total_paginas-1)) {
+
+   $url = "index.php?c=views&a=comunidad&pagina=" . ($pagina+1);
+   echo "<a href=\"$url\">Siguiente</a>\n";
+   $url = "index.php?c=views&a=comunidad&pagina=" . ($total_paginas-1);
+   echo "<a href=\"$url\">Ultimo</a>\n";
+ }
+ echo '</div>';
+
+
+ ?>

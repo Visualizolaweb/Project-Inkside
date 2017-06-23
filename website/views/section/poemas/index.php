@@ -19,7 +19,7 @@
   }
 
 ?>
-<div class="container wrap">
+<div class="container wrap detail">
   <div class="row">
     <div class="col m9">
       <div class="fechaPublicacion" style="border-top: 1px solid #ddd; padding-top:5px; width:100%;">Publicada el <?php echo $contenido['pub_fechaPublicacion'];?></div>

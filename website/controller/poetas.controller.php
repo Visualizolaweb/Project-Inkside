@@ -27,9 +27,20 @@ class PoetasController{
      return $result;
   }
 
-  public function PoestasdelaComunidad(){
-     $result = $this->poetas->poetasComunidad();
+  public function PoestasdelaComunidad($desde,$hasta){
+    if(!isset($hasta)){
+      $limit = "";
+    }else{
+      $limit = "LIMIT ".$desde." , ".$hasta;
+    }
+     $result = $this->poetas->poetasComunidad($limit);
      return $result;
+  }
+
+  public function cuentaPoetas(){
+     $limit = "";
+     $result = $this->poetas->poetasComunidad($limit);
+     return count($result);
   }
 
 }
