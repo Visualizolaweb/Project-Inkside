@@ -44,13 +44,14 @@
             </div>
           </div>
           <div class="col l4  right-align">
-            <a class="dropdown-button" href="#!" data-activates="menuPoet">
-              <div class="profile">
-                <span class="title"><?php echo $_SESSION["poeta"]["poet_nick"]; ?></span>
-                <img src="<?php echo $_SESSION["poeta"]["poet_foto"] ?>" alt="" class="circle">
-                <i class="fa fa-caret-down "></i>
-              </div>
-            </a>
+            <div class="profile">
+              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              <a class="dropdown-button" href="#!" data-activates="menuPoet">
+                  <span class="title"><?php echo $_SESSION["poeta"]["poet_nick"]; ?></span>
+                  <img src="<?php echo $_SESSION["poeta"]["poet_foto"] ?>" alt="" class="circle">
+                  <i class="fa fa-caret-down "></i>
+              </a>
+            </div>
 
             <ul id="menuPoet" class="dropdown-content" >
                <?php include("views/include/scop-navigation-poet.php"); ?>

@@ -10,7 +10,12 @@ class CorreoController extends InitController{
   }
 
   public function cargarMensajes(){
-     $result = $this->correo->MisMensajes($_SESSION["poeta"]["poet_codigo"]);
+     $result = $this->correo->MisMensajes();
+     return $result;
+  }
+
+  public function Mensaje($pid){
+     $result = $this->correo->ResponderMensaje($pid);
      return $result;
   }
 

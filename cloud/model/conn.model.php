@@ -2,16 +2,16 @@
 class DataBase{
 
   // CONEXION INKSIDE
-  private static $db_host = "host397.hostmonster.com";
-  private static $db_name = "inksidep_cloud";
-  private static $db_user = "inksidep_cliente";
-  private static $db_pass = "9d^3s&~p!]L.";
-  
+  // private static $db_host = "host397.hostmonster.com";
+  // private static $db_name = "inksidep_cloud";
+  // private static $db_user = "inksidep_cliente";
+  // private static $db_pass = "9d^3s&~p!]L.";
+
   // // CONEXION VISUALIZO
-  // private static $db_host = "localhost";
-  // private static $db_name = "bsstudio_inkside";
-  // private static $db_user = "bsstudio_develop";
-  // private static $db_pass = "Guille1037571915";
+  private static $db_host = "localhost";
+  private static $db_name = "bsstudio_inkside";
+  private static $db_user = "root";
+  private static $db_pass = "";
 
   private static $cont    = null;
 

@@ -43,10 +43,16 @@ class ViewsController{
     require_once 'views/include/structure-footer-dashboard.php';
   }
 
-
   public function misPublicaciones(){
     require_once 'views/include/structure-header-dashboard.php';
     require_once 'views/section/publications/mypublish.php';
+    require_once 'views/include/structure-footer-dashboard.php';
+  }
+
+  public function responder(){
+    $pid = $_GET['pid'];
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/messages/answer.php';
     require_once 'views/include/structure-footer-dashboard.php';
   }
 

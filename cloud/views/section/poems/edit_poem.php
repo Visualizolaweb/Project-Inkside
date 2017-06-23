@@ -1,7 +1,7 @@
 <?php
   require_once("controller/categorias.controller.php");
   $categorias = new categoriasController();
-  echo "codigo poema ". $pub_codigo = $_GET["pub_codigo"];
+  $pub_codigo = $_GET["pub_codigo"];
 ?>
 
 <section id="wrap-container">

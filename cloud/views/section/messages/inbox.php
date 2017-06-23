@@ -22,15 +22,33 @@
         <ul class="collapsible" data-collapsible="accordion">
           <?php
               foreach ($misMensajes as $mensajes) {
+                if (strlen($mensajes['corr_codigo'])==1) {
+                  $mensaje_codigo = '0'.$mensajes['corr_codigo'];
+                } else {
+                  $mensaje_codigo = $mensajes['corr_codigo'];
+                }
+
+                if($mensajes['pdesc_avatar']!=''){
+                  $avatar = $mensajes['pdesc_avatar'];
+                }else{
+                  $avatar = $mensajes['poet_foto'];
+                }
                 echo '<li>
                   <div class="collapsible-header">
                     <div class="chip">
-                      <img src="views/assets/images/perfil/img_default.png" alt="Contact Person">
-                      '.$mensajes['corr_email_destino'].'
+                      <img src="'.$avatar.'" alt="Contact Person">
+                      '.$mensajes['poet_nick'].'
                     </div>
-                    '.$mensajes['corr_asunto'].'
+                      '.$mensajes['corr_asunto'].'
+                      <label><em>'.$mensajes['corr_fecha_envio'].'</em></label>
                   </div>
-                  <div class="collapsible-body"><span>'.$mensajes['corr_mesaje'].'</span></div>
+                  <div class="collapsible-body">
+                    <span>'.$mensajes['corr_mesaje'].'</span>
+                    <div class="right-align">
+                        <a href="responder-pubID'.$mensaje_codigo.'"><i class="fa fa-reply" aria-hidden="true"> Responder</i></a>
+                        <a href="#"><i class="fa fa-times" aria-hidden="true"> Eliminar</i></a>
+                    </div>
+                  </div>
                 </li>';
               }
           ?>

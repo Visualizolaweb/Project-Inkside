@@ -53,6 +53,7 @@ RewriteRule ^edita-poema-(\w+.+)/?$ index.php?c=views&a=editaPoema&pid=$1
 RewriteRule ^crear-Publicacion$ index.php?c=views&a=crearPublicacion
 RewriteRule ^crear-Eventos$ index.php?c=views&a=crearEventos
 RewriteRule ^mis-publicaciones$ index.php?c=views&a=misPublicaciones
+RewriteRule ^responder-pubID(\w+.+)/?$ index.php?c=views&a=responder&pid=$1
 
 
 #Redirecciones Procesos
