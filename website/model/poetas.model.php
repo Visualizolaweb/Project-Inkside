@@ -58,7 +58,7 @@ class PoetasModel{
                   pdesc_acerca,pdesc_avatar
               FROM
                   inkside_poetas
-                  JOIN inkside_poeta_descripcion
+                  LEFT JOIN inkside_poeta_descripcion
                   ON inkside_poeta_descripcion.poet_codigo = inkside_poetas.poet_codigo
               WHERE
                   inkside_poetas.poet_codigo = ?";

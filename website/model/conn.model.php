@@ -21,7 +21,7 @@ class DataBase{
       try{
 
         self::$cont = new PDO("mysql:host=".self::$db_host.";"."dbname=".self::$db_name, self::$db_user, self::$db_pass);
-        self::$cont -> exec("SET CHARACTER SET utf8");
+        self::$cont -> exec("set names utf8");
 
       }catch(PDOException $e){
         die($e->getMessage());

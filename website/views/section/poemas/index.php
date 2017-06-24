@@ -1,87 +1,146 @@
 <?php
   require_once 'website/controller/publicaciones.controller.php';
+  require_once 'website/controller/categorias.controller.php';
+
   $publicaciones = new PublicacionesController();
+  $categorias    = new CategoriasController();
+
   $contenido = $publicaciones->cargarPublicacionbyID();
-  $otraPublicacion = $publicaciones->otrasPublicaciones($contenido['poet_codigo']);
+  $otraPublicacion = $publicaciones->otrasPublicaciones($contenido['poet_codigo'],$_GET['pid']);
 
   $contenidoSub = $publicaciones->getSubString($otraPublicacion['pub_contenido']);
-
 
   require_once 'website/controller/poetas.controller.php';
   $poetas = new PoetasController();
   $poeta = $poetas->buscarDatoPoeta($contenido['poet_codigo']);
 
 
-  if ($poeta['pdesc_avatar']=='') {
-    $avatar = $poeta['poet_foto'];
+  if($poeta['pdesc_avatar']=='') {
+    $delimitador = explode("/",$poeta['poet_foto']);
+    if(($delimitador[0] == 'https:') OR ($delimitador[0] == 'http:')){
+      $avatar = $poeta['poet_foto'];
+    }else{
+      $avatar = "cloud/".$poeta['poet_foto'];
+    }
   }else{
-    $avatar = $poeta['pdesc_avatar'];
+    $avatar = 'cloud/'.$poeta['pdesc_avatar'];
   }
-
 ?>
-<div class="container wrap detail">
+<script> document.title = '<?php echo $contenido['pub_titulo'] ?>'; </script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-594dd14013b1707e"></script>
+<div class="container wrap detail-poem">
   <div class="row">
-    <div class="col m9">
-      <div class="fechaPublicacion" style="border-top: 1px solid #ddd; padding-top:5px; width:100%;">Publicada el <?php echo $contenido['pub_fechaPublicacion'];?></div>
-      <h1 style="color: #208d8f; font-size: 32px; margin-top: 8px; margin-bottom: 8px"><?php echo $contenido['pub_titulo'];?></h1>
-
-      <div class="compartir row" style="border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; padding: 17px 0;">
-        <div class="col m6"><button class="waves-effect waves-light btn primary-button z-depth-0 btn-icon"><i class="fa fa-users icon-button"></i>iniciar sesión Para dedicar</button></div>
-        <!-- <div class="col m6">compartir en <a href="" class="waves-effect waves-light btn z-depth-0 btn-icon"><i class="fa fa-facebook icon-button"></i>Facebook</a></div> -->
-      </div>
-
-      <article style="text-align:justify">
-          <?php echo $contenido['pub_contenido'];?>
-      </article>
-
-      <div class="tags" style="border-bottom:1px solid #ddd; padding-bottom:10px; margin-bottom:10px;">
-        <span>Esta publicación habla de</span>
-        <ul>
-          <li style="display:inline; padding:5px 8px; color: white" class="pink accent-3"><?php echo $contenido['catePub_nombre'];?></li>
-          <!-- <li style="display:inline; padding:5px 8px; color: white" class=" lime accent-4">Felicidad</li>
-          <li style="display:inline; padding:5px 8px; color: white" class="cyan darken-1">Amigos</li>
-          <li style="display:inline; padding:5px 8px; color: white" class="grey">Desamor</li>
-          <li style="display:inline; padding:5px 8px; color: white" class="purple accent-3">Vida</li> -->
-        </ul>
-      </div>
-
-      <!-- <section class="comentarios">
-        <h3  style="font-size:15px">Realiza un comentario</h3>
-        <textarea style="height:100px"></textarea>
-        <button class="right waves-effect waves-light btn primary-button z-depth-0 btn-icon"><i class="fa fa-comment icon-button"></i>Realizar Comentario</button>
-      </section> -->
-    </div>
-
-    <div class="col m3">
-      <div class="autor">
-        <div class="row">
-          <div class="col m12 center">
-            <img width="100" src="cloud/<?php echo $avatar?>" class="circle">
-            <h2 style="font-size: 20px; font-weight: bold; margin-bottom: 0;"><?php echo $poeta['poet_nick']?></h2>
-            <p><?php echo $poeta['pdesc_acerca']?></p>
-            <!-- <button class="center waves-effect waves-light btn amber accent-3 z-depth-0 btn-icon"><i class="fa fa-plus icon-button orange"></i>Seguir al poeta</button> -->
-          </div>
-           <div class="col m12">
-             <h3  style="font-size:15px" class="center">Otras publicaciones del autor</h3>
-
-             <div class="row">
-               <div class="col s12">
-                 <div class="card blue-grey darken-1">
-                   <div class="card-content white-text" style="padding:10px;">
-                     <span class="card-title" style="font-size: 18px; font-weight: bold"><?php echo $otraPublicacion['pub_titulo']?></span>
-                     <p style="font-size: 13px"><?php echo $contenidoSub?></p>
-                   </div>
-                   <div class="card-action" style="padding:10px;">
-                     <a href="<?php echo 'pubID'.$otraPublicacion['pub_codigo']?>" style="text-align:right">Leer Poema</a>
-                   </div>
-                 </div>
-               </div>
-             </div>
-
-
-           </div>
+    <div class="col l7">
+      <?php
+      if(isset($contenido['pub_imgPortada'])){ ?>
+      <div class="row">
+        <div class="col l12">
+          <img src="cloud/views/assets/images/portadasPoemas/<?php echo $contenido['pub_imgPortada'] ?>" alt="<?php echo $contenido['pub_titulo']; ?>">
         </div>
       </div>
+      <?php  } ?>
+
+      <div id="social-detail" class="row">
+        <div class="col l3"><i class="fa fa-eye"></i>559</div>
+        <div class="col l3 right right-align">
+          <i class="fa fa-comments-o"></i>3&nbsp;
+          <i class="fa fa-heart red-text"></i>3
+        </div>
+      </div>
+      <div id="dedicate" class="right">
+        <a href="" class="waves-effect waves-light blue-grey lighten-4 btn z-depth-0 btn-icon"><i class="fa fa-paper-plane icon-button  pink accent-3"></i>Dedica este poema</a>
+      </div>
+
+      <article class="row">
+        <div id="title"><h1><?php echo $contenido["pub_titulo"]; ?></h1></div>
+        <div id="postDate"><em>Publicado el <?php echo $publicaciones->fechaesp($contenido['pub_fechaPublicacion']); ?> </em></div>
+        <div id="content"><?php echo strip_tags($contenido["pub_contenido"], '<p><br>'); ?></div>
+        <div id="tags">
+          <ul>
+          <?php
+            foreach ($categorias->categoriabyId($contenido['catePub_codigo']) as $key => $value) {
+              echo '<li   class="chip teal lighten-5">'.$value["catePub_nombre"].'</li>';
+            }
+          ?>
+          </ul>
+        </div>
+      </article>
+
+      <section id="comments" class="row">
+        <div class="center-align"><em>- Para realizar comentarios debes iniciar sesión con tu cuenta de InkSide -</em></div><br>
+        <div class="col l6"><h5>Comentarios</h5></div>
+        <div class="col l6 right-align"><h6>10 Comentarios</h6></div>
+
+        <div class="row">
+        <div class="col s12">
+          <div class="card grey lighten-3 z-depth-0">
+            <div class="card-content ">
+              <span class="card-title">Card Title</span>
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <!-- <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div> -->
+          </div>
+        </div>
+      </div>
+      </section>
+    </div>
+
+    <div class="col l4 right">
+      <div class="row">
+        <div class="col s12">
+          <h2>Sobre el Autor</h2>
+        </div>
+
+        <div class="col s8 offset-s2">
+          <img src="<?php echo $avatar?>" class="circle">
+        </div>
+
+        <div class="col s12 center-align">
+          <h5><?php echo ucwords($poeta['poet_nick'])?></h5>
+          <?php if(isset($poeta['pdesc_acerca'])){
+             echo "<p style='text-align:justify'>".$poeta['pdesc_acerca']."</p>";
+          }?>
+
+          <button id="followPoet" class="center waves-effect waves-light btn amber accent-3 z-depth-0 btn-icon"><i class="fa fa-plus icon-button orange"></i>Seguir al poeta</button>
+          <br><br><em style="display:block">- Poema del autor sugerido -</em>
+
+          <div class="row">
+            <div class="col s12">
+              <div class="card blue-grey darken-1">
+                <div class="card-content white-text" style="padding:10px;">
+                  <span class="card-title" style="font-size: 18px; font-weight: bold"><?php echo ucfirst(mb_strtolower($otraPublicacion['pub_titulo']))?></span>
+                  <p style="font-size: 13px"><?php echo $contenidoSub?></p>
+                </div>
+                <div class="card-action right-align" style="padding:10px;" >
+                  <a href="<?php echo 'pubID'.$otraPublicacion['pub_codigo']?>" style="text-align:right">Leer Poema</a>
+                  <a href="<?php echo 'pubID'.$otraPublicacion['pub_codigo']?>" style="text-align:right">Ver mas Poemas</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          </div>
+
+          <div class="col s12">
+            <h2>Recomendados</h2>
+             <ul class="collection featured-poem">
+            <?php foreach ($publicaciones->recomendados($_GET['pid']) as $row) { ?>
+              <li class="collection-item">
+                <a href="<?php echo 'pubID'.$row["pub_codigo"]?>">
+                 <span class="title"><b><?php echo ucfirst(mb_strtolower($row["pub_titulo"])); ?></b></span><br>
+                 <span><em>Autor: <?php echo ucfirst(mb_strtolower($row["poet_nick"])); ?> </em></span>
+               </a>
+              </li>
+            <?php } ?>
+          </ul>
+          </div>
+      </div>
+
+
     </div>
   </div>
 </div>

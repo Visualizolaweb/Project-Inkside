@@ -22,10 +22,67 @@ nav i{
   padding-top: 64px !important;
 }
 
-.detail{
+.detail-poem{
   padding-top: 80px !important;
+  font-family: "Roboto";
+  font-weight: normal;
 }
 
+.detail-poem #social-detail{
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+  margin-bottom: 0;
+}
+.detail-poem i{
+  margin-right: 10px;
+}
+
+.detail-poem #dedicate{
+  margin-right: -12px;
+  text-transform: none;
+}
+
+.detail-poem h1{
+  font-size: 40px !important;
+  font-family: "Lato Light";
+  text-transform: uppercase;
+  margin-bottom: 0;
+  margin-top: 50px;
+}
+
+.detail-poem #postDate{
+  margin-bottom: 20px;
+  color: #bbb;
+}
+
+.detail-poem #content{
+  color: #666 !important;
+  font-size: 14px;
+  font-weight: normal;
+  text-align: justify;
+}
+
+.detail-poem article{
+  border-bottom: 1px solid #ccc;
+}
+.detail-poem h2{
+  font-size: 30px;
+  font-family: "Lato Light";
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border-top: thick double #ccc;
+  border-bottom: thick double #ccc;
+  text-align: center;
+  padding: 5px 0;
+}
+
+.featured-poem{
+  border: none !important;
+  background-color: transparent;
+}
+.detail-poem #comments h5{
+  margin: 0;
+}
 #menuinkside,#menuPoet {
   top:   64px  !important;
   width: 180px !important;
@@ -249,6 +306,16 @@ footer #redes a + div{
   margin-top: 12px;
   width: 100%;}
 
+.form-register section a.btn-social{
+  margin-top: 12px;
+  width: 49%;
+  float: left;
+  color: white;
+  text-align: left;}
+
+.form-register section a.btn-social i{
+  text-align: center;
+}
 
 @media (max-width: 600px){
   .background-mobile{
@@ -385,7 +452,6 @@ footer #redes a + div{
 .fechaPublicacion{
   border-bottom: 1px solid #eeeeee;
 }
-
 
 .snip1559 {
   font-family: 'Lato', Arial, sans-serif;

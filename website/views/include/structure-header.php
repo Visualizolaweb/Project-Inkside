@@ -6,6 +6,7 @@
     <link type="text/css" rel="stylesheet" href="website/views/assets/materialize/css/materialize.min.css"/>
     <link type="text/css" rel="stylesheet" href="website/views/assets/font-icons/css/font-awesome.css"/>
     <link type="text/css" rel="stylesheet" href="website/views/assets/css/main.css"/>
+    <link type="text/css" rel="stylesheet" href="website/views/assets/css/sweetalert.css"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>

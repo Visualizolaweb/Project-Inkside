@@ -11,11 +11,14 @@ class AuthController extends InitController{
   }
 
   public function registroPoeta(){
+      $realdata =  $_POST["data"];
 
-      $data =  $_POST["data"];
       $data[0] = InitController::generarPk("POET",4,5); //Metodo para generar la clave PK ("pref", "grupos", "lenght")
+      $data[1] = $realdata[0];
+      $data[2] = $realdata[1];
+      $data[3] = $realdata[2];
       $data[4] = InitController::generarToken(55); //KeyToken
-      $data[5] = password_hash($data[5], PASSWORD_DEFAULT);
+      $data[5] = password_hash($realdata[3], PASSWORD_DEFAULT);
       $data[6] = "inkside";
       $result = $this->poetas->crearPoeta($data);
 

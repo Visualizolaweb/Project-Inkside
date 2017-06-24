@@ -5,11 +5,11 @@
  $('.slider').slider({
    indicators: false,
    transition: 200,
-   height: 450,
+   height: 500,
    interval: 3500
  });
 
- 
+
  $("#registroPoeta").submit(function(e) {
         e.preventDefault();
 
@@ -20,9 +20,13 @@
             jsonObj.push(structure);
         });
 
+        $("#signup").html('<div class="loader"><div class="dot dot1"></div><div class="dot dot2"></div><div class="dot dot3"></div><div class="dot dot4"></div></div>');
+
         $.post("cloud/registro-poeta",{data: jsonObj}, function(result){
               var result = JSON.parse(result);
-              alert(result[1]);
+              swal("", result[1], "success")
+              $("input").val("");
+              $("#signup").html("Registra otro poeta!")
               // $("input[class=fieldBD]").val("");
         });
 });

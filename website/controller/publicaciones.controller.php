@@ -32,13 +32,19 @@ class PublicacionesController{
   }
 
   public function cargarPublicacionbyID(){
-     $pub_codigo = $_GET['pid'];
-      $publicaciones = $this->publicaciones->cargabyId($pub_codigo);
-      return $publicaciones;
+    $pub_codigo = $_GET['pid'];
+    $publicaciones = $this->publicaciones->cargabyId($pub_codigo);
+    return $publicaciones;
   }
 
-  public function otrasPublicaciones($poet_codigo){
-     $result = $this->publicaciones->ultimaPublicacion($poet_codigo);
+  public function otrasPublicaciones($poet_codigo,$pub_codigo){
+     $result = $this->publicaciones->otraPublicacion($poet_codigo,$pub_codigo);
+     return $result;
+  }
+
+
+  public function recomendados($pub_codigo){
+     $result = $this->publicaciones->verRecomendados($pub_codigo);
      return $result;
   }
 
@@ -64,6 +70,7 @@ class PublicacionesController{
 
     return $tomadia.", ".$day." de ".$meses[$month]." de ".$year;
 }
+
 
 }
 ?>

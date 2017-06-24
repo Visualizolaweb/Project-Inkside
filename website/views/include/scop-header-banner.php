@@ -6,19 +6,23 @@
       <h3>Comienza a publicar tus escritos...</h3>
       <form id="registroPoeta" method="post">
         <div class="input-field col s12">
-          <input class="fieldBD" id="txt_nombre" type="text"  name="data[1]" placeholder="Nombre" required>
+          <input autocomplete="off"  class="fieldBD" id="txt_nombre" type="text"  name="data[1]" placeholder="Nombre" required>
         </div>
         <div class="input-field col s12">
-          <input class="fieldBD" id="txt_apellido" type="text" name="data[2]"placeholder="Apellido" required>
+          <input autocomplete="off"  class="fieldBD" id="txt_apellido" type="text" name="data[2]"placeholder="Apellido" required>
         </div>
         <div class="input-field col s12">
-          <input class="fieldBD" id="txt_email" type="email"  name="data[3]" placeholder="Correo Electrónico" required>
+          <input autocomplete="off"  class="fieldBD" id="txt_email" type="email"  name="data[3]" placeholder="Correo Electrónico" required>
         </div>
         <div class="input-field col s12">
-          <input class="fieldBD" id="txt_clave" type="password" name="data[5]" placeholder="Contraseña" required>
+          <input autocomplete="off"  class="fieldBD" id="txt_clave" type="password" name="data[5]" placeholder="Contraseña" required>
         </div>
-        <span class="t require_once 'model/publicaciones.model.php';erms">Al hacer clic en <b>regístrate</b> acepto todos los <b>Términos legales</b> al igual que las <b>Politicas de privacidad</b></span>
-        <button class="waves-effect waves-light btn primary-button z-depth-0 btn-icon"><i class="fa fa-user icon-button"></i> Registrate en Inkside</button>
+        <span class="terms">Al hacer clic en <b>regístrate</b> acepto todos los <b>Términos legales</b> al igual que las <b>Politicas de privacidad</b></span>
+
+        <button id="signup" class="waves-effect waves-light btn primary-button z-depth-0 btn-icon"><i class="fa fa-user icon-button"></i> Registrate en Inkside</button>
+        <a href="cloud/auth.php?p=facebook" style="margin-right:5px" class="btn-social waves-effect waves-light btn indigo darken-4 z-depth-0 btn-icon"><i class="fa fa-facebook icon-button  indigo darken-4"></i> Facebook</a>
+        <a href="cloud/auth.php?p=twitter"  class="btn-social waves-effect waves-light btn light-blue  lighten-1 z-depth-0 btn-icon"><i class="fa fa-twitter  icon-button light-blue lighten-1"></i> Twitter </a>
+
       </form>
     </section>
   </div>

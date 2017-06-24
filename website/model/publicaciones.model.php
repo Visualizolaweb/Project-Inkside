@@ -22,7 +22,7 @@ class PublicacionesModel{
   INNER JOIN inkside_poetas ON inkside_publicaciones.poet_codigo = inkside_poetas.poet_codigo
    LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
        WHERE pub_estadoRevision = 'Aprobado' and pub_estado = 'Publicado' ORDER BY pub_fechaPublicacion DESC $limit";
-     
+
       $query = $this->pdo->prepare($sql);
 			$query->execute();
 			$result = $query->fetchALL(PDO::FETCH_BOTH);
@@ -36,12 +36,14 @@ class PublicacionesModel{
 
   public function cargabyId($pub_codigo){
     try{
-      $sql = "SELECT inkside_poetas.poet_codigo,  poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_titulo, pub_contenido, pub_dedicatorias, catePub_nombre
+      $sql = "SELECT inkside_poetas.poet_codigo, inkside_publicaciones.catePub_codigo, poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_titulo, pub_contenido, pub_dedicatorias, catePub_nombre
                FROM inkside_poetas
                LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
                JOIN inkside_publicaciones ON inkside_poetas.poet_codigo = inkside_publicaciones.poet_codigo
                JOIN inkside_categoriapublicacion ON inkside_categoriapublicacion.catePub_codigo = inkside_publicaciones.catePub_codigo
               WHERE inkside_publicaciones.pub_codigo = ?";
+
+
       $query = $this->pdo->prepare($sql);
       $query->execute(array($pub_codigo));
       $result = $query->fetch(PDO::FETCH_BOTH);
@@ -70,6 +72,44 @@ class PublicacionesModel{
     }
     return $result;
   }
+
+
+    public function otraPublicacion($poet_codigo,$pub_codigo){
+      try{
+        $sql = "SELECT inkside_poetas.poet_codigo, poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_codigo, pub_titulo, pub_contenido, pub_dedicatorias, catePub_nombre
+                 FROM inkside_poetas
+                 LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+                 JOIN inkside_publicaciones ON inkside_poetas.poet_codigo = inkside_publicaciones.poet_codigo
+                 JOIN inkside_categoriapublicacion ON inkside_categoriapublicacion.catePub_codigo = inkside_publicaciones.catePub_codigo
+                WHERE inkside_publicaciones.pub_categoria = 'Poema' AND inkside_publicaciones.poet_codigo = ? AND inkside_publicaciones.pub_codigo != ? ORDER BY RAND()";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array($poet_codigo, $pub_codigo));
+        $result = $query->fetch(PDO::FETCH_BOTH);
+
+       }catch(PDOException $e){
+        $result = array(0,$e->getMessage(),$e->getCode());
+      }
+      return $result;
+    }
+
+    public function verRecomendados($pub_codigo){
+      $hits = rand(0,20);
+      try{
+        $sql = "SELECT inkside_poetas.poet_codigo, poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_codigo, pub_titulo, pub_contenido, pub_dedicatorias, catePub_nombre
+                 FROM inkside_poetas
+                 LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+                 JOIN inkside_publicaciones ON inkside_poetas.poet_codigo = inkside_publicaciones.poet_codigo
+                 JOIN inkside_categoriapublicacion ON inkside_categoriapublicacion.catePub_codigo = inkside_publicaciones.catePub_codigo
+                WHERE inkside_publicaciones.pub_hits <= $hits AND inkside_publicaciones.pub_codigo != ? ORDER BY RAND() LIMIT 5";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array($pub_codigo));
+        $result = $query->fetchALL(PDO::FETCH_BOTH);
+
+       }catch(PDOException $e){
+        $result = array(0,$e->getMessage(),$e->getCode());
+      }
+      return $result;
+    }
 
   public function cargarArticulos(){
     try{
