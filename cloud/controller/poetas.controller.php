@@ -32,5 +32,10 @@ class PoetasController extends InitController{
     return $result;
   }
 
+  public function poetasRol($rol){
+    $result = $this->poetas->poetasPorRol($rol);
+    return $result;
+  }
+
 }
 ?>
