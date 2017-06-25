@@ -10,6 +10,8 @@
 
   $contenidoSub = $publicaciones->getSubString($otraPublicacion['pub_contenido']);
 
+  $comentarios = $publicaciones->cargaComentarios($_GET['pid']);
+
   require_once 'website/controller/poetas.controller.php';
   $poetas = new PoetasController();
   $poeta = $poetas->buscarDatoPoeta($contenido['poet_codigo']);
@@ -41,14 +43,15 @@
       <?php  } ?>
 
       <div id="social-detail" class="row">
-        <div class="col l3"><i class="fa fa-eye"></i>559</div>
+        <div class="col l3"><i class="fa fa-eye"></i><?php echo $contenido['pub_hits']; ?></div>
         <div class="col l3 right right-align">
-          <i class="fa fa-comments-o"></i>3&nbsp;
-          <i class="fa fa-heart red-text"></i>3
+          <i class="fa fa-comments-o"></i><?php echo count($comentarios); ?>&nbsp;
+          <i class="fa fa-paper-plane"></i><?php echo $contenido['pub_dedicatorias']; ?>&nbsp;
+          <i class="fa fa-heart red-text"></i><?php echo $contenido['pub_likes']; ?>
         </div>
       </div>
       <div id="dedicate" class="right">
-        <a href="" class="waves-effect waves-light blue-grey lighten-4 btn z-depth-0 btn-icon"><i class="fa fa-paper-plane icon-button  pink accent-3"></i>Dedica este poema</a>
+        <a href="javascript:void(0)" onclick="dedicatoria()" class="waves-effect waves-light blue-grey lighten-4 btn z-depth-0 btn-icon"><i class="fa fa-paper-plane icon-button  pink accent-3"></i>Dedica este poema</a>
       </div>
 
       <article class="row">
@@ -68,44 +71,76 @@
 
       <section id="comments" class="row">
         <div class="center-align"><em>- Para realizar comentarios debes iniciar sesión con tu cuenta de InkSide -</em></div><br>
+
+        <?php if(count($comentarios)>0){ ?>
+
         <div class="col l6"><h5>Comentarios</h5></div>
-        <div class="col l6 right-align"><h6>10 Comentarios</h6></div>
+        <div class="col l6 right-align"><h6><?php echo count($comentarios); ?> Comentarios</h6></div>
 
         <div class="row">
         <div class="col s12">
+
+          <?php
+            foreach ($comentarios as $comentario) {
+
+                if($comentario['pdesc_avatar']=='') {
+                  $delimitador = explode("/",$comentario['poet_foto']);
+                  if(($delimitador[0] == 'https:') OR ($delimitador[0] == 'http:')){
+                    $avatar_comment = $comentario['poet_foto'];
+                  }else{
+                    $avatar_comment = "cloud/".$comentario['poet_foto'];
+                  }
+                }else{
+                  $avatar_comment = 'cloud/'.$comentario['pdesc_avatar'];
+                }
+
+          ?>
+
           <div class="card grey lighten-3 z-depth-0">
             <div class="card-content ">
-              <span class="card-title">Card Title</span>
-              <p>I am a very simple card. I am good at containing small bits of information.
-              I am convenient because I require little markup to use effectively.</p>
+              <div class="card-title">
+                <div id="author-comment" class="col s12">
+                  <img src="<?php echo $avatar_comment?>" class="circle">
+                   <p><span><?php echo $comentario["poet_nick"]?></span><em>Comentado el <?php echo $comentario["com_fecha"]?></em></p>
+                </div>
+              </div>
+
+              <p id="article-comment"><?php echo $comentario["com_comentario"]; ?></p>
             </div>
             <!-- <div class="card-action">
               <a href="#">This is a link</a>
               <a href="#">This is a link</a>
             </div> -->
           </div>
+
+          <?php } ?>
+
         </div>
       </div>
+      <?php }else{ ?>
+      <div class="col l12 center-align"><h5>Este poema aún no tiene comentarios</h5></div>
+      <?php } ?>
+
       </section>
     </div>
 
-    <div class="col l4 right">
+    <div id="aboutPoet" class="col l4 right">
       <div class="row">
         <div class="col s12">
           <h2>Sobre el Autor</h2>
         </div>
 
-        <div class="col s8 offset-s2">
-          <img src="<?php echo $avatar?>" class="circle">
+        <div class="col s12 center-align">
+          <img src="<?php echo $avatar?>" class="avatar circle">
         </div>
 
         <div class="col s12 center-align">
           <h5><?php echo ucwords($poeta['poet_nick'])?></h5>
           <?php if(isset($poeta['pdesc_acerca'])){
-             echo "<p style='text-align:justify'>".$poeta['pdesc_acerca']."</p>";
+             echo "<p class='center-align'>".$poeta['pdesc_acerca']."</p>";
           }?>
 
-          <button id="followPoet" class="center waves-effect waves-light btn amber accent-3 z-depth-0 btn-icon"><i class="fa fa-plus icon-button orange"></i>Seguir al poeta</button>
+          <button onclick="followPoet()" type="button" class="center waves-effect waves-light btn amber accent-3 z-depth-0 btn-icon"><i class="fa fa-plus icon-button orange"></i>Seguir al poeta</button>
           <br><br><em style="display:block">- Poema del autor sugerido -</em>
 
           <div class="row">
@@ -142,5 +177,44 @@
 
 
     </div>
+  </div>
+</div>
+
+<!-- ESTRUCTURA DEDICATORIAS -->
+
+<div id="modal1" class="modal" style="max-height: 100%;">
+  <form id="frmDedicatoria" method="post">
+  <div class="modal-content">
+    <h4>Dedica este poema</h4>
+    <p>Para dedicar el poema "<b><em><?php echo ucwords($contenido['pub_titulo'])  ?></em></b>" simplemente ingresa los datos del siguiente formulario</p>
+
+
+      <div class="input-field col s12">
+        <input autocomplete="off"  class="fieldBD" id="txt_pubcodigo" type="hidden"  name="data[0]" value="<?php echo $_GET["pid"]?>">
+        <input autocomplete="off"  class="fieldBD" id="txt_pubnombre" type="hidden"  name="data[1]" value="<?php echo $contenido['pub_titulo'] ?>">
+        <input autocomplete="off"  class="fieldBD" id="txt_nombre" type="text"  name="data[2]" placeholder="Tu Nombre" required>
+      </div>
+
+      <div class="input-field col s12">
+        <input autocomplete="off"  class="fieldBD" id="txt_nombre_destino" type="text"  name="data[4]" placeholder="Nombre del destinatario" required>
+      </div>
+
+      <div class="input-field col s12">
+        <input autocomplete="off"  class="fieldBD" id="txt_correo" type="email"  name="data[3]" placeholder="Correo del destinatario" required>
+      </div>
+
+  </div>
+  <div class="modal-footer">
+    <button id="enviarDedicatoria" class="waves-effect waves-light  btn primary-button z-depth-0 btn-icon">Enviar Dedicatoria</button>
+  </div>  </form>
+</div>
+
+
+<!-- ESTRUCTURA MODAL SEGUIR POETA -->
+
+<div id="modalFollow" class="modal" style="max-height: 100%;">
+  <div class="modal-content">
+    <h4>Registrate e inicia sesión en Inkside!</h4>
+    <p>Lo sentimos, para seguir un poeta te invitamos a que te registres de forma gratuita en nuestra comunidad.</p>
   </div>
 </div>

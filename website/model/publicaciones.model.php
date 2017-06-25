@@ -36,13 +36,18 @@ class PublicacionesModel{
 
   public function cargabyId($pub_codigo){
     try{
-      $sql = "SELECT inkside_poetas.poet_codigo, inkside_publicaciones.catePub_codigo, poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_titulo, pub_contenido, pub_dedicatorias, catePub_nombre
+
+      $sql = "UPDATE inkside_publicaciones SET pub_hits = pub_hits + 1 WHERE pub_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($pub_codigo));
+
+      $sql = "SELECT inkside_poetas.poet_codigo, inkside_publicaciones.catePub_codigo, poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_titulo, pub_contenido, pub_dedicatorias, pub_hits, catePub_nombre, COUNT(like_codigo) as 'pub_likes'
                FROM inkside_poetas
                LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
                JOIN inkside_publicaciones ON inkside_poetas.poet_codigo = inkside_publicaciones.poet_codigo
+               JOIN inkside_likes ON inkside_likes.pub_codigo = inkside_publicaciones.pub_codigo
                JOIN inkside_categoriapublicacion ON inkside_categoriapublicacion.catePub_codigo = inkside_publicaciones.catePub_codigo
               WHERE inkside_publicaciones.pub_codigo = ?";
-
 
       $query = $this->pdo->prepare($sql);
       $query->execute(array($pub_codigo));
@@ -123,6 +128,25 @@ class PublicacionesModel{
     }
     return $result;
   }
+
+  public function cargaComentarios($pub_codigo){
+    try{
+      $sql = "SELECT com_comentario,com_fecha,poet_nick,poet_foto, pdesc_avatar FROM inkside_comentarios
+              JOIN inkside_poetas ON inkside_poetas.poet_codigo = inkside_comentarios.poet_codigo
+              LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+              WHERE pub_codigo = ?";
+
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($pub_codigo));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
   public function __DESTRUCT(){
     DataBase::disconnect();
   }

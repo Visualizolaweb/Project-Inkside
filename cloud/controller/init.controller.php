@@ -1,5 +1,6 @@
 <?php
   require "../vendor/phpmailer/phpmailer/PHPMailerAutoload.php";
+
   class InitController{
 
     public function __CONSTRUCT(){
@@ -96,6 +97,42 @@
 
         $mail->Subject = "Hola te han dedicado un poema!";
         include 'views/section/tmpMailer/dedicatoria.php';
+
+
+        if (!$mail->send()) {
+            $message = array(0, "Mailer Error: " . $mail->ErrorInfo);
+        } else {
+            $message = array(1, "La dedicatoria se ha enviado correctamente, Gracias por hacer que la comunidad crezca." . $mail->ErrorInfo);
+        }
+
+        return $message;
+    }
+
+    public function sendDedicaPublic($data){
+
+        $pub_codigo     = $data[0];
+        $pub_nombre     = $data[1];
+        $nombre_origen  = $data[2];
+        $nombre_destino = $data[3];
+        $correo_destino = $data[4];
+
+        $mail = new PHPMailer;
+        $mail->isSMTP();
+        // $mail->SMTPDebug = 2;
+        $mail->Debugoutput = 'html';
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = "inksidepoesiaapp@gmail.com";
+        $mail->Password = "1nk51d3p03514";
+        $mail->setFrom('inksidepoesiaapp@gmail.com', 'Inkside Poesia');
+        $mail->addAddress($correo_destino);
+        $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
+
+        $mail->Subject = "Hola, $nombre_origen te ha dedicado un poema!";
+        include 'views/section/tmpMailer/dedicatoriaPublica.php';
 
 
         if (!$mail->send()) {

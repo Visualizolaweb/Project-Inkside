@@ -62,6 +62,33 @@ nav i{
   text-align: justify;
 }
 
+#comments #author-comment{
+  display: inline-flex;
+  align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+#comments #author-comment img{
+  width: 70px !important;
+  margin-right: 10px;
+}
+
+#comments #author-comment span{
+  display: block;
+  margin-bottom: -7px;
+}
+
+#aboutPoet .avatar{
+  width: 150px;
+
+}
+#comments #author-comment em{
+  font-size: 15px;
+  margin-top: -7px;
+}
+
+
+
 .detail-poem article{
   border-bottom: 1px solid #ccc;
 }

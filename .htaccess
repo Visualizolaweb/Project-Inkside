@@ -36,5 +36,6 @@ RewriteRule ^inkside-slider-4$ website/views/assets/images/slider/leave-1957302_
 
 RewriteRule ^comunidad-inkside$ index.php?c=views&a=comunidad
 RewriteRule ^poemas$ index.php?c=views&a=cargarPublicacion
+RewriteRule ^dedicoPoema$ cloud/index.php?c=envios&a=dedicatoriapublica
 
 RewriteRule ^pubID(\w+.+)/?$ index.php?c=views&a=poemas&pid=$1

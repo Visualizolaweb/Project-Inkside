@@ -71,6 +71,11 @@ class PublicacionesController{
     return $tomadia.", ".$day." de ".$meses[$month]." de ".$year;
 }
 
+function cargaComentarios($pub_codigo){
+  $result = $this->publicaciones->cargaComentarios($pub_codigo);
+  return $result;
+}
+
 
 }
 ?>

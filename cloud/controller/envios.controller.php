@@ -25,4 +25,13 @@ class EnviosController extends InitController{
 
     echo $retorno[1];
   }
+
+  public function dedicatoriapublica(){
+
+    $data = $_POST["data"];
+    $retorno = InitController::sendDedicaPublic($data);
+    $this->publicaciones->dedicatoria($data[0]);
+
+    echo json_encode($retorno);
+  }
 }
