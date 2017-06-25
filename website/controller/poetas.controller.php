@@ -43,5 +43,10 @@ class PoetasController{
      return count($result);
   }
 
+  public function cargaSeguidores($poet_codigo){
+    $result = $this->poetas->seguidores($poet_codigo);
+    return count($result);
+  }
+
 }
 ?>

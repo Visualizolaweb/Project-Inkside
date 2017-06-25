@@ -11,7 +11,7 @@
         <div class="input-field col s12">
           <input autocomplete="off"  class="fieldBD" id="txt_apellido" type="text" name="data[2]"placeholder="Apellido" required>
         </div>
-        <div class="input-field col s12">
+        <div class="input-field col s12" id="wrapTxtEmail">
           <input autocomplete="off"  class="fieldBD" id="txt_email" type="email"  name="data[3]" placeholder="Correo Electrónico" required>
         </div>
         <div class="input-field col s12">

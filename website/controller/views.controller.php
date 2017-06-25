@@ -17,7 +17,23 @@ class ViewsController{
 
   public function cargarPublicacion(){
 
-    $dataFilter = 'Poema';    
+    $dataFilter = 'Poema';
+    require_once 'website/views/include/structure-header.php';
+    require_once 'website/views/section/index/index.php';
+    require_once 'website/views/include/structure-footer.php';
+  }
+
+  public function cargarNoticia(){
+
+    $dataFilter = 'Noticia';
+    require_once 'website/views/include/structure-header.php';
+    require_once 'website/views/section/index/index.php';
+    require_once 'website/views/include/structure-footer.php';
+  }
+
+  public function cargarEvento(){
+
+    $dataFilter = 'Evento';
     require_once 'website/views/include/structure-header.php';
     require_once 'website/views/section/index/index.php';
     require_once 'website/views/include/structure-footer.php';
@@ -26,6 +42,12 @@ class ViewsController{
   public function poemas(){
     require_once 'website/views/include/structure-header.php';
     require_once 'website/views/section/poemas/index.php';
+    require_once 'website/views/include/structure-footer.php';
+  }
+
+  public function perfilPoeta(){
+    require_once 'website/views/include/structure-header.php';
+    require_once 'website/views/section/poetas/index.php';
     require_once 'website/views/include/structure-footer.php';
   }
 

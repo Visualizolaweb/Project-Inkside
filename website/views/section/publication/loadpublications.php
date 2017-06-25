@@ -7,7 +7,8 @@
   <div class="container wrap">
       <?php
 
-      switch (isset($dataFilter)){
+  if(isset($dataFilter)){
+      switch($dataFilter){
         case 'Poema':
           echo "<h1>Listado de Poemas</h1>";
           echo "<h6>Lee los ultimos poemas de la comunidad.</h6>";
@@ -32,14 +33,61 @@
           $paginador = true;
         break;
 
-        default:
-          echo "<h1>Publicaciones de la comunidad</h1>";
-          echo "<h6>Alguien en la comunidad ha escrito</h6>";
-          $poemas = $publicaciones->poemas(0, 12);
+        case 'Noticia':
+        echo "<h1>Ultimas noticias</h1>";
+        echo "<h6>Conoce las noticias mas recientes sobre nuestra comunidad y nuestro mundo.</h6>";
+
+        // CONSTRUCCION DEL PAGINADOR
+
+        // Realizar la consulta para verificar la cantidad de registros
+        $totalPoemas =  $publicaciones->cuentaNoticias();
+        $cantRegistros = 21;
+
+        $pagina = @$_GET["pagina"];
+        if (!$pagina) {
+           $inicio = 0;
+           $pagina = 1;
+        } else {
+           $inicio = ($pagina - 1) * $cantRegistros;
+        }
+
+        $total_paginas = ceil($totalPoemas / $cantRegistros);
+
+        $poemas = $publicaciones->noticias($inicio,$cantRegistros);
+        $paginador = true;
+        break;
+
+        case 'Evento':
+        echo "<h1>Proximos Eventos</h1>";
+        echo "<h6>Eventos de la comunidad y de sus amigos</h6>";
+
+        // CONSTRUCCION DEL PAGINADOR
+
+        // Realizar la consulta para verificar la cantidad de registros
+        $totalPoemas =  $publicaciones->cuentaeEventos();
+        $cantRegistros = 21;
+
+        $pagina = @$_GET["pagina"];
+        if (!$pagina) {
+           $inicio = 0;
+           $pagina = 1;
+        } else {
+           $inicio = ($pagina - 1) * $cantRegistros;
+        }
+
+        $total_paginas = ceil($totalPoemas / $cantRegistros);
+
+        $poemas = $publicaciones->eventos($inicio,$cantRegistros);
+        $paginador = true;
         break;
       }
+    }else{
+      echo "<h1>Publicaciones de la comunidad</h1>";
+      echo "<h6>Alguien en la comunidad ha escrito</h6>";
+      $poemas = $publicaciones->poemas(0, 12);
+    }
+        ?>
 
-      ?>
       <div class="row">
         <section id="pinBoot">
           <?php

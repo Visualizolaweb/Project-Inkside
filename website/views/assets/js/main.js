@@ -31,6 +31,20 @@
         });
 });
 
+// VALIDACION DEL CORREO QUE NO EXISTA EN LA BASE DE DATOS
+$("#registroPoeta #txt_email").focusout(function(){
+    $("#txt_email").siblings("ul").remove();
+    $.post("cloud/valido-email",{data: $("#txt_email").val()}, function(result){
+      var result = JSON.parse(result);
+          if(result[0] == 0){
+             $("#txt_email").after("<ul class='parsley-errors-list filled'><li class='parsley-required'>"+result[1]+"</li></ul>");
+             $("#signup").prop("disabled",true);
+           }else{
+             $("#signup").prop("disabled",false);
+           }
+    });
+});
+
 function dedicatoria(){
    $("#modal1").modal("open")
 }

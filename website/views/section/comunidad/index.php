@@ -44,6 +44,7 @@
     echo '<article class="community-panel">
           <div class="profile-image circle"><img src="'.$avatar.'" alt="'.$row['poet_nick'].'" /></div>
             <h3>'.$row['poet_nick'].'</h3>
+            <div class="center-align white-text"><a href="poeta-'.base64_encode($row['poet_codigo']).'" type="button" class="center waves-effect waves-light btn indigo darken-4 z-depth-0 btn-icon"><i class="fa fa-newspaper-o icon-button orange"></i>Ver Poemas</a></div>
             <p>'.$contenido.'</p>
 
         </article>';
@@ -55,9 +56,10 @@
 </div>
 </section>
 
+<section class="row">
 <?php
 
-  echo '<p><hr></p>
+  echo '
  <div style="width:100%; text-align:center;">';
  //si posicion es mayor o igual a 1 quiere decir que muestre la parte Primero y Anterior de la paginación
  if ($pagina >= 1) {
@@ -82,3 +84,4 @@
 
 
  ?>
+</section>

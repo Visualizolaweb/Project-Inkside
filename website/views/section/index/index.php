@@ -6,17 +6,17 @@
  <?php require_once("website/views/include/scop-header-banner.php"); ?>
  <?php require_once("website/views/section/publication/loadpublications.php"); ?>
 
-<section class="sec-wrap-news primary-default">
+<section class="sec-wrap-news primary-default ">
   <div class="container wrap">
-    <h2>Artículos, Noticias y Eventos</h2>
-    <p>Lo último de la actividad literaria y poética en el mundo</p>
+    <h2>Noticias y Eventos</h2>
     <div class="row">
       <?php
              $articulos = $publicaciones->articulos();
 
              if(count($articulos) <= 0){
-               echo "<p>Aun no tenemos articulos para mostrar</p>";
+               echo "<p>Por ahora no hay contendio a mostrar</p>";
              }else{
+               echo '<p style="margin-bottom:20px;">Lo último de la actividad literaria y poética en el mundo</p>';
              foreach ($articulos as $row) {
                $conten = $publicaciones->getSubString($row["pub_contenido"]);
              echo '<div class="col l3">

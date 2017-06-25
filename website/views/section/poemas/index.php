@@ -30,9 +30,13 @@
 ?>
 <script> document.title = '<?php echo $contenido['pub_titulo'] ?>'; </script>
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-594dd14013b1707e"></script>
+
+<!-- VISTA DETALLE POEMA -->
+<?php if($contenido['pub_categoria'] == 'Poema'){ ?>
+
 <div class="container wrap detail-poem">
   <div class="row">
-    <div class="col l7">
+    <div class="col s12 m7 l7">
       <?php
       if(isset($contenido['pub_imgPortada'])){ ?>
       <div class="row">
@@ -44,7 +48,7 @@
 
       <div id="social-detail" class="row">
         <div class="col l3"><i class="fa fa-eye"></i><?php echo $contenido['pub_hits']; ?></div>
-        <div class="col l3 right right-align">
+        <div class="col l7 right right-align">
           <i class="fa fa-comments-o"></i><?php echo count($comentarios); ?>&nbsp;
           <i class="fa fa-paper-plane"></i><?php echo $contenido['pub_dedicatorias']; ?>&nbsp;
           <i class="fa fa-heart red-text"></i><?php echo $contenido['pub_likes']; ?>
@@ -124,7 +128,7 @@
       </section>
     </div>
 
-    <div id="aboutPoet" class="col l4 right">
+    <div id="aboutPoet" class="col s12 m4 l4 right">
       <div class="row">
         <div class="col s12">
           <h2>Sobre el Autor</h2>
@@ -152,7 +156,7 @@
                 </div>
                 <div class="card-action right-align" style="padding:10px;" >
                   <a href="<?php echo 'pubID'.$otraPublicacion['pub_codigo']?>" style="text-align:right">Leer Poema</a>
-                  <a href="<?php echo 'pubID'.$otraPublicacion['pub_codigo']?>" style="text-align:right">Ver mas Poemas</a>
+                  <a href="<?php echo 'poeta-'.base64_encode($otraPublicacion['poet_codigo'])?>" style="text-align:right">Ver mas Poemas</a>
                 </div>
               </div>
             </div>
@@ -179,6 +183,257 @@
     </div>
   </div>
 </div>
+
+<?php }elseif($contenido['pub_categoria'] == 'Noticia'){ ?>
+
+<!-- VISTA DETALLE NOTICIA  -->
+
+
+<div class="container wrap detail-poem">
+  <div class="row">
+    <div class="col l7">
+      <?php
+      if(isset($contenido['pub_imgPortada'])){ ?>
+      <div class="row">
+        <div class="col l12">
+          <img src="cloud/views/assets/images/portadasPoemas/<?php echo $contenido['pub_imgPortada'] ?>" alt="<?php echo $contenido['pub_titulo']; ?>">
+        </div>
+      </div>
+      <?php  } ?>
+
+      <article class="row">
+        <div id="title"><h1><?php echo $contenido["pub_titulo"]; ?></h1></div>
+        <div id="postDate"><em>Publicado el <?php echo $publicaciones->fechaesp($contenido['pub_fechaPublicacion']); ?> </em></div>
+        <div id="content"><?php echo strip_tags($contenido["pub_contenido"], '<p><br>'); ?></div>
+        <div id="tags">
+          <ul>
+          <?php
+            foreach ($categorias->categoriabyId($contenido['catePub_codigo']) as $key => $value) {
+              echo '<li   class="chip teal lighten-5">'.$value["catePub_nombre"].'</li>';
+            }
+          ?>
+          </ul>
+        </div>
+      </article>
+
+      <section id="comments" class="row">
+        <div class="center-align"><em>- Para realizar comentarios debes iniciar sesión con tu cuenta de InkSide -</em></div><br>
+
+        <?php if(count($comentarios)>0){ ?>
+
+        <div class="col l6"><h5>Comentarios</h5></div>
+        <div class="col l6 right-align"><h6><?php echo count($comentarios); ?> Comentarios</h6></div>
+
+        <div class="row">
+        <div class="col s12">
+
+          <?php
+            foreach ($comentarios as $comentario) {
+
+                if($comentario['pdesc_avatar']=='') {
+                  $delimitador = explode("/",$comentario['poet_foto']);
+                  if(($delimitador[0] == 'https:') OR ($delimitador[0] == 'http:')){
+                    $avatar_comment = $comentario['poet_foto'];
+                  }else{
+                    $avatar_comment = "cloud/".$comentario['poet_foto'];
+                  }
+                }else{
+                  $avatar_comment = 'cloud/'.$comentario['pdesc_avatar'];
+                }
+
+          ?>
+
+          <div class="card grey lighten-3 z-depth-0">
+            <div class="card-content ">
+              <div class="card-title">
+                <div id="author-comment" class="col s12">
+                  <img src="<?php echo $avatar_comment?>" class="circle">
+                   <p><span><?php echo $comentario["poet_nick"]?></span><em>Comentado el <?php echo $comentario["com_fecha"]?></em></p>
+                </div>
+              </div>
+
+              <p id="article-comment"><?php echo $comentario["com_comentario"]; ?></p>
+            </div>
+            <!-- <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div> -->
+          </div>
+
+          <?php } ?>
+
+        </div>
+      </div>
+      <?php }else{ ?>
+      <div class="col l12 center-align"><h5>Esta noticia aún no tiene comentarios</h5></div>
+      <?php } ?>
+
+      </section>
+    </div>
+
+    <div id="aboutPoet" class="col l4 right">
+      <div class="row">
+          <div class="col s12">
+            <h2>Otras Noticias</h2>
+             <ul class="collection featured-poem">
+            <?php foreach ($publicaciones->otrasNoticias($_GET['pid']) as $row) { ?>
+              <li class="collection-item">
+                <a href="<?php echo 'pubID'.$row["pub_codigo"]?>">
+                 <span class="title"><b><?php echo ucfirst(mb_strtolower($row["pub_titulo"])); ?></b></span><br>
+                 <span><em>Fecha: <?php echo ucfirst(mb_strtolower($row["pub_fechaPublicacion"])); ?> </em></span>
+                 <p><?php
+
+                 $texto = strip_tags(ucfirst(mb_strtolower($row["pub_contenido"])));
+                 $largor = 50;
+                 $puntos = '...';
+
+                 $palabras = explode(' ', $texto);
+                 if (count($palabras) > $largor){
+                    echo implode(' ', array_slice($palabras, 0, $largor)) ." ". $puntos;
+                  }else{
+                    echo $texto;
+                  }
+                  ?></p>
+               </a>
+              </li>
+            <?php } ?>
+          </ul>
+          </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+<?php }else{ ?>
+
+<!-- VISTA  EVENTO -->
+
+
+<div class="container wrap detail-poem">
+  <div class="row">
+    <div class="col l7">
+      <?php
+      if(isset($contenido['pub_imgPortada'])){ ?>
+      <div class="row">
+        <div class="col l12">
+          <img src="cloud/views/assets/images/portadasPoemas/<?php echo $contenido['pub_imgPortada'] ?>" alt="<?php echo $contenido['pub_titulo']; ?>">
+        </div>
+      </div>
+      <?php  } ?>
+
+      <article class="row">
+        <div id="title"><h1><?php echo $contenido["pub_titulo"]; ?></h1></div>
+        <div id="postDate"><em>Publicado el <?php echo $publicaciones->fechaesp($contenido['pub_fechaPublicacion']); ?> </em></div>
+        <div id="content"><?php echo strip_tags($contenido["pub_contenido"], '<p><br>'); ?></div>
+        <div id="tags">
+          <ul>
+          <?php
+            foreach ($categorias->categoriabyId($contenido['catePub_codigo']) as $key => $value) {
+              echo '<li   class="chip teal lighten-5">'.$value["catePub_nombre"].'</li>';
+            }
+          ?>
+          </ul>
+        </div>
+      </article>
+
+      <section id="comments" class="row">
+        <div class="center-align"><em>- Para realizar comentarios debes iniciar sesión con tu cuenta de InkSide -</em></div><br>
+
+        <?php if(count($comentarios)>0){ ?>
+
+        <div class="col l6"><h5>Comentarios</h5></div>
+        <div class="col l6 right-align"><h6><?php echo count($comentarios); ?> Comentarios</h6></div>
+
+        <div class="row">
+        <div class="col s12">
+
+          <?php
+            foreach ($comentarios as $comentario) {
+
+                if($comentario['pdesc_avatar']=='') {
+                  $delimitador = explode("/",$comentario['poet_foto']);
+                  if(($delimitador[0] == 'https:') OR ($delimitador[0] == 'http:')){
+                    $avatar_comment = $comentario['poet_foto'];
+                  }else{
+                    $avatar_comment = "cloud/".$comentario['poet_foto'];
+                  }
+                }else{
+                  $avatar_comment = 'cloud/'.$comentario['pdesc_avatar'];
+                }
+
+          ?>
+
+          <div class="card grey lighten-3 z-depth-0">
+            <div class="card-content ">
+              <div class="card-title">
+                <div id="author-comment" class="col s12">
+                  <img src="<?php echo $avatar_comment?>" class="circle">
+                   <p><span><?php echo $comentario["poet_nick"]?></span><em>Comentado el <?php echo $comentario["com_fecha"]?></em></p>
+                </div>
+              </div>
+
+              <p id="article-comment"><?php echo $comentario["com_comentario"]; ?></p>
+            </div>
+            <!-- <div class="card-action">
+              <a href="#">This is a link</a>
+              <a href="#">This is a link</a>
+            </div> -->
+          </div>
+
+          <?php } ?>
+
+        </div>
+      </div>
+      <?php }else{ ?>
+      <div class="col l12 center-align"><h5>Este evento aún no tiene comentarios</h5></div>
+      <?php } ?>
+
+      </section>
+    </div>
+
+    <div id="aboutPoet" class="col l4 right">
+      <div class="row">
+          <div class="col s12">
+            <h2>Otros Eventos</h2>
+             <ul class="collection featured-poem">
+            <?php foreach ($publicaciones->otrosEventos($_GET['pid']) as $row) { ?>
+              <li class="collection-item">
+                <a href="<?php echo 'pubID'.$row["pub_codigo"]?>">
+                 <span class="title"><b><?php echo ucfirst(mb_strtolower($row["pub_titulo"])); ?></b></span><br>
+                 <span><em>Fecha: <?php echo ucfirst(mb_strtolower($row["pub_fechaPublicacion"])); ?> </em></span>
+                 <p><?php
+
+                 $texto = strip_tags(ucfirst(mb_strtolower($row["pub_contenido"])));
+                 $largor = 50;
+                 $puntos = '...';
+
+                 $palabras = explode(' ', $texto);
+                 if (count($palabras) > $largor){
+                    echo implode(' ', array_slice($palabras, 0, $largor)) ." ". $puntos;
+                  }else{
+                    echo $texto;
+                  }
+                  ?></p>
+               </a>
+              </li>
+            <?php } ?>
+          </ul>
+          </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<?php } ?>
+
 
 <!-- ESTRUCTURA DEDICATORIAS -->
 
