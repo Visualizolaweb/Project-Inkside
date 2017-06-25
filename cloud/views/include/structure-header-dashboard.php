@@ -17,6 +17,7 @@
     <link type="text/css" rel="stylesheet" href="views/assets/css/main-dashboard.css"/>
     <link type="text/css" rel="stylesheet" href="views/assets/css/jquery-te-1.4.0.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
+    <link type="text/css" rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>

@@ -165,7 +165,10 @@ $(document).ready(function() {
   $("#resultadoBusqueda").html('');
 });
 
+function loadToast(message){
+ Materialize.toast(message, 4000);
 
+}
 // Like o Unlike publicacion
 function addLikes(id,action,total) {
 
@@ -197,3 +200,20 @@ function buscar() {
 $(document).ready(function(){
    $('.collapsible').collapsible();
  });
+
+ function cambiarEstado(mensaje_codigo){
+   $.post("index.php?c=correo&a=correoLeido", {mensaje_id: mensaje_codigo});
+ }
+
+ // function buscarCorreo(){
+ //     $("#txt_destinatario").autocomplete({
+ //
+ //     source: "index.php?c=correo&a=buscarCorreo",
+ //     minLength: 2,
+ //         select: function(event, ui) {
+ //         event.preventDefault();
+ //         $('#txt_destinatario').val(ui.item.txt_destinatario);
+ //         $('#txt_email_para').val(ui.item.txt_email_para);
+ //       }
+ //   });
+ // }

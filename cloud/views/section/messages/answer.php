@@ -9,12 +9,15 @@
 
   <div class="offset-l1 col m9 " id="wrap-login">
     <h5>Responder Mensaje</h5>
-    <!-- <p><em>"No existen más que dos reglas para escribir: tener algo que decir y decirlo" — Oscar Wilde</em></p> -->
     <hr>
-    <form class="row" enctype="multipart/form-data" action="guardar-poema" method="post" data-parsley-validate id="poemas">
+    <div class="right-align">
+      <a href="mis-mensajesisset">Volver a mis mensajes</a>
+    </div>
+    <form class="row" enctype="multipart/form-data" action="enviar-mensaje" method="post" data-parsley-validate id="poemas">
+      <input type="hidden" id="txt_destinatario_email" name="data[0]" value="<?php echo $detalleMensaje['poet_email'];?>">
 
       <div class="input-field col s12">
-        <input id="txt_asunto" name="data[1]" disabled value="RE: <?php echo $detalleMensaje['corr_asunto']?>" type="text" required autocomplete="off">
+        <input id="txt_asunto" name="data[1]" readonly value="RE: <?php echo $detalleMensaje['corr_asunto']?>" type="text" required autocomplete="off">
         <label for="txt_asunto">Asunto</label>
       </div>
 
@@ -36,7 +39,6 @@
       <div class="input-field col m12" style="margin-bottom:20px">
         <button id="signup" style="width:100%" class="waves-effect waves-light btn right  light-blue lighten-1" >Enviar Mensaje</button>
       </div>
-
 
     </form>
   </div>

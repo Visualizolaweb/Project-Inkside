@@ -194,11 +194,31 @@ class PoetasModel{
                  FROM inkside_poetas
            INNER JOIN inkside_acceso ON inkside_acceso.poet_codigo = inkside_poetas.poet_codigo
                 WHERE inkside_acceso.acc_social_id = ?";
-                
+
        $query = $this->pdo->prepare($sql);
        $query->execute(array($acc_social_id));
 
        $result = $query->fetch(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
+  public function poetasPorRol($rol){
+    try{
+       $sql = "SELECT inskide_roles.rol_codigo, rol_nombre, poet_codigo,poet_nick, poet_email
+                FROM inskide_roles
+                INNER JOIN inkside_poetas
+                ON inskide_roles.rol_codigo = inkside_poetas.rol_codigo
+                WHERE rol_nombre = ?";
+
+       $query = $this->pdo->prepare($sql);
+       $query->execute(array($rol));
+
+       $result = $query->fetchALL(PDO::FETCH_BOTH);
 
      }catch(PDOException $e){
       $result = array(0,$e->getMessage(),$e->getCode());

@@ -30,6 +30,19 @@ class ViewsController{
     require_once 'views/include/structure-footer-dashboard.php';
   }
 
+  public function crearMensaje(){
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/messages/create.php';
+    require_once 'views/include/structure-footer-dashboard.php';
+  }
+
+  public function responder(){
+    $pid = $_GET['pid'];
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/messages/answer.php';
+    require_once 'views/include/structure-footer-dashboard.php';
+  }
+
   public function dashboard(){
     require_once 'views/include/structure-header-dashboard.php';
     require_once 'views/section/dashboard/main.php';
@@ -49,12 +62,6 @@ class ViewsController{
     require_once 'views/include/structure-footer-dashboard.php';
   }
 
-  public function responder(){
-    $pid = $_GET['pid'];
-    require_once 'views/include/structure-header-dashboard.php';
-    require_once 'views/section/messages/answer.php';
-    require_once 'views/include/structure-footer-dashboard.php';
-  }
 
   public function crearPoema(){
     require_once 'views/include/structure-header-dashboard.php';

@@ -41,8 +41,7 @@ RewriteRule ^registro$ index.php?c=views&a=registro
 RewriteRule ^completa-perfil$ index.php?c=views&a=completaPerfil
 RewriteRule ^dashboard$ index.php?c=views&a=dashboard
 RewriteRule ^mis-datos$ index.php?c=views&a=actualizarPerfil
-RewriteRule ^mis-mensajes$ index.php?c=views&a=mensajes
-
+RewriteRule ^mis-mensajes(\w+.+)/?$ index.php?c=views&a=mensajes&msj=$1
 
 
 RewriteRule ^mis-datos/(\w+)/?$ index.php?c=views&a=actualizarPerfil&result=$1
@@ -54,6 +53,7 @@ RewriteRule ^crear-Publicacion$ index.php?c=views&a=crearPublicacion
 RewriteRule ^crear-Eventos$ index.php?c=views&a=crearEventos
 RewriteRule ^mis-publicaciones$ index.php?c=views&a=misPublicaciones
 RewriteRule ^responder-pubID(\w+.+)/?$ index.php?c=views&a=responder&pid=$1
+RewriteRule ^nuevo-mensaje$ index.php?c=views&a=crearMensaje
 
 
 #Redirecciones Procesos
@@ -69,6 +69,8 @@ RewriteRule ^actualizar-poema$   index.php?c=poemas&a=actualizarPoema
 RewriteRule ^guardar-articulo$   index.php?c=articulos&a=guardarArticulo
 RewriteRule ^paginar-publicaciones$   index.php?c=publicaciones&a=paginarPublicaciones
 RewriteRule ^crear-comentario$   index.php?c=comentarios&a=crearComentario
+RewriteRule ^enviar-mensaje$   index.php?c=correo&a=enviarMensaje
+RewriteRule ^eliminar-mensaje(\w+.+)/?$   index.php?c=correo&a=BorrarMensaje&pid=$1
 
 RewriteRule ^cargar-departamento$   index.php?c=localizacion&a=cargarDepartamentos
 RewriteRule ^cargar-ciudad$   index.php?c=localizacion&a=cargarCiudades
