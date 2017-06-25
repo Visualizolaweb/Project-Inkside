@@ -455,3 +455,104 @@ tr.odd {
 #categorias  label{
   padding-left: 30px !important;
 }
+
+
+#pinBoot,#pinBoot2,.pinBoot {
+  position: relative;
+  max-width: 100%;
+  width: 100%;
+}
+
+.white-panel {
+  position: absolute;
+  background: white;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+
+.community-panel{
+  position: absolute;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  background-color: #efefef;
+}
+
+.community-panel h3{
+  font-family: 'Oswald';
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.community-panel .profile-image{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.community-panel .profile-image img{
+  width: 45%;
+  border-radius: 100% !important;
+}
+
+.sec-publicaciones .white-panel h2{
+  font-size: 20px;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  margin-top: 5px;
+}
+.sec-publicaciones .white-panel p{
+  text-align: justify;
+}
+.sec-publicaciones .white-panel .more{
+  text-align: right;
+  padding: 0;
+}
+
+.bypoeta{
+  padding: 10px 0 0 0 !important;
+  border-top: 1px solid #cccccc;
+}
+
+.bypoeta img{
+  width: 50px;
+  display: inline-block;
+}
+
+.bypoeta h3{
+  font-size: 16px;
+  font-family: "Roboto Condensed";
+  float: right;
+  margin-top: 16px;
+}
+
+
+.community-panel{
+  position: absolute;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  background-color: #efefef;
+}
+
+.community-panel h3{
+  font-family: 'Oswald';
+  text-transform: uppercase;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 10px 0;
+  text-align: center;
+}
+
+.community-panel .profile-image{
+  text-align: center;
+  margin-top: 10px;
+}
+
+.community-panel .profile-image img{
+  width: 45%;
+  border-radius: 100% !important;
+}

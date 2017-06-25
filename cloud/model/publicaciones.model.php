@@ -67,11 +67,15 @@ class PublicacionesModel{
 
   public function cargabyId($pub_codigo){
     try{
-      $sql = "SELECT inkside_poetas.poet_codigo,  poet_nick, pdesc_avatar, poet_foto, pub_fechaPublicacion, pub_imgPortada, pub_titulo, pub_contenido, pub_dedicatorias, catePub_codigo
+      $sql = "SELECT inkside_poetas.poet_codigo,  poet_nick, pdesc_avatar, poet_foto,
+                     pub_fechaPublicacion, pub_imgPortada, pub_titulo, pub_contenido,
+                     pub_dedicatorias, catePub_codigo
         			 FROM inkside_poetas
-                     LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
-                     JOIN inkside_publicaciones      ON inkside_poetas.poet_codigo = inkside_publicaciones.poet_codigo
-                    WHERE inkside_publicaciones.pub_codigo = ?";
+                   LEFT JOIN inkside_poeta_descripcion
+                   ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+                   JOIN inkside_publicaciones
+                   ON inkside_poetas.poet_codigo = inkside_publicaciones.poet_codigo
+              WHERE inkside_publicaciones.pub_codigo = ?";
       $query = $this->pdo->prepare($sql);
 			$query->execute(array($pub_codigo));
 			$result = $query->fetch(PDO::FETCH_BOTH);
@@ -123,6 +127,35 @@ class PublicacionesModel{
       $result = array(0,$e->getMessage(),$e->getCode());
     }
   }
+
+  public function buscarPublicacion($consultaBusqueda){
+    try{
+      $sql = "SELECT 'Poeta' AS 'type', poet_codigo AS codigo, poet_nombre AS campoa, poet_apellido AS campob, poet_nick AS campoc
+              FROM inkside_poetas
+              WHERE poet_nombre
+              LIKE CONCAT('%$consultaBusqueda%')  OR poet_apellido
+              LIKE CONCAT('%$consultaBusqueda%') OR poet_nick
+              LIKE CONCAT('%$consultaBusqueda%') OR poet_email
+              LIKE CONCAT('%$consultaBusqueda%')
+	            UNION
+	            SELECT 'Poema' AS 'type', pub_codigo AS codigo, pub_titulo AS campoa, pub_categoria AS campob, pub_contenido AS campoc
+              FROM inkside_publicaciones
+              WHERE pub_titulo
+              LIKE CONCAT('%$consultaBusqueda%') OR pub_categoria
+              LIKE CONCAT('%$consultaBusqueda%') OR pub_contenido
+              LIKE CONCAT('%$consultaBusqueda%') LIMIT 22";
+      $query = $this->pdo->prepare($sql);
+			$query->execute();
+			$result = $query->fetchAll(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
+
   public function __DESTRUCT(){
     DataBase::disconnect();
   }

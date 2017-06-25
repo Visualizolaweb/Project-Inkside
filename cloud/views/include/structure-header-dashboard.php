@@ -3,6 +3,10 @@
     header("Location: ./");
   }else{
       $rol_codigo = $_SESSION["poeta"]["rol_codigo"];
+
+      require_once("controller/correo.controller.php");
+      $correo = new CorreoController();
+      $sinLeer = $correo->MensajeNoLeidos();
   }
 ?>
 <!DOCTYPE html>
@@ -17,7 +21,6 @@
     <link type="text/css" rel="stylesheet" href="views/assets/css/main-dashboard.css"/>
     <link type="text/css" rel="stylesheet" href="views/assets/css/jquery-te-1.4.0.css" />
     <link type="text/css" rel="stylesheet" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css" />
-    <link type="text/css" rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
@@ -36,17 +39,18 @@
         <div class="row" style="padding: 0 25px;">
           <div class="col l8">
             <div class="search">
-              <form>
+              <form id="frmBuscar" action="buscar" method="post" data-parsley-validate>
                 <label>Buscar</label>
-                <input id="busqueda" onKeyUp="buscar();" name="busqueda" type="text"/>
-                <a href="" class="white-text"><i class="fa fa-search"></i></a>
+                <input id="busqueda" name="busqueda" type="text"/>
+                <a id="btnBuscarFiltro" href="javascript:void(0)" class="white-text"><i class="fa fa-search"></i></a>
               </form>
-              <div id="resultadoBusqueda"></div>
             </div>
           </div>
           <div class="col l4  right-align">
             <div class="profile">
-              <i class="fa fa-envelope-o" aria-hidden="true"></i>
+              <i class="fa fa-envelope-o tooltipped"  data-tooltip="Tienes <?php echo $sinLeer[1];?> mensaje(s) nuevo(s)" data-delay="50" data-position="bottom" aria-hidden="true">
+                <?php echo $sinLeer[1];?>
+              </i>
               <a class="dropdown-button" href="#!" data-activates="menuPoet">
                   <span class="title"><?php echo $_SESSION["poeta"]["poet_nick"]; ?></span>
                   <img src="<?php echo $_SESSION["poeta"]["poet_foto"] ?>" alt="" class="circle">

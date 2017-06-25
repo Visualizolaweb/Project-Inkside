@@ -161,6 +161,9 @@ $(document).ready(function() {
   $('select').material_select();
   // TEXT AREA ENRIQUECIDO CON HTML
   $("#txt_contenido").jqte();
+  $("#btnBuscarFiltro").click(function(){
+    $("#frmBuscar").submit();
+  });
 
   $("#resultadoBusqueda").html('');
 });
@@ -186,19 +189,21 @@ function addLikes(id,action,total) {
 }
 
 // Buscador Autocompletar
-function buscar() {
-    var textoBusqueda = $("input#busqueda").val();
-    if (textoBusqueda != "") {
-        $.post("index.php?c=publicaciones&a=Buscador", {valorBusqueda: textoBusqueda}, function(mensaje) {
-            $("#resultadoBusqueda").html(mensaje);
-        });
-    } else {
-        ("#resultadoBusqueda").html('');
-	};
-};
+// function buscar() {
+//     var textoBusqueda = $("input#busqueda").val();
+//     if (textoBusqueda != "") {
+//         $.post("index.php?c=publicaciones&a=Buscador", {valorBusqueda: textoBusqueda}, function(mensaje) {
+//             $("#resultadoBusqueda").html(mensaje);
+//         });
+//     } else {
+//         ("#resultadoBusqueda").html('');
+// 	};
+// };
 
 $(document).ready(function(){
    $('.collapsible').collapsible();
+   $('.tooltipped').tooltip({delay: 50});
+   $('ul.tabs').tabs();
  });
 
  function cambiarEstado(mensaje_codigo){
@@ -208,16 +213,3 @@ $(document).ready(function(){
         $("#"+mensaje_codigo+" i").addClass("fa-envelope-open-o");
    });
  }
-
- // function buscarCorreo(){
- //     $("#txt_destinatario").autocomplete({
- //
- //     source: "index.php?c=correo&a=buscarCorreo",
- //     minLength: 2,
- //         select: function(event, ui) {
- //         event.preventDefault();
- //         $('#txt_destinatario').val(ui.item.txt_destinatario);
- //         $('#txt_email_para').val(ui.item.txt_email_para);
- //       }
- //   });
- // }

@@ -54,6 +54,7 @@ RewriteRule ^crear-Eventos$ index.php?c=views&a=crearEventos
 RewriteRule ^mis-publicaciones$ index.php?c=views&a=misPublicaciones
 RewriteRule ^responder-pubID(\w+.+)/?$ index.php?c=views&a=responder&pid=$1
 RewriteRule ^nuevo-mensaje$ index.php?c=views&a=crearMensaje
+RewriteRule ^buscar$ index.php?c=views&a=busqueda
 
 
 #Redirecciones Procesos
