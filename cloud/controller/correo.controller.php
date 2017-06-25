@@ -51,6 +51,7 @@ class CorreoController extends InitController{
   public function correoLeido(){
      $mensaje_codigo = $_POST['mensaje_id'];
      $result = $this->correo->estadoLeido($mensaje_codigo);
+     
      return $result;
   }
 

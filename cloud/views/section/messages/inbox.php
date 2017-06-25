@@ -58,14 +58,14 @@
 
 
                 echo '<li>
-                  <div class="collapsible-header" onClick="cambiarEstado('.$mensaje_codigo.')">';
+                  <div class="collapsible-header"  id="'.$mensaje_codigo.'" onClick="cambiarEstado('.$mensaje_codigo.')">';
                   if($mensajes['corr_estado']==0){
-                    echo '<b><div class="chip">
+                    echo '<div class="chip" >
                       <img src="'.$avatar.'" alt="'.$mensajes['poet_nick'].'">
                       '.$mensajes['poet_nick'].'
                     </div>
-                      '.$mensajes['corr_asunto'].'
-                      <label><em>'.$mensajes['corr_fecha_envio'].'</em> <i class="fa fa-envelope-o" aria-hidden="true"></i></label></b>';
+                      <span class="unread"> '.$mensajes['corr_asunto'].'</span>
+                      <label class="unread"><em>'.$mensajes['corr_fecha_envio'].'</em> <i class="fa fa-envelope-o" aria-hidden="true"></i></label>';
                   }else{
                     echo '<div class="chip">
                       <img src="'.$avatar.'" alt="'.$mensajes['poet_nick'].'">

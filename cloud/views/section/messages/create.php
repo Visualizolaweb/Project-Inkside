@@ -27,7 +27,7 @@
 
       <div class="input-field col s12 ui-widget">
         <select id="txt_destinatario" name="data[0]" required>
-          <option value="">Selecciona</option>
+          <option value="">Selecciona un Administrador</option>
           <?php
               foreach ($admins as $value) {
                 if($value['poet_email']!='webmaster@inksidepoesia.com'){

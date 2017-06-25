@@ -20,6 +20,13 @@ body{
   padding: 10px 5px;
   height: 70px;}
 
+.unread{
+  font-weight: bold;
+}
+.read{
+  font-weight: normal;
+}
+
 header{
   height: 70px;
   background-color: #208d8f;

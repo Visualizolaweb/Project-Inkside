@@ -202,7 +202,11 @@ $(document).ready(function(){
  });
 
  function cambiarEstado(mensaje_codigo){
-   $.post("index.php?c=correo&a=correoLeido", {mensaje_id: mensaje_codigo});
+   $.post("index.php?c=correo&a=correoLeido", {mensaje_id: mensaje_codigo},function(data){
+        $("#"+mensaje_codigo+" .unread").removeClass("unread");
+        $("#"+mensaje_codigo+" i").removeClass("fa-envelope-o");
+        $("#"+mensaje_codigo+" i").addClass("fa-envelope-open-o");
+   });
  }
 
  // function buscarCorreo(){
