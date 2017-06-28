@@ -583,7 +583,7 @@ footer #redes a + div{
 
 
 /*Begin Grid Layout stylesheet*/
-#pinBoot {
+#pinBoot,#pinBoot2,.pinBoot,.pinBoot2 {
   position: relative;
   max-width: 100%;
   width: 100%;
@@ -660,3 +660,7 @@ img {
    text-align: center;
  }
 }
+
+
+.tabs{
+  margin-bottom: 20px;}

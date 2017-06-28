@@ -39,6 +39,12 @@ class ViewsController{
     require_once 'website/views/include/structure-footer.php';
   }
 
+  public function cargarResultados(){
+    require_once 'website/views/include/structure-header.php';
+    require_once 'website/views/section/buscador/loadResult.php';
+    require_once 'website/views/include/structure-footer.php';
+  }
+
   public function poemas(){
     require_once 'website/views/include/structure-header.php';
     require_once 'website/views/section/poemas/index.php';

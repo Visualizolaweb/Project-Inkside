@@ -20,8 +20,8 @@
         <form>
           <div class="row">
             <div class="input-field col s10">
-              <i class="fa fa-search icon-search"></i>
-              <input type="text" name="txt-search" id="txt-search" placeholder="Buscar en el sitio" class="validate">
+              <a href="javascript:void(0)" id="btnGlobalSearch"><i class="fa fa-search icon-search"></i></a>
+              <input type="text" autocomplete="off" name="txt-search" id="txt-search" placeholder="Buscar en el sitio" class="validate">
             </div>
           </div>
         </form>

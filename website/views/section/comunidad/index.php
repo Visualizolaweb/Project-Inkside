@@ -25,7 +25,7 @@
 <section class="sec-publicaciones ">
 <div class="container wrap">
   <h1 style="margin-bottom:30px;">Comunidad de escritores InkSide</h1>
-  <section id="pinBoot">
+  <section class="pinBoot">
   <?php
 
   foreach ($poetasComunidad as $row) {

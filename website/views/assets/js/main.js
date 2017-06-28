@@ -8,7 +8,7 @@
    height: 500,
    interval: 3500
  });
-
+$('ul.tabs').tabs();
 
  $("#registroPoeta").submit(function(e) {
         e.preventDefault();
@@ -46,7 +46,8 @@ $("#registroPoeta #txt_email").focusout(function(){
 });
 
 function dedicatoria(){
-   $("#modal1").modal("open")
+   $("#modal1").modal("open");
+
 }
 
 
@@ -79,3 +80,19 @@ $("#frmDedicatoria").submit(function(e) {
 
        });
 });
+
+$("#btnGlobalSearch").click(function(){
+  var filter = $("#txt-search").val();
+  if(filter!=""){
+    document.location.href="buscar-"+filter;
+  }
+});
+
+$("#txt-search").keyup(function(e) {
+    if(e.keyCode == 13) {
+      var filter = $("#txt-search").val();
+      if(filter!=""){
+        document.location.href="buscar-"+filter;
+      }
+    }
+  });

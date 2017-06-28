@@ -89,7 +89,7 @@
         ?>
 
       <div class="row">
-        <section id="pinBoot">
+        <section class="pinBoot">
           <?php
                  foreach ($poemas as $row) {
                    if ($row['pdesc_avatar']=='') {
