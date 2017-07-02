@@ -28,5 +28,10 @@ class SeguidoresController extends InitController{
       return $seguidores;
   }
 
+  public function yoSigo($poet_codigo){
+      $seguidores = $this->seguidores->misSegidos($poet_codigo);
+      return $seguidores;
+  }
+
 }
 ?>

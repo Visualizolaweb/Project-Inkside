@@ -1,7 +1,11 @@
 <?php
   require_once("controller/poemas.controller.php");
+  require_once("controller/seguidores.controller.php");
+
   $poemas = new PoemasController();
-  $poemasContent = $poemas->poemas();
+  $seguidores = new SeguidoresController();
+
+
 
   require_once("controller/poetas.controller.php");
   $poetas = new PoetasController();
@@ -15,6 +19,10 @@
   }
 
   $topMisPoemas = $poemas->misMasleidos($_SESSION["poeta"]["poet_codigo"]);
+
+  $misSeguidores = $seguidores->yoSigo($_SESSION["poeta"]["poet_codigo"]);
+
+  $poemasContent = $poemas->poemas($misSeguidores['seg_seguidores']);
 
   require_once("controller/likes.controller.php");
   $likes = new likesController();
@@ -159,9 +167,9 @@
                     $likes->likesConAvatar($content['pub_codigo']);
             echo '</div>
                   <div class="comments col l3 center">
-                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con '.$allCoementarios.' comentarios"><i class="fa fa-comments"></i> '.$allCoementarios.'</a>
+                    <a href="pubID'.$content["pub_codigo"].'" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="Este poema cuenta con '.$allCoementarios.' comentarios"><i class="fa fa-comments"></i> '.$allCoementarios.'</a>
                     &nbsp;
-                    <a href="!#" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A '.$content["pub_dedicatorias"].' personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> '.$content["pub_dedicatorias"].'</a>
+                    <a href="javascript:void(0)" onClick="dedicaPoema(\''.$content["pub_codigo"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')" class="tooltipped blue-grey-text" data-position="top" data-delay="50" data-tooltip="A '.$content["pub_dedicatorias"].' personas se les ha dedicado este poema"><i class="fa fa-bullhorn"></i> '.$content["pub_dedicatorias"].'</a>
                   </div>
                 </div>
               </div>';

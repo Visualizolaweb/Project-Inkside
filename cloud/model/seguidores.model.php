@@ -63,6 +63,22 @@ class SeguidoresModel{
     return $result;
   }
 
+  public function misSegidos($poet_codigo){
+    try{
+      $sql = "SELECT inkside_seguidores.poet_codigo, poet_nick, poet_foto, pdesc_avatar, seg_seguidores
+		          FROM inkside_poetas
+              LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+	            JOIN inkside_seguidores ON inkside_seguidores.poet_codigo = inkside_poetas.poet_codigo
+              WHERE  inkside_seguidores.poet_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($poet_codigo));
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    }catch (Exception $e){
+      $result = array(0,$e->getMessage());
+    }
+    return $result;
+  }
+
   public function __DESTRUCT(){
     DataBase::disconnect();
   }

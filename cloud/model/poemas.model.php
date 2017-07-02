@@ -90,15 +90,16 @@ class PoemasModel{
 
   public function cargaPoemas(){
     try {
-      $sql = "SELECT inkside_publicaciones.pub_codigo as pub_codigo, inkside_publicaciones.pub_contenido as pub_contenido,
-                     inkside_publicaciones.pub_imgPortada as pub_imgPortada, inkside_publicaciones.pub_titulo as pub_titulo,
-                     inkside_publicaciones.pub_fechaPublicacion as pub_fechaPublicacion, inkside_poetas.poet_nick as poet_nick,
-                     inkside_publicaciones.pub_dedicatorias as pub_dedicatorias, inkside_poetas.poet_foto as poet_foto, inkside_poeta_descripcion.pdesc_avatar
+      $sql = "SELECT inkside_publicaciones.pub_codigo AS pub_codigo, inkside_publicaciones.pub_contenido AS pub_contenido,
+                     inkside_publicaciones.pub_imgPortada AS pub_imgPortada, inkside_publicaciones.pub_titulo AS pub_titulo,
+                     inkside_publicaciones.pub_fechaPublicacion AS pub_fechaPublicacion, inkside_poetas.poet_nick AS poet_nick,
+                     inkside_publicaciones.pub_dedicatorias AS pub_dedicatorias, inkside_poetas.poet_foto AS poet_foto, inkside_poeta_descripcion.pdesc_avatar
               FROM   inkside_publicaciones
               INNER JOIN inkside_poetas ON inkside_publicaciones.poet_codigo = inkside_poetas.poet_codigo
               INNER JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
-              WHERE pub_estadoRevision = 'Aprobado' and pub_estado = 'Publicado'
-              ORDER BY inkside_publicaciones.pub_fechaPublicacion DESC LIMIT 10";
+              INNER JOIN inkside_seguidores ON inkside_poetas.poet_codigo = inkside_seguidores.poet_codigo
+              WHERE pub_estadoRevision = 'Aprobado' AND pub_estado = 'Publicado' AND seg_seguidores IN(588,371,296,453,291,627)
+              ORDER BY inkside_publicaciones.pub_fechaPublicacion DESC LIMIT 30";
       $query = $this->pdo->prepare($sql);
       $query->execute();
       $result = $query->fetchALL(PDO::FETCH_BOTH);
