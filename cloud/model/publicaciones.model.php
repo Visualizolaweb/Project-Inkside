@@ -143,7 +143,7 @@ class PublicacionesModel{
               WHERE pub_titulo
               LIKE CONCAT('%$consultaBusqueda%') OR pub_categoria
               LIKE CONCAT('%$consultaBusqueda%') OR pub_contenido
-              LIKE CONCAT('%$consultaBusqueda%') LIMIT 22";
+              LIKE CONCAT('%$consultaBusqueda%') LIMIT 30";
       $query = $this->pdo->prepare($sql);
 			$query->execute();
 			$result = $query->fetchAll(PDO::FETCH_BOTH);
