@@ -45,16 +45,10 @@
     public function sendMail($data){
 
         $mail = new PHPMailer;
-        $mail->isSMTP();
-        // $mail->SMTPDebug = 2;
-        $mail->Debugoutput = 'html';
-        $mail->Host = 'smtp.gmail.com';
-        $mail->Port = 587;
-        $mail->SMTPSecure = 'tls';
-        $mail->SMTPAuth = true;
-        $mail->Username = "inksidepoesiaapp@gmail.com";
-        $mail->Password = "1nk51d3p03514";
-        $mail->setFrom('inksidepoesiaapp@gmail.com', 'Inkside Poesia');
+        $mail->Host = "smtpout.secureserver.net";
+        $mail->Port = 25;
+        $mail->SMTPAuth = false;
+        $mail->setFrom('inksidepoesia@organicgrowerscolombia.com', 'Inkside Poesia');
         $mail->addAddress($data[0], $data[1]);
         $mail->isHTML(true);
         $mail->CharSet = 'UTF-8';
@@ -81,16 +75,10 @@
     public function sendDedicatoria($poeta, $pub_codigo, $email){
 
         $mail = new PHPMailer;
-        $mail->isSMTP();
-        // $mail->SMTPDebug = 2;
-        $mail->Debugoutput = 'html';
-        $mail->Host = 'smtp.gmail.com';
-        $mail->Port = 587;
-        $mail->SMTPSecure = 'tls';
-        $mail->SMTPAuth = true;
-        $mail->Username = "inksidepoesiaapp@gmail.com";
-        $mail->Password = "1nk51d3p03514";
-        $mail->setFrom('inksidepoesiaapp@gmail.com', 'Inkside Poesia');
+        $mail->Host = "smtpout.secureserver.net";
+        $mail->Port = 25;
+        $mail->SMTPAuth = false;
+        $mail->setFrom('inksidepoesia@organicgrowerscolombia.com', 'Inkside Poesia');
         $mail->addAddress($email);
         $mail->isHTML(true);
         $mail->CharSet = 'UTF-8';
@@ -116,17 +104,11 @@
         $nombre_destino = $data[3];
         $correo_destino = $data[4];
 
-        $mail = new PHPMailer;
-        $mail->isSMTP();
-        // $mail->SMTPDebug = 2;
-        $mail->Debugoutput = 'html';
-        $mail->Host = 'smtp.gmail.com';
-        $mail->Port = 587;
-        $mail->SMTPSecure = 'tls';
-        $mail->SMTPAuth = true;
-        $mail->Username = "inksidepoesiaapp@gmail.com";
-        $mail->Password = "1nk51d3p03514";
-        $mail->setFrom('inksidepoesiaapp@gmail.com', 'Inkside Poesia');
+        $mail = new PHPMailer();
+        $mail->Host = "smtpout.secureserver.net";
+        $mail->Port = 25;
+        $mail->SMTPAuth = false;
+        $mail->setFrom('inksidepoesia@organicgrowerscolombia.com', 'Inkside Poesia');
         $mail->addAddress($correo_destino);
         $mail->isHTML(true);
         $mail->CharSet = 'UTF-8';
@@ -143,7 +125,6 @@
 
         return $message;
     }
-
-  }
+}
 
 ?>

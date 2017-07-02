@@ -5,7 +5,7 @@ include '../vendor/autoload.php';
 switch ($_GET["p"]){
 
   case 'facebook':
-        $config = ['callback' => 'http://inksidepoesia.com/beta/cloud/auth.php?p=facebook','keys' => ['id' => '697119137130415', 'secret' => '18f0758b3f8db9514f6a063830cc46ac']];
+        $config = ['callback' => 'http://organicgrowerscolombia.com/cloud/auth.php?p=facebook','keys' => ['id' => '697119137130415', 'secret' => '18f0758b3f8db9514f6a063830cc46ac']];
         try {
             $adapter = new Hybridauth\Provider\Facebook( $config );
             $adapter->authenticate();
@@ -32,7 +32,7 @@ switch ($_GET["p"]){
   break;
 
   case 'twitter':
-        $config = ['callback' => 'http://inksidepoesia.com/beta/cloud/auth.php?p=twitter','keys' => ['key' => 'f5rHQUr3JME44O64p8b3do3XW', 'secret' => 'L87hbt5TiMnUsAU77Ma100SVt2aUwDWzhi0CXWhPPKpBL1VVZ4']];
+        $config = ['callback' => 'http://organicgrowerscolombia.com/cloud/auth.php?p=twitter','keys' => ['key' => 'f5rHQUr3JME44O64p8b3do3XW', 'secret' => 'L87hbt5TiMnUsAU77Ma100SVt2aUwDWzhi0CXWhPPKpBL1VVZ4']];
         try {
             $adapter = new Hybridauth\Provider\Twitter( $config );
             $adapter->authenticate();

@@ -39,7 +39,10 @@ RewriteRule ^poemas$ index.php?c=views&a=cargarPublicacion
 RewriteRule ^noticias$ index.php?c=views&a=cargarNoticia
 RewriteRule ^eventos$ index.php?c=views&a=cargarEvento
 RewriteRule ^poeta-(\w+.+)/?$ index.php?c=views&a=perfilPoeta&codpoet=$1
+RewriteRule ^buscar-(\w+.+)/?$ index.php?c=views&a=cargarResultados&search=$1
+
 
 RewriteRule ^dedicoPoema$ cloud/index.php?c=envios&a=dedicatoriapublica
+RewriteRule ^-activo/(\w+.+)/?$ cloud/index.php?c=auth&a=activoCuenta&token=$1
 
 RewriteRule ^pubID(\w+.+)/?$ index.php?c=views&a=poemas&pid=$1

@@ -73,7 +73,7 @@ class AuthController extends InitController{
       $result = $this->poetas->activoCuenta($data);
 
       if($result[0] == 1){
-        header("Location: completa-perfil");
+        header("Location: ../cloud/completa-perfil");
       }else{
         header("location: index.php?err=".$result[1]);
       }
