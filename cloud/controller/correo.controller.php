@@ -11,12 +11,6 @@ class CorreoController extends InitController{
 
   public function cargarMensajes(){
      $result  = $this->correo->MisMensajes();
-     if($result == 0){
-       $result = 0;
-     }else{
-       $result = count($result);
-     }
-
      return $result;
   }
 

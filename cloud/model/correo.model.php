@@ -14,8 +14,8 @@ class CorreoModel{
   public function MisMensajes(){
     $poet_email = $_SESSION["poeta"]["poet_email"];
     try{
-      if(!isset($poet_email)){
-         $sql = "SELECT
+      if($_SESSION["poeta"]["poet_email"]!=''){
+          $sql = "SELECT
                 	corr_codigo,
                 	inkside_correo.poet_codigo,
                 	corr_estado,

@@ -3,13 +3,12 @@
   $correo = new CorreoController();
 
   $misMensajes = $correo->cargarMensajes();
+  $mensajesResult = count($misMensajes);
+  if($mensajesResult==0){
+    $mensajesResult = 0;
+  }
 
   $sinLeer = $correo->MensajeNoLeidos();
-  if($sinLeer>=1){
-    $noLeidos = $sinLeer[1];
-  }else{
-    $noLeidos = 0;
-  }
 
   if(!isset($_SESSION["poeta"]["poet_codigo"])){
      $codigoPoeta = $poetas->cargaCodigoPoeta();
@@ -39,7 +38,7 @@
         <div class="col m12 header-section">
           <h5 class="title">Mis mensajes</h5>
           <p class="col m6">
-            <em>Mi bandeja de entrada (<?php echo $misMensajes;?> mensajes, <?php echo $noLeidos;?> sin leer)</em>
+            <em>Mi bandeja de entrada (<?php echo $mensajesResult;?> mensajes, <?php echo $noLeidos;?> sin leer)</em>
           </p>
           <p  class="col m6 right-align">
             <a href="nuevo-mensaje">
@@ -48,7 +47,7 @@
           </p>
         </div>
           <?php
-            if(!isset($_SESSION["poeta"]["poet_email"])){
+            if($_SESSION["poeta"]["poet_email"]!=""){
               echo '<ul id="resultado" class="collapsible" data-collapsible="accordion">';
               foreach ($misMensajes as $mensajes) {
                 if (strlen($mensajes['corr_codigo'])==1) {
