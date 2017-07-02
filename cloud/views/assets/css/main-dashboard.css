@@ -556,3 +556,11 @@ tr.odd {
   width: 45%;
   border-radius: 100% !important;
 }
+
+#wrap-result img{
+  width: 180px;
+  height: 180px;
+  border-radius: 350px;
+  position: relative;
+  margin: 0 auto 20px;
+}

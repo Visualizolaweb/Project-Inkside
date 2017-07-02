@@ -16,7 +16,7 @@ class PoetasController extends InitController{
   }
 
   public function buscarDatoPoeta(){
-     $result = $this->poetas->datosPoeta($_SESSION["poeta"]["poet_codigo"]);
+     $result = $this->poetas->datosPoetaFull($_SESSION["poeta"]["poet_codigo"]);
      return $result;
   }
 
@@ -41,6 +41,28 @@ class PoetasController extends InitController{
     $result = $this->poetas->poetasPorRol($rol);
     return $result;
   }
+
+  public function updateAvatar(){
+    $data = $_POST["image"];
+    $code = $_POST["code"];
+    $replace = array(":","-",".");
+    $file = "views/assets/images/perfil/";
+    $name = strtolower(str_replace($replace,"",$code));
+
+    list($type, $data) = explode(';', $data);
+    list(, $data)      = explode(',', $data);
+
+    $data = base64_decode($data);
+    $imageName = $file.$name.'.png';
+    file_put_contents($imageName, $data);
+
+    $_SESSION["poeta"]["poet_foto"] = $imageName;
+
+    $result = $this->poetas->actualizoAvatar($imageName,$code);
+    return $result;
+  }
+
+
 
 }
 ?>

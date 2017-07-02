@@ -12,6 +12,13 @@
 
   $poetaInfo = $poeta->buscarDatoPoeta();
 
+  if ($poetaInfo['pdesc_avatar']=='') {
+      $avatar = $poetaInfo['poet_foto'];
+    }else{
+      $avatar = $poetaInfo['pdesc_avatar'];
+    }
+
+
 ?>
 
 <section id="wrap-container">
@@ -26,7 +33,7 @@
 
     <div class="row">
     <form  class="row" action="actualizar-perfil " method="post" data-parsley-validate id="perfilPoeta">
-      <input type="hidden" name="data[8]" value="<?php echo $_SESSION["poeta"]["poet_codigo"];?>">
+      <input id="poetCodigo" type="hidden" name="data[8]" value="<?php echo $_SESSION["poeta"]["poet_codigo"];?>">
 
 
       <!-- <div class="input-field col s12">
@@ -87,5 +94,26 @@
     </form>
   </div>
   </div>
+
+  <div class="col l3 center-align">
+    <div id="wrap-result"><img src="<?php echo $avatar; ?>"></div>
+    <a class="waves-effect waves-light btn" href="#uploadImage">Cambiar foto</a>
+  </div>
+
+  <div id="uploadImage" class="modal">
+    <div class="modal-content">
+      <div class="row">
+        <div class="col l6">
+          <div id="wrap-upload" style="width:350px"></div>
+        </div>
+        <div class="col l6 center-align">
+              <input type="file" id="upload"><br><br>
+              <button class="btn btn-success upload-result">Recortar Imagen</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </div>
 </section>

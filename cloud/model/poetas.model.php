@@ -209,6 +209,20 @@ class PoetasModel{
     return $result;
   }
 
+  public function actualizoAvatar($avatar, $code){
+    try{
+      $sql = "UPDATE inkside_poetas SET poet_foto = ? WHERE poet_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($avatar, $code));
+
+      $result = array(1,"Su cuenta se ha activado correctamente");
+    }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
   public function autenticarUsuario($data){
     try{
       $sql = "SELECT inkside_poetas.*, inkside_acceso.* FROM inkside_poetas INNER JOIN inkside_acceso ON inkside_poetas.poet_codigo = inkside_acceso.poet_codigo WHERE (poet_email = ?) and (acc_origen_conexion = 'inkside') and (poet_estado != 'Inactivo');";

@@ -213,3 +213,59 @@ $(document).ready(function(){
         $("#"+mensaje_codigo+" i").addClass("fa-envelope-open-o");
    });
  }
+
+
+ $('#uploadImage').modal({
+    dismissible: true,
+    opacity: .8,
+    startingTop: '5%',
+    endingTop: '5%'
+ });
+
+ $uploadCrop = $('#wrap-upload').croppie({
+     enableExif: true,
+     viewport: {
+         width: 180,
+         height: 180
+     },
+     boundary: {
+         width: 240,
+         height: 240
+     }
+ });
+
+ $('#upload').on('change', function () {
+   var reader = new FileReader();
+     reader.onload = function (e) {
+       $uploadCrop.croppie('bind', {
+         url: e.target.result
+       }).then(function(){
+         console.log('jQuery bind complete');
+       });
+
+     }
+     reader.readAsDataURL(this.files[0]);
+ });
+
+ $('.upload-result').on('click', function (ev) {
+
+
+
+   $uploadCrop.croppie('result', {
+     type: 'canvas',
+     size: 'viewport'
+   }).then(function (resp) {
+
+     $.ajax({
+       url: "index.php?c=poetas&a=updateAvatar",
+       type: "POST",
+       data: {"image":resp, "code":$("#poetCodigo").val()},
+       success: function (data) {
+         html = '<img src="' + resp + '" />';
+         $('.modal').modal('close');
+         $("#wrap-result").html(html);
+         $("header .profile img").attr("src",resp);
+       }
+     });
+   });
+ });
