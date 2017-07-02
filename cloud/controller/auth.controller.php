@@ -73,7 +73,21 @@ class AuthController extends InitController{
       $result = $this->poetas->activoCuenta($data);
 
       if($result[0] == 1){
-        header("Location: ../cloud/completa-perfil");
+
+        $data_poet = $this->poetas->datosPoetaFullbyToken($data);
+        $_SESSION["poeta"]["poet_codigo"]          = $data_poet["poet_codigo"];
+        $_SESSION["poeta"]["poet_nombre"]          = $data_poet["poet_nombre"];
+        $_SESSION["poeta"]["poet_apellido"]        = $data_poet["poet_apellido"];
+        $_SESSION["poeta"]["poet_nick"]            = $data_poet["poet_nick"];
+        $_SESSION["poeta"]["poet_email"]           = $data_poet["poet_email"];
+        $_SESSION["poeta"]["poet_foto"]            = $data_poet["poet_foto"];
+        $_SESSION["poeta"]["poet_fecha_nac"]       = $data_poet["poet_fecha_nac"];
+        $_SESSION["poeta"]["poet_sexo"]            = $data_poet["poet_sexo"];
+        $_SESSION["poeta"]["poet_descripcion"]     = $data_poet["poet_descripcion"];
+        $_SESSION["poeta"]["rol_codigo"]           = $data_poet["rol_codigo"];
+        $_SESSION["poeta"]["acc_token"]            = $data_poet["acc_token"];
+
+        header("Location: ../cloud/mis-datos");
       }else{
         header("location: index.php?err=".$result[1]);
       }

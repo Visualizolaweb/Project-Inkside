@@ -102,6 +102,24 @@ class PoetasModel{
     }
 
     return $result;
+
+
+  public function datosPoetaFullbyToken($acc_token){
+    try{
+       $sql = "SELECT inkside_acceso.*, inkside_poetas.*
+                 FROM inkside_acceso
+           INNER JOIN inkside_poetas ON inkside_poetas.poet_codigo = inkside_acceso.poet_codigo
+                WHERE acc_token = ?";
+                
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($poet_codigo));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
   }
 
   public function poetasSugeridos($poetasAleatorios){
