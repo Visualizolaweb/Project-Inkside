@@ -14,27 +14,31 @@ class CorreoModel{
   public function MisMensajes(){
     $poet_email = $_SESSION["poeta"]["poet_email"];
     try{
-       $sql = "SELECT
-              	corr_codigo,
-              	inkside_correo.poet_codigo,
-              	corr_estado,
-              	corr_asunto,
-              	corr_mesaje,
-              	corr_email_destino,
-              	corr_fecha_envio,
-              	poet_nombre,
-              	poet_apellido,
-              	poet_nick,
-              	poet_email,
-              	poet_foto,
-                inkside_poeta_descripcion.pdesc_avatar
-              FROM inkside_correo
-              JOIN inkside_poetas ON  inkside_correo.poet_codigo = inkside_poetas.poet_codigo
-              LEFT JOIN inkside_poeta_descripcion ON inkside_poeta_descripcion.poet_codigo = inkside_poetas.poet_codigo
-              WHERE corr_email_destino LIKE '%$poet_email%' ORDER BY corr_fecha_envio DESC";
-      $query = $this->pdo->prepare($sql);
-      $query->execute(array($poet_email));
-      $result = $query->fetchALL(PDO::FETCH_BOTH);
+      if(!isset($poet_email)){
+         $sql = "SELECT
+                	corr_codigo,
+                	inkside_correo.poet_codigo,
+                	corr_estado,
+                	corr_asunto,
+                	corr_mesaje,
+                	corr_email_destino,
+                	corr_fecha_envio,
+                	poet_nombre,
+                	poet_apellido,
+                	poet_nick,
+                	poet_email,
+                	poet_foto,
+                  inkside_poeta_descripcion.pdesc_avatar
+                FROM inkside_correo
+                JOIN inkside_poetas ON  inkside_correo.poet_codigo = inkside_poetas.poet_codigo
+                LEFT JOIN inkside_poeta_descripcion ON inkside_poeta_descripcion.poet_codigo = inkside_poetas.poet_codigo
+                WHERE corr_email_destino LIKE '%$poet_email%' ORDER BY corr_fecha_envio DESC";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array($poet_email));
+        $result = $query->fetchALL(PDO::FETCH_BOTH);
+      }else{
+        $result = 0;
+      }
 
      }catch(PDOException $e){
       $result = array(0,$e->getMessage(),$e->getCode());
@@ -76,14 +80,18 @@ class CorreoModel{
   public function estadoMensajes(){
       $poet_email = $_SESSION["poeta"]["poet_email"];
     try{
-       $sql = "SELECT
-                    SUM(IF(corr_estado=1, 1, 0)) 'correos leidos',
-                    SUM(IF(corr_estado=0, 1, 0)) 'correos sinleer'
-              FROM inkside_correo e
-              WHERE corr_email_destino LIKE '%$poet_email%'";
-      $query = $this->pdo->prepare($sql);
-      $query->execute(array($poet_email));
-      $result = $query->fetch(PDO::FETCH_BOTH);
+      if(!isset($poet_email)){
+         $sql = "SELECT
+                      SUM(IF(corr_estado=1, 1, 0)) 'correos leidos',
+                      SUM(IF(corr_estado=0, 1, 0)) 'correos sinleer'
+                FROM inkside_correo e
+                WHERE corr_email_destino LIKE '%$poet_email%'";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array($poet_email));
+        $result = $query->fetch(PDO::FETCH_BOTH);
+      }else{
+        $result = 0;
+      }
 
      }catch(PDOException $e){
       $result = array(0,$e->getMessage(),$e->getCode());

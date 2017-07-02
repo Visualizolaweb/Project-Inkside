@@ -7,6 +7,11 @@
       require_once("controller/correo.controller.php");
       $correo = new CorreoController();
       $sinLeer = $correo->MensajeNoLeidos();
+      if($sinLeer>=1){
+        $noLeidos = $sinLeer[1];
+      }else{
+        $noLeidos = 0;
+      }
   }
 ?>
 <!DOCTYPE html>
@@ -48,9 +53,9 @@
           </div>
           <div class="col l4  right-align">
             <div class="profile">
-              <i class="fa fa-envelope-o tooltipped"  data-tooltip="Tienes <?php echo $sinLeer[1];?> mensaje(s) nuevo(s)" data-delay="50" data-position="bottom" aria-hidden="true">
-                <?php echo $sinLeer[1];?>
-              </i>
+              <a href="mis-mensajes<?php echo $msj="isset"?>"><i class="fa fa-envelope-o tooltipped"  data-tooltip="Tienes <?php echo $noLeidos;?> mensaje(s) nuevo(s)" data-delay="50" data-position="bottom" aria-hidden="true">
+                <?php echo $noLeidos;?>
+              </i></a>
               <a class="dropdown-button" href="#!" data-activates="menuPoet">
                   <span class="title"><?php echo $_SESSION["poeta"]["poet_nick"]; ?></span>
                   <img src="<?php echo $_SESSION["poeta"]["poet_foto"] ?>" alt="" class="circle">

@@ -10,7 +10,13 @@ class CorreoController extends InitController{
   }
 
   public function cargarMensajes(){
-     $result = $this->correo->MisMensajes();
+     $result  = $this->correo->MisMensajes();
+     if($result == 0){
+       $result = 0;
+     }else{
+       $result = count($result);
+     }
+
      return $result;
   }
 
@@ -51,7 +57,7 @@ class CorreoController extends InitController{
   public function correoLeido(){
      $mensaje_codigo = $_POST['mensaje_id'];
      $result = $this->correo->estadoLeido($mensaje_codigo);
-     
+
      return $result;
   }
 

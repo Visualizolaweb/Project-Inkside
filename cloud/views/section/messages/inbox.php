@@ -1,9 +1,15 @@
 <?php
   require_once("controller/correo.controller.php");
   $correo = new CorreoController();
+
   $misMensajes = $correo->cargarMensajes();
 
   $sinLeer = $correo->MensajeNoLeidos();
+  if($sinLeer>=1){
+    $noLeidos = $sinLeer[1];
+  }else{
+    $noLeidos = 0;
+  }
 
   if(!isset($_SESSION["poeta"]["poet_codigo"])){
      $codigoPoeta = $poetas->cargaCodigoPoeta();
@@ -33,7 +39,7 @@
         <div class="col m12 header-section">
           <h5 class="title">Mis mensajes</h5>
           <p class="col m6">
-            <em>Mi bandeja de entrada (<?php echo count($misMensajes);?> mensajes, <?php echo $sinLeer[1];?> sin leer)</em>
+            <em>Mi bandeja de entrada (<?php echo $misMensajes;?> mensajes, <?php echo $noLeidos;?> sin leer)</em>
           </p>
           <p  class="col m6 right-align">
             <a href="nuevo-mensaje">
@@ -41,8 +47,9 @@
             </a>
           </p>
         </div>
-        <ul id="resultado" class="collapsible" data-collapsible="accordion">
           <?php
+            if(!isset($_SESSION["poeta"]["poet_email"])){
+              echo '<ul id="resultado" class="collapsible" data-collapsible="accordion">';
               foreach ($misMensajes as $mensajes) {
                 if (strlen($mensajes['corr_codigo'])==1) {
                   $mensaje_codigo = '0'.$mensajes['corr_codigo'];
@@ -88,8 +95,12 @@
                   </div>
                 </li>';
               }
+              echo "</ul>";
+            }else{
+              echo '<p>No tienes mensajes en la bandeja de entrada.</p>';
+
+            }
           ?>
-        </ul>
       </div>
     </div>
 </section>
