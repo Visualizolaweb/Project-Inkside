@@ -102,7 +102,7 @@ class PoetasModel{
     }
 
     return $result;
-
+}
 
   public function datosPoetaFullbyToken($acc_token){
     try{
@@ -110,9 +110,9 @@ class PoetasModel{
                  FROM inkside_acceso
            INNER JOIN inkside_poetas ON inkside_poetas.poet_codigo = inkside_acceso.poet_codigo
                 WHERE acc_token = ?";
-                
+
       $query = $this->pdo->prepare($sql);
-      $query->execute(array($poet_codigo));
+      $query->execute(array($acc_token));
       $result = $query->fetch(PDO::FETCH_BOTH);
 
      }catch(PDOException $e){
