@@ -12,7 +12,7 @@
 
   $poetaInfo = $poeta->buscarDatoPoeta();
 
-  if ($poetaInfo['pdesc_avatar']=='') {
+  if ($poetaInfo['poet_foto']=='') {
       $avatar = $poetaInfo['poet_foto'];
     }else{
       $avatar = $poetaInfo['pdesc_avatar'];
@@ -96,7 +96,7 @@
   </div>
 
   <div class="col l3 center-align">
-    <div id="wrap-result"><img src="<?php echo $avatar; ?>"></div>
+    <div id="wrap-result"><img src="<?php echo $avatar  ?>"></div>
     <a class="waves-effect waves-light btn" href="#uploadImage">Cambiar foto</a>
   </div>
 

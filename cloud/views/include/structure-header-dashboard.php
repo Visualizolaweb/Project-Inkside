@@ -3,7 +3,7 @@
     header("Location: ./");
   }else{
       $rol_codigo = $_SESSION["poeta"]["rol_codigo"];
-
+       
       require_once("controller/correo.controller.php");
       $correo = new CorreoController();
       $sinLeer = $correo->MensajeNoLeidos();
@@ -59,6 +59,7 @@
               </i></a>
               <a class="dropdown-button" href="#!" data-activates="menuPoet">
                   <span class="title"><?php echo $_SESSION["poeta"]["poet_nick"]; ?></span>
+
                   <img src="<?php echo $_SESSION["poeta"]["poet_foto"] ?>" alt="" class="circle">
                   <i class="fa fa-caret-down "></i>
               </a>

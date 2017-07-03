@@ -104,6 +104,7 @@ class PoetasModel{
     return $result;
 }
 
+
   public function datosPoetaFullbyToken($acc_token){
     try{
        $sql = "SELECT inkside_acceso.*, inkside_poetas.*
@@ -170,6 +171,29 @@ class PoetasModel{
       $sp = "CALL registroPoetaSocial(?,?,?,?,?,?,?,?,?,?,?,?,?)";
       $query = $this->pdo->prepare($sp);
       $query->execute(array($data[0],$data[1],$data[2],$data[3],$data[4],$data[5],$data[6],$data[7],$data[8],$data[9],$data[10],$data[11],$data[12]));
+
+      $result = array(1,"Se ha registrado correctamente");
+      }catch (Exception $e){
+      $result = array(0,$e->getMessage());
+    }
+    return $result;
+  }
+
+  public function actualizoPerfil($data,$categorias){
+    try{
+      $sql = "UPDATE inkside_poetas SET poet_nick = ?, poet_descripcion = ? WHERE poet_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($data[1],$data[3],$data[0]));
+
+      $sql = "INSERT INTO inkside_poeta_descripcion (poet_codigo, pdesc_acerca) VALUES (?,?)";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($data[0],$data[3]));
+
+      foreach ($categorias as $categoria) {
+        $sql = "INSERT INTO inkside_intereses (poet_codigo, catePub_codigo) VALUES (?,?)";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array($data[0], $categoria));
+      }
 
       $result = array(1,"Se ha registrado correctamente");
       }catch (Exception $e){

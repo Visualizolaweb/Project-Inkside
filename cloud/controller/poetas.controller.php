@@ -11,6 +11,9 @@ class PoetasController extends InitController{
 
   public function actualizarDatoPoeta(){
      $data = $_POST["data"];
+
+     $_SESSION["poeta"]["poet_nick"] = $data[3];
+
      $result = $this->poetas->actualizarPoeta($data);
      header("Location: mis-datos");
   }
@@ -24,6 +27,7 @@ class PoetasController extends InitController{
      $result = $this->poetas->datosPoetaFull($poet_codigo);
      return $result;
   }
+
 
   public function cargaPoetasSugeridos(){
      $totalPoetas = $this->poetas->contarPoetas();
@@ -57,12 +61,18 @@ class PoetasController extends InitController{
     file_put_contents($imageName, $data);
 
     $_SESSION["poeta"]["poet_foto"] = $imageName;
-
     $result = $this->poetas->actualizoAvatar($imageName,$code);
+
     return $result;
   }
 
+  public function guardoPerfil(){
+    $data      = $_POST["data"];
+    $categoria = $_POST["cat"];
 
+    $this->poetas->actualizoPerfil($data,$categoria);
+    header("Location: dashboard");
+  }
 
 }
 ?>

@@ -59,6 +59,7 @@ RewriteRule ^buscar$ index.php?c=views&a=busqueda
 
 #Redirecciones Procesos
 RewriteRule ^registro-poeta$ index.php?c=auth&a=registroPoeta
+RewriteRule ^guardoPerfil$   index.php?c=poetas&a=guardoPerfil
 RewriteRule ^registro-activo/(\w+)/?$ index.php?c=auth&a=activoCuenta&token=$1
 RewriteRule ^registro-social$ index.php?c=auth&a=registroSocial
 RewriteRule ^valido-email$   index.php?c=auth&a=validoEmail
@@ -85,3 +86,5 @@ RewriteRule ^pubID(\w+.+)/?$ index.php?c=poemas&a=detalle&pid=$1
 RewriteRule ^elimino-pubID(\w+.+)/?$ index.php?c=publicaciones&a=elimino&pid=$1
 RewriteRule ^apruebo-pubID(\w+.+)/?$ index.php?c=publicaciones&a=apruebo&pid=$1
 RewriteRule ^rechazo-pubID(\w+.+)/?$ index.php?c=publicaciones&a=rechazo&pid=$1
+
+RewriteRule ^completo-perfil$ index.php?c=views&a=completoPerfil

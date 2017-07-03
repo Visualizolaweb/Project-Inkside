@@ -19,6 +19,16 @@ class categoriasController{
       echo "</select>";
   }
 
+  public function cargarCategoriasProfile(){
+      $categorias = $this->categorias->verCategorias();
+        echo "<select multiple id='txt_categoria' name='cat[]' class='validate' required>";
+          echo "<option value='' disabled selected>Categorias que te gustan</option>";
+      foreach ($categorias as $cat) {
+          echo "<option value='".$cat["catePub_codigo"]."'>".$cat["catePub_nombre"]."</option>";
+      }
+      echo "</select>";
+  }
+
   public function actualizaCategorias($micategoria){
       $categorias = $this->categorias->verCategorias();
         echo "<select multiple id='txt_categoria' name='cat[]' class='validate' required>";

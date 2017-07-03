@@ -46,6 +46,7 @@ class AuthController extends InitController{
       $data[12] = $_SESSION["poeta"]["acc_origen_conexion"];
 
       $result = $this->poetas->crearPoetaSocial($data);
+      // die(print_r($data));
       $dataSocial = $this->poetas->autenticarUsuarioSocial($data[11]);
       $_SESSION["poeta"]["rol_codigo"] = $dataSocial["rol_codigo"];
 
@@ -87,7 +88,7 @@ class AuthController extends InitController{
         $_SESSION["poeta"]["rol_codigo"]           = $data_poet["rol_codigo"];
         $_SESSION["poeta"]["acc_token"]            = $data_poet["acc_token"];
 
-        header("Location: ../cloud/mis-datos");
+        header("Location: ../cloud/completo-perfil");
       }else{
         header("location: index.php?err=".$result[1]);
       }
@@ -127,7 +128,7 @@ class AuthController extends InitController{
 
   function cerrarSesion(){
     session_destroy();
-    header("Location: ./");
+    header("Location: ../../");
   }
 
 

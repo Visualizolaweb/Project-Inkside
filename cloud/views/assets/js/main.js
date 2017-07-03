@@ -250,7 +250,9 @@ $(document).ready(function(){
  $('.upload-result').on('click', function (ev) {
 
 
+   var file = $("#upload").val();
 
+   if(file != ""){
    $uploadCrop.croppie('result', {
      type: 'canvas',
      size: 'viewport'
@@ -268,4 +270,5 @@ $(document).ready(function(){
        }
      });
    });
+ }
  });

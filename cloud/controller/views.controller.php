@@ -99,6 +99,10 @@ class ViewsController{
     require_once 'views/include/structure-footer-dashboard.php';
   }
 
+  public function completoPerfil(){
+    require_once 'views/section/users/complete-profile.php'; 
+  }
+
 }
 
 
