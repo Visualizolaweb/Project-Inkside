@@ -31,27 +31,31 @@
 <div class="slider hide-on-small-only">
    <ul class="slides">
      <li>
+       <img src="website/views/assets/images/slider/segmento.png">
+
+     </li>
+     <li>
        <img src="inkside-slider-3">
        <div class="caption left-align ">
-         <h3>COMPARTE, LEE Y CREA</h3>
-         <h5 class="light grey-text text-lighten-3">En la mas grande comunidad de poesia de internet</h5>
+         <h3>Comparte tus poemas escritos</h3>
+         <h5 class="light grey-text text-lighten-3">En la primera comunidad de amantes de la poesía</h5>
        </div>
      </li>
      <li>
        <img src="inkside-slider-2">
        <div class="caption left-align">
-         <h3>"La mujer que lee</h3>
-         <h5 class="light grey-text text-lighten-3">almacena su belleza para la vejez."</h5>
-         <span>- Frida Khalo.</span>
+         <h3>Comenta los escritos y poemas</h3>
+         <h5 class="light grey-text text-lighten-3">de los demás en la comunidad para hacer que <br>Inkside Poesía siga creciendo</h5>
        </div>
      </li>
+     </li>
+
      <li>
        <img src="inkside-slider-4">
        <div class="caption left-align">
-         <h3>"Me enamoré de la vida</h3>
-         <h5 class="light grey-text text-lighten-3">es la única que no me dejará sin antes yo hacerlo."</h5>
-         <span>-    Pablo Neruda.</span>
-       </div>
+         <h3>Lee y dedica poemas a quien desees </h3>
+         <h5 class="light grey-text text-lighten-3">para que  la poesía siga creciendo</h5>
+        </div>
      </li>
    </ul>
  </div>

@@ -101,7 +101,7 @@
             <div class="input-field col l6">
               <input id="poetCodigo" type="hidden" name="data[0]" value="<?php echo $codigoPoeta ?>">
               <input id="txt_nombre_corto" name="data[1]" type="text" required autocomplete="off">
-              <label for="txt_nombre_corto">Nombre a mostrar</label>
+              <label for="txt_nombre_corto">Seudónimo</label>
             </div>
 
             <div class="input-field col l6" id="categorias" style="height: 55px;">

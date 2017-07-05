@@ -6,11 +6,6 @@
  require_once("controller/comentarios.controller.php");
  require_once("controller/likes.controller.php");
 
- if(!isset($_SESSION["poeta"]["poet_codigo"])){
-    $codigoPoeta = $poetas->cargaCodigoPoeta();
-    $_SESSION["poeta"]["poet_codigo"] = $codigoPoeta["poet_codigo"];
- }
-
 class PublicacionesController extends InitController{
 
   private $publicaciones;
@@ -42,7 +37,7 @@ class PublicacionesController extends InitController{
     $pagina = @$_GET["pagina"];
     if (!$pagina) {
        $inicio = 0;
-       $pagina = 0;
+       $pagina = 1;
     } else {
        $inicio = ($pagina - 1) * $TAMANO_PAGINA;
     }
@@ -151,26 +146,22 @@ class PublicacionesController extends InitController{
       <div style="width:100%; text-align:center;">';
       //si posicion es mayor o igual a 1 quiere decir que muestre la parte Primero y Anterior de la paginación
       if ($pagina >= 1) {
-        $url = "index.php?c=views&a=poemas&pagina=0";
+        $url = "index.php?c=views&t=$tipoArticulo&a=poemas&pagina=0";
         echo "<a href=\"$url\">Primero</a>\n";
         //para que el preius no termine con valor 0
-         $url = "index.php?c=views&a=poemas&pagina=" .($pagina-1);
+         $url = "index.php?c=views&t=$tipoArticulo&a=poemas&pagina=" .($pagina-1);
         echo "<a href=\"$url\">Anterior</a>\n";
       }
-      //sirve para expandir el prollecto para poder paginar de la manera (Primero Anterior | 0 | 1 | 2 | 3 | Siguiente Ultimo)
-      /*for ($i = 0; $i < $pages; $i++) {
-        $url = "pag_next.php?screen=" . $i;
-        echo " | <a href=\"$url\">$i</a> | ";
-      }*/
+
 
       //muestra total de resultados 1 de N
-      echo '<strong>'.($pagina+1).' de '.$total_paginas.' </strong>';
+      echo '<strong>'.($pagina).' de '.$total_paginas.' </strong>';
 
       //si position es menor a el valor entre los parentesis muestra la parte (Siguiente Ultimo)
       if ($pagina < ($total_paginas-1)) {
-        $url = "index.php?c=views&a=poemas&pagina=" . ($pagina+1);
+        $url = "index.php?c=views&a=poemas&t=$tipoArticulo&pagina=" . ($pagina+1);
         echo "<a href=\"$url\">Siguiente</a>\n";
-        $url = "index.php?c=views&a=poemas&pagina=" . ($total_paginas-1);
+        $url = "index.php?c=views&a=poemas&t=$tipoArticulo&pagina=" . ($total_paginas-1);
         echo "<a href=\"$url\">Ultimo</a>\n";
       }
       echo '</div>';
@@ -227,38 +218,6 @@ class PublicacionesController extends InitController{
   }
 
 
-
-    // public function Buscador(){
-    //   $consultaBusqueda = $_POST['valorBusqueda'];
-    //   //Filtro anti-XSS
-    //   $caracteres_malos = array("<", ">", "\"", "'", "/", "<", ">", "'", "/");
-    //   $caracteres_buenos = array("& lt;", "& gt;", "& quot;", "& #x27;", "& #x2F;", "& #060;", "& #062;", "& #039;", "& #047;");
-    //   $consultaBusqueda = str_replace($caracteres_malos, $caracteres_buenos, $consultaBusqueda);
-    //
-    //   //Variable vacía (para evitar los E_NOTICE)
-    //   $mensaje = "";
-    //   if (isset($consultaBusqueda)) {
-    //     $buscarPublicaciones = $this->publicaciones->buscarPublicacion($consultaBusqueda);
-    //     if (count($buscarPublicaciones) === 0) {
-    //       $mensaje = "<p>No hay ningún usuario con ese nombre y/o apellido</p>";
-    //     } else {
-    //       //Si existe alguna fila que sea igual a $consultaBusqueda, entonces mostramos el siguiente mensaje
-    //       echo 'Resultados para <strong>'.$consultaBusqueda.'</strong><br>';
-    //
-    //       //La variable $resultado contiene el array que se genera en la consulta, así que obtenemos los datos y los mostramos en un bucle
-    //       foreach ($buscarPublicaciones as $row) {
-    //         echo '<div>
-    //                  <span>'.$row['poet_nombre'].' (<em>'.$row['poet_nick'].'</em>)</span>
-    //               </div>';
-    //       }
-    //
-    //     } //Fin else $filas
-    //
-    //     }//Fin isset $consultaBusqueda
-    //
-    //     //Devolvemos el mensaje que tomará jQuery
-    //     echo $mensaje;
-    //   }
 
 }
 ?>

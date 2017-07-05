@@ -74,25 +74,40 @@ class AuthController extends InitController{
   }
 
   public function registroSocial(){
-      $data[0] = InitController::generarPk("POET",4,5);
-      $data[1] = $_SESSION["poeta"]["poet_nombre"];
-      $data[2] = $_SESSION["poeta"]["poet_apellido"];
-      $data[3] = $_SESSION["poeta"]["poet_nick"];
-      $data[4] = $_SESSION["poeta"]["poet_email"];
-      $data[5] = $_SESSION["poeta"]["poet_foto"];
-      $data[6] = $_SESSION["poeta"]["poet_fecha_nac"];
-      $data[7] = $_SESSION["poeta"]["poet_sexo"];
-      $data[8] = $_SESSION["poeta"]["poet_descripcion"];
-      $data[9] = "Activo";
-      $data[10] = InitController::generarToken(55);
-      $data[11] = $_SESSION["poeta"]["acc_social_id"];
-      $data[12] = $_SESSION["poeta"]["acc_origen_conexion"];
 
-      $result = $this->poetas->crearPoetaSocial($data);
-      // die(print_r($data));
-      $dataSocial = $this->poetas->autenticarUsuarioSocial($data[11]);
-      $_SESSION["poeta"]["rol_codigo"] = $dataSocial["rol_codigo"];
+      $dataSocial = $this->poetas->autenticarUsuarioSocial($_SESSION["poeta"]["acc_social_id"]);
 
+      if(count($dataSocial[0]) == 0){
+          $data[0] = InitController::generarPk("POET",4,5);
+          $data[1] = $_SESSION["poeta"]["poet_nombre"];
+          $data[2] = $_SESSION["poeta"]["poet_apellido"];
+          $data[3] = $_SESSION["poeta"]["poet_nick"];
+          $data[4] = $_SESSION["poeta"]["poet_email"];
+          $data[5] = $_SESSION["poeta"]["poet_foto"];
+          $data[6] = $_SESSION["poeta"]["poet_fecha_nac"];
+          $data[7] = $_SESSION["poeta"]["poet_sexo"];
+          $data[8] = $_SESSION["poeta"]["poet_descripcion"];
+          $data[9] = "Activo";
+          $data[10] = InitController::generarToken(55);
+          $data[11] = $_SESSION["poeta"]["acc_social_id"];
+          $data[12] = $_SESSION["poeta"]["acc_origen_conexion"];
+
+          $_SESSION["poeta"]["poet_codigo"] = $data[0];
+          $result = $this->poetas->crearPoetaSocial($data);
+          $_SESSION["poeta"]["rol_codigo"] = '109902';
+      }else{
+        $_SESSION["poeta"]["poet_codigo"]          = $dataSocial["poet_codigo"];
+        $_SESSION["poeta"]["poet_nombre"]          = $dataSocial["poet_nombre"];
+        $_SESSION["poeta"]["poet_apellido"]        = $dataSocial["poet_apellido"];
+        $_SESSION["poeta"]["poet_nick"]            = $dataSocial["poet_nick"];
+        $_SESSION["poeta"]["poet_email"]           = $dataSocial["poet_email"];
+        $_SESSION["poeta"]["poet_foto"]            = $dataSocial["poet_foto"];
+        $_SESSION["poeta"]["poet_fecha_nac"]       = $dataSocial["poet_fecha_nac"];
+        $_SESSION["poeta"]["poet_sexo"]            = $dataSocial["poet_sexo"];
+        $_SESSION["poeta"]["poet_descripcion"]     = $dataSocial["poet_descripcion"];
+        $_SESSION["poeta"]["rol_codigo"]           = $dataSocial["rol_codigo"];
+        $_SESSION["poeta"]["acc_token"]            = $dataSocial["acc_token"];
+      }
 
       header("Location: dashboard");
   }

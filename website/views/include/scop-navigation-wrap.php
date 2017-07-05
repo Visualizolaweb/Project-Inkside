@@ -2,7 +2,7 @@
   <div class="container">
     <div class="row">
       <div class="col s12 m6 l3">
-        <a href="#!" class="brand-logo"><img src="website/views/assets/images/Logo-Inkside.png" alt="InkSide" class="responsive-img"></a>
+        <a href="./" class="brand-logo"><img src="website/views/assets/images/Logo-Inkside.png" alt="InkSide" class="responsive-img"></a>
         <a href="#" data-activates="mobile-menu" class="button-collapse"><i class="fa fa-bars"></i></a>
       </div>
 

@@ -12,11 +12,11 @@
 
   $poetaInfo = $poeta->buscarDatoPoeta();
 
-  if ($poetaInfo['poet_foto']=='') {
+  if ($poetaInfo['poet_foto']!="") {
       $avatar = $poetaInfo['poet_foto'];
-    }else{
+  }else{
       $avatar = $poetaInfo['pdesc_avatar'];
-    }
+  }
 
 
 ?>
@@ -64,7 +64,7 @@
 
       <div class="input-field col s12">
         <input id="txt_nombre_corto" name="data[3]"  value="<?php echo $poetaInfo['poet_nick'];?>" type="text" required autocomplete="off">
-        <label for="txt_nombre_corto">Nombre Corto</label>
+        <label for="txt_nombre_corto">Seudónimo</label>
       </div>
 
       <div class="input-field col s12">
