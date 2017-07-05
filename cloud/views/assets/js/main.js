@@ -2,6 +2,7 @@
 
  $(".button-collapse").sideNav();
  $("#publicaciones").modal();
+ $("#recordar").modal();
  $('.tooltipped').tooltip({delay: 50});
  $('#dataGrid').DataTable({
       "language": {

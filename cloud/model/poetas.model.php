@@ -104,6 +104,24 @@ class PoetasModel{
     return $result;
 }
 
+  public function datosPoetaFullbyCodigo($poet_codigo){
+    try{
+       $sql = "SELECT inkside_poetas.*, inkside_poeta_descripcion.*, inkside_acceso.*
+                 FROM inkside_poetas
+            LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+			     INNER JOIN inkside_acceso ON inkside_acceso.poet_codigo = inkside_poetas.poet_codigo
+                WHERE inkside_poetas.poet_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($poet_codigo));
+      $result = $query->fetch(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+}
+
 
   public function datosPoetaFullbyToken($acc_token){
     try{
@@ -233,6 +251,34 @@ class PoetasModel{
     return $result;
   }
 
+  public function updateClave($data){
+    try{
+      $sql = "UPDATE inkside_acceso SET acc_password = ? WHERE poet_codigo = ?";
+      $query = $this->pdo->prepare($sql);
+      $query->execute(array($data[1],$data[0]));
+
+      $result = array(1,"La clave se ha actualizado correctamente");
+    }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
+    public function insertAcceso($data){
+      try{
+        $sql = "INSERT INTO inkside_acceso (acc_token, poet_codigo, acc_password, acc_origen_conexion) VALUES (?,?,?,?)";
+        $query = $this->pdo->prepare($sql);
+        $query->execute(array($data[2],$data[0],$data[1],$data[3]));
+
+        $result = array(1,"Se ha ingresado en acceso correctamente");
+      }catch(PDOException $e){
+        $result = array(0,$e->getMessage(),$e->getCode());
+      }
+
+      return $result;
+    }
+
   public function actualizoAvatar($avatar, $code){
     try{
       $sql = "UPDATE inkside_poetas SET poet_foto = ? WHERE poet_codigo = ?";
@@ -266,6 +312,21 @@ class PoetasModel{
        $sql = "SELECT poet_codigo FROM inkside_acceso WHERE acc_social_id = ?";
        $query = $this->pdo->prepare($sql);
        $query->execute(array($acc_social_id));
+
+       $result = $query->fetch(PDO::FETCH_BOTH);
+
+     }catch(PDOException $e){
+      $result = array(0,$e->getMessage(),$e->getCode());
+    }
+
+    return $result;
+  }
+
+  public function datosAccesobyCodigo($poet_codigo){
+    try{
+       $sql = "SELECT * FROM inkside_acceso WHERE poet_codigo = ?";
+       $query = $this->pdo->prepare($sql);
+       $query->execute(array($poet_codigo));
 
        $result = $query->fetch(PDO::FETCH_BOTH);
 
@@ -315,6 +376,23 @@ class PoetasModel{
 
     return $result;
   }
+
+
+    public function datosPoetabyEmail($email){
+      try{
+         $sql = "SELECT * FROM inkside_poetas WHERE poet_email = ?";
+
+         $query = $this->pdo->prepare($sql);
+         $query->execute(array($email));
+
+         $result = $query->fetch(PDO::FETCH_BOTH);
+
+       }catch(PDOException $e){
+        $result = array(0,$e->getMessage(),$e->getCode());
+      }
+
+      return $result;
+    }
 
   public function __DESTRUCT(){
     DataBase::disconnect();

@@ -28,7 +28,6 @@ class PoetasController extends InitController{
      return $result;
   }
 
-
   public function cargaPoetasSugeridos(){
      $totalPoetas = $this->poetas->contarPoetas();
      $poetasAleatorios = rand(0, $totalPoetas['totalPoetas']-1);

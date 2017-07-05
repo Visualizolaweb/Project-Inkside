@@ -10,6 +10,37 @@ class AuthController extends InitController{
       $this->poetas = new PoetasModel();
   }
 
+  public function cambioClave(){
+    $data = $_POST["data"];
+    $result = $this->poetas->datosAccesobyCodigo($data[0]);
+
+    if(count($result[0])>0){
+      $data[1] = password_hash($data[1], PASSWORD_DEFAULT);
+      $result = $this->poetas->updateClave($data);
+    }else{
+      $data[1] = password_hash($data[1], PASSWORD_DEFAULT);
+      $data[2] = InitController::generarToken(55);
+      $data[3] = "inkside";
+
+      $result = $this->poetas->insertAcceso($data);
+    }
+
+    $data_poet = $this->poetas->datosPoetaFullbyCodigo($data[0]);
+    $_SESSION["poeta"]["poet_codigo"]          = $data_poet["poet_codigo"];
+    $_SESSION["poeta"]["poet_nombre"]          = $data_poet["poet_nombre"];
+    $_SESSION["poeta"]["poet_apellido"]        = $data_poet["poet_apellido"];
+    $_SESSION["poeta"]["poet_nick"]            = $data_poet["poet_nick"];
+    $_SESSION["poeta"]["poet_email"]           = $data_poet["poet_email"];
+    $_SESSION["poeta"]["poet_foto"]            = $data_poet["poet_foto"];
+    $_SESSION["poeta"]["poet_fecha_nac"]       = $data_poet["poet_fecha_nac"];
+    $_SESSION["poeta"]["poet_sexo"]            = $data_poet["poet_sexo"];
+    $_SESSION["poeta"]["poet_descripcion"]     = $data_poet["poet_descripcion"];
+    $_SESSION["poeta"]["rol_codigo"]           = $data_poet["rol_codigo"];
+    $_SESSION["poeta"]["acc_token"]            = $data_poet["acc_token"];
+
+    header("Location: dashboard");
+  }
+
   public function registroPoeta(){
       $realdata =  $_POST["data"];
 
@@ -28,6 +59,18 @@ class AuthController extends InitController{
       }
 
       echo json_encode($result);
+  }
+
+  public function quieromiclave(){
+      $data[0] = $_POST["email"];
+
+      $poeta = $this->poetas->datosPoetabyEmail($data[0]);
+      $data[1] = $poeta["poet_nombre"].' '.$poeta["poet_apellido"];
+      $data[2] = $poeta["poet_codigo"];
+
+      $result = InitController::sendMailPassword($data);
+
+      header("Location: ./");
   }
 
   public function registroSocial(){
@@ -126,9 +169,13 @@ class AuthController extends InitController{
      echo $datos;
   }
 
+  public function password(){
+      require_once 'views/section/users/password.php';
+  }
+
   function cerrarSesion(){
     session_destroy();
-    header("Location: ../../");
+    header("Location: ../");
   }
 
 

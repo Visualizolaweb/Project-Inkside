@@ -42,6 +42,29 @@
     }
 
 
+      public function sendMailPassword($data){
+
+        $mail = new PHPMailer;
+        $mail->Host = "smtpout.secureserver.net";
+        $mail->Port = 25;
+        $mail->SMTPAuth = false;
+        $mail->setFrom('inksidepoesia@organicgrowerscolombia.com', 'Inkside Poesia');
+        $mail->addAddress($data[0], $data[1]);
+        $mail->isHTML(true);
+        $mail->CharSet = 'UTF-8';
+        $nombre_poeta = explode(" ", $data[1]);
+        $mail->Subject = "Recupera tu cuenta";
+        include 'views/section/tmpMailer/recuperaCuenta.php';
+
+        if (!$mail->send()) {
+            $message = array(0, "Mailer Error: " . $mail->ErrorInfo);
+        } else {
+            $message = array(1, "El registro ha sido exitoso, por favor verifique el correo electronico para activar la cuenta." . $mail->ErrorInfo);
+        }
+
+        return $message;
+    }
+
     public function sendMail($data){
 
         $mail = new PHPMailer;

@@ -60,6 +60,7 @@ RewriteRule ^buscar$ index.php?c=views&a=busqueda
 #Redirecciones Procesos
 RewriteRule ^registro-poeta$ index.php?c=auth&a=registroPoeta
 RewriteRule ^guardoPerfil$   index.php?c=poetas&a=guardoPerfil
+RewriteRule ^cambioClave$    index.php?c=auth&a=cambioClave
 RewriteRule ^registro-activo/(\w+)/?$ index.php?c=auth&a=activoCuenta&token=$1
 RewriteRule ^registro-social$ index.php?c=auth&a=registroSocial
 RewriteRule ^valido-email$   index.php?c=auth&a=validoEmail
@@ -73,6 +74,8 @@ RewriteRule ^paginar-publicaciones$   index.php?c=publicaciones&a=paginarPublica
 RewriteRule ^crear-comentario$   index.php?c=comentarios&a=crearComentario
 RewriteRule ^enviar-mensaje$   index.php?c=correo&a=enviarMensaje
 RewriteRule ^eliminar-mensaje(\w+.+)/?$   index.php?c=correo&a=BorrarMensaje&pid=$1
+RewriteRule ^password-(\w+.+)/?$   index.php?c=auth&a=password&pid=$1
+RewriteRule ^quieromiclave$   index.php?c=auth&a=quieromiclave
 
 RewriteRule ^cargar-departamento$   index.php?c=localizacion&a=cargarDepartamentos
 RewriteRule ^cargar-ciudad$   index.php?c=localizacion&a=cargarCiudades
