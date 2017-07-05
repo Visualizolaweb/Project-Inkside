@@ -53,8 +53,8 @@
      <li>
        <img src="inkside-slider-4">
        <div class="caption left-align">
-         <h3>Lee y dedica poemas a quien desees </h3>
-         <h5 class="light grey-text text-lighten-3">para que  la poesía siga creciendo</h5>
+         <h3>Lee y dedica poemas  </h3>
+         <h5 class="light grey-text text-lighten-3">a quien desees para que  la poesía siga creciendo</h5>
         </div>
      </li>
    </ul>

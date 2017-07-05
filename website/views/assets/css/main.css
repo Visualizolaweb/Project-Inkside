@@ -397,7 +397,11 @@ footer #redes a + div{
 
 /* SECCION PUBLICACIONES */
 .sec-publicaciones{
-  padding: 30px 0;
+  padding:0 0 30px 0;
+}
+
+.slider{
+  margin-bottom: -50px;
 }
 
 .sec-publicaciones h1, #sec_comunity h3{
@@ -482,7 +486,7 @@ footer #redes a + div{
   margin-top: -5px;
   color: #607d8b;
   padding: 10px;
-  height: 200px;
+  height: 290px;
 }
 
 .sec-wrap-news div.content h4{
