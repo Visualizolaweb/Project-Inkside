@@ -10,8 +10,7 @@
   if(isset($dataFilter)){
       switch($dataFilter){
         case 'Poema':
-          echo "<h1>Listado de Poemas</h1>";
-          echo "<h6>Lee los ultimos poemas de la comunidad.</h6>";
+          echo "<h6 style='padding-top:40px;'>Lee los últimos poemas de la comunidad.</h6>";
 
           // CONSTRUCCION DEL PAGINADOR
 
@@ -123,15 +122,22 @@
             <p><?php echo $contenido ?>
                 <div class="more"><a href="pubID<?php echo $row['pub_codigo']; ?>" class="read-more">Seguir Leyendo</a></div>
             </p>
+            <a href="poeta-<?php echo base64_encode($row['poet_codigo'])?>">
             <div class="bypoeta">
               <img src="<?php echo $avatar; ?>" class="circle"/>
               <h3><?php echo $row['poet_nick']?></h3>
             </div>
+            </a>
           </article>
           <?php } ?>
 
         </section>
         <?php
+
+        if(!isset($dataFilter)){
+          echo "<p class='center-align'><a href='poemas'>- Ver mas poemas -</a></p>";
+        }
+
         if(isset($paginador)){
           if($paginador == true){
 

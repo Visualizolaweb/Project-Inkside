@@ -15,6 +15,24 @@ class ViewsController{
     require_once 'website/views/include/structure-footer.php';
   }
 
+  public function inkside(){
+    require_once 'website/views/include/structure-header.php';
+    require_once 'website/views/section/index/queesinkside.php';
+    require_once 'website/views/include/structure-footer.php';
+  }
+
+  public function ayudanos(){
+    require_once 'website/views/include/structure-header.php';
+    require_once 'website/views/section/index/ayudanos.php';
+    require_once 'website/views/include/structure-footer.php';
+  }
+
+  public function reporta(){
+    require_once 'website/views/include/structure-header.php';
+    require_once 'website/views/section/index/reporta.php';
+    require_once 'website/views/include/structure-footer.php';
+  }
+
   public function cargarPublicacion(){
 
     $dataFilter = 'Poema';
@@ -62,6 +80,8 @@ class ViewsController{
     require_once 'website/views/section/comunidad/index.php';
     require_once 'website/views/include/structure-footer.php';
   }
+
+
 
 }
 ?>

@@ -28,6 +28,7 @@ RewriteEngine on
 # FIN
 
 #Imagenes del Slider
+ErrorDocument 404 /404.php
 
 RewriteRule ^inkside-slider-1$ website/views/assets/images/slider/sliderMobile.jpg
 RewriteRule ^inkside-slider-2$ website/views/assets/images/slider/blond-1866951_1920-compressor.jpg
@@ -35,6 +36,10 @@ RewriteRule ^inkside-slider-3$ website/views/assets/images/slider/book-1210027_1
 RewriteRule ^inkside-slider-4$ website/views/assets/images/slider/leave-1957302_1920-compressor.jpg
 
 RewriteRule ^comunidad-inkside$ index.php?c=views&a=comunidad
+RewriteRule ^que-es-inkside$ index.php?c=views&a=inkside
+RewriteRule ^ayudanos-a-mejorar$ index.php?c=views&a=ayudanos
+RewriteRule ^reportar-abuso$ index.php?c=views&a=reporta
+
 RewriteRule ^poemas$ index.php?c=views&a=cargarPublicacion
 RewriteRule ^noticias$ index.php?c=views&a=cargarNoticia
 RewriteRule ^eventos$ index.php?c=views&a=cargarEvento

@@ -62,10 +62,10 @@
   </section>
 </div>
 
-<section class="sec-publicaciones secundary-default">
+<section class="sec-publicaciones secundary-default" style="padding-top:40px">
   <div class="container">
     <div class="row">
-      <section id="pinBoot">
+      <section class="pinBoot">
         <?php
                foreach ($poemas as $row) {
                  if ($row['pdesc_avatar']=='') {
@@ -98,7 +98,7 @@
           <span class="date">Publicado el <?php echo $publicaciones->fechaesp($row['pub_fechaPublicacion']); ?></span>
           <p><?php echo $contenido ?>
               <div class="more"><a href="pubID<?php echo $row['pub_codigo']; ?>" class="read-more">Seguir Leyendo</a></div>
-          </p> 
+          </p>
         </article>
         <?php } ?>
 

@@ -11,11 +11,11 @@ class DataBase{
   private static $db_pass = "U7C&ncNrKy28G";
 
 
-  // CONEXION VISUALIZO
+  // // CONEXION VISUALIZO
   // private static $db_host = "localhost";
-  // private static $db_name = "bsstudio_inkside";
-  // private static $db_user = "bsstudio_develop";
-  // private static $db_pass = "Guille1037571915";
+  // private static $db_name = "inksidep_cloud";
+  // private static $db_user = "root";
+  // private static $db_pass = "";
 
   private static $cont  = null;
 

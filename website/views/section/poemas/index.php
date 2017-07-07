@@ -55,7 +55,7 @@
         </div>
       </div>
       <div id="dedicate" class="right">
-        <a href="javascript:void(0)" onclick="dedicatoria()" class="waves-effect waves-light blue-grey lighten-4 btn z-depth-0 btn-icon"><i class="fa fa-paper-plane icon-button  pink accent-3"></i>Dedica este poema</a>
+        <a href="javascript:void(0)" onclick="dedicatoria()" style="text-transform: initial" class="waves-effect waves-light blue-grey lighten-4 btn z-depth-0 btn-icon"><i class="fa fa-paper-plane icon-button  pink accent-3"></i>Dedica este poema</a>
       </div>
 
       <article class="row">
@@ -131,21 +131,21 @@
     <div id="aboutPoet" class="col s12 m4 l4 right">
       <div class="row">
         <div class="col s12">
-          <h2>Sobre el Autor</h2>
+          <h2 style="text-transform:initial">Sobre el autor</h2>
         </div>
 
         <div class="col s12 center-align">
-          <img src="<?php echo $avatar?>" class="avatar circle">
+          <a href="poeta-<?php echo base64_encode($contenido['poet_codigo']) ?>"><img src="<?php echo $avatar?>" class="avatar circle"></a>
         </div>
 
         <div class="col s12 center-align">
-          <h5><?php echo ucwords($poeta['poet_nick'])?></h5>
+          <h5><a href="poeta-<?php echo base64_encode($contenido['poet_codigo']) ?>"><?php echo ucwords($poeta['poet_nick'])?></a></h5>
           <?php if(isset($poeta['pdesc_acerca'])){
              echo "<p class='center-align'>".$poeta['pdesc_acerca']."</p>";
           }?>
 
           <button onclick="followPoet()" type="button" class="center waves-effect waves-light btn amber accent-3 z-depth-0 btn-icon"><i class="fa fa-plus icon-button orange"></i>Seguir al poeta</button>
-          <br><br><em style="display:block">- Poema del autor sugerido -</em>
+          <br><br><em style="display:block">- Leer más del autor -</em>
 
           <div class="row">
             <div class="col s12">
@@ -156,7 +156,7 @@
                 </div>
                 <div class="card-action right-align" style="padding:10px;" >
                   <a href="<?php echo 'pubID'.$otraPublicacion['pub_codigo']?>" style="text-align:right">Leer Poema</a>
-                  <a href="<?php echo 'poeta-'.base64_encode($otraPublicacion['poet_codigo'])?>" style="text-align:right">Ver mas Poemas</a>
+                  <a href="<?php echo 'poeta-'.base64_encode($contenido['poet_codigo'])?>" style="text-align:right">Ver mas Poemas</a>
                 </div>
               </div>
             </div>
@@ -165,7 +165,7 @@
           </div>
 
           <div class="col s12">
-            <h2>Recomendados</h2>
+            <h2 style="text-transform:initial">Recomendados</h2>
              <ul class="collection featured-poem">
             <?php foreach ($publicaciones->recomendados($_GET['pid']) as $row) { ?>
               <li class="collection-item">
