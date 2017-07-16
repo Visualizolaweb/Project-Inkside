@@ -1,3 +1,8 @@
+$(window).load(function() {
+   $('.preloader').fadeOut('slow');
+    $('body').css({'overflow':'visible'}); 
+ })
+
  var ctrlDown = false, ctrlKey = 17, cmdKey = 91, vKey = 86, cKey = 67;
 
  $(".button-collapse").sideNav();

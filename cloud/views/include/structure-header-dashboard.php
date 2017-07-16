@@ -3,7 +3,7 @@
     header("Location: ./");
   }else{
       $rol_codigo = $_SESSION["poeta"]["rol_codigo"];
-       
+
       require_once("controller/correo.controller.php");
       $correo = new CorreoController();
       $sinLeer = $correo->MensajeNoLeidos();
@@ -30,6 +30,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
+
+  <div class="preloader">
+    <div class="preloader-wrapper small active">
+      <div class="spinner-layer spinner-green-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div><div class="gap-patch">
+          <div class="circle"></div>
+        </div><div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
     <div class="fixed-sidebar ">
       <div class="fixed-sidebar-left">
         <div class="logo-inkside primary-default">

@@ -4,6 +4,20 @@
 body{
    background-color: #edf2f6; }
 
+ .preloader{
+     position: fixed;
+     top: 0;
+     bottom: 0;
+     left: 0;
+     right: 0;
+     background-color: #F0F0DC;
+     z-index: 9999;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+
+  }
+
 .fixed-sidebar{
   position: fixed;
   width: 250px;
@@ -564,15 +578,21 @@ tr.odd {
   position: relative;
   margin: 0 auto 20px;
 }
-.detail-poet .title{
-  text-align: center;
-}
+
 .detail-poet .row{
   display: flex;
 }
 
+.detail-poet .row .profile-poet{
+  justify-content: center;
+}
+
 .detail-poet .row div{
   display: flex;
-  justify-content: center;
   align-items: center;
+}
+
+.sec-publicaciones.comunity {
+  position: relative;
+  top: 170px;
 }
