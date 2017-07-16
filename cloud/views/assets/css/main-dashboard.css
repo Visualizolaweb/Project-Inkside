@@ -564,4 +564,15 @@ tr.odd {
   position: relative;
   margin: 0 auto 20px;
 }
- 
+.detail-poet .title{
+  text-align: center;
+}
+.detail-poet .row{
+  display: flex;
+}
+
+.detail-poet .row div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
