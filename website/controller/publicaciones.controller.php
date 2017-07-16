@@ -111,8 +111,33 @@ class PublicacionesController{
 
   public function getSubString($string){
 
-    $stringDisplay = strtr("prueba","<br><br>",$string);
-    return $stringDisplay;
+    $publicacion = "";
+    $text = strip_tags($string, '<br>,<p>');
+    $text = htmlentities($text);
+    $text = str_replace(htmlspecialchars('&nbsp;'),' ',$text);
+    $text = str_replace(htmlentities('<p>'),' ',$text);
+    $text = str_replace(htmlentities('</p>'),' ',$text);
+    $text = str_replace(htmlentities('<br />'),' ',$text);
+      $text = html_entity_decode($text);
+
+    $char = ',.¿?0123456789áéíóúñ"❤…“”';
+    $stringDisplay = str_word_count($text,1,$char);
+
+    foreach ($stringDisplay as $key => $value) {
+      if($key <= 90){
+
+
+       if($value != "br"){
+         $publicacion .= ' '.$value;
+       }
+
+     }elseif($key == 91){
+        $publicacion .= "...";
+     }
+
+    }
+
+    return $publicacion;
  }
 
  function fechaesp($date) {

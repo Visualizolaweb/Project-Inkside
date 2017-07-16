@@ -121,7 +121,7 @@
                      $portada = "";
                    }
 
-                   $contenido = $publicaciones->getSubString($row['pub_contenido']);    ?>
+                   $contenido =  $publicaciones->getSubString($row['pub_contenido']);    ?>
 
           <article class="white-panel">
             <?php echo $portada; ?>

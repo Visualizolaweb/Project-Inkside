@@ -1,3 +1,8 @@
+$(window).load(function() {
+   $('.preloader').fadeOut('slow');
+    $('body').css({'overflow':'visible'});
+ })
+
  $(".button-collapse").sideNav();
  $("#publicaciones").modal();
  $('select').material_select();

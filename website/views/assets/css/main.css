@@ -5,6 +5,23 @@
 @import url(https://fonts.googleapis.com/css?family=Oswald);
 @import url(http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css);
 
+body{
+  overflow: hidden;
+}
+.preloader{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #F0F0DC;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+ }
+
 a:visited, a:active, a:link{
   color: inherit;}
 
@@ -430,9 +447,7 @@ footer #redes a + div{
   margin-bottom: 5px;
   margin-top: 5px;
 }
-.sec-publicaciones .white-panel p{
-  text-align: justify;
-}
+
 .sec-publicaciones .white-panel .more{
   text-align: right;
   padding: 0;
@@ -487,6 +502,7 @@ footer #redes a + div{
   color: #607d8b;
   padding: 10px;
   height: 290px;
+      word-wrap: break-word;
 }
 
 .sec-wrap-news div.content h4{
@@ -673,4 +689,10 @@ img {
 }
 .item-abuso li{
   list-style: square !important;
+}
+
+.date{
+  font-style: italic;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 5px;
 }
