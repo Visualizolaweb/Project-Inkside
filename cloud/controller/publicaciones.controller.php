@@ -217,7 +217,44 @@ class PublicacionesController extends InitController{
     return $buscarPublicaciones;
   }
 
+  public function cuentaPoemasporPoeta($poet_codigo){
+    $limit = "";
+    $result = $this->publicaciones->cargarPoemasporPoeta($limit, $poet_codigo);
+    return count($result);
+  }
 
+  public function poemasporPoeta($desde, $hasta, $poet_codigo){
+    if(!isset($hasta)){
+      $limit = "";
+    }else{
+      $limit = "LIMIT ".$desde." , ".$hasta;
+    }
+    $result = $this->publicaciones->cargarPoemasporPoeta($limit, $poet_codigo);
+    return $result;
+  }
+
+  public function getSubString($string, $length=NULL){
+    if ($length == NULL)
+        $length = 250;
+    $stringDisplay = substr(strip_tags($string), 0, $length);
+    if (strlen(strip_tags($string)) > $length)
+        $stringDisplay .= ' ...';
+    return $stringDisplay;
+ }
+
+ function fechaesp($date) {
+    $dia = explode("-", $date, 3);
+    $year = $dia[0];
+    $month = (string)(int)$dia[1];
+    $day = (string)(int)$dia[2];
+
+    $dias = array("Domingo","Lunes","Martes","Miércoles" ,"Jueves","Viernes","Sábado");
+    $tomadia = $dias[intval((date("w",mktime(0,0,0,$month,$day,$year))))];
+
+    $meses = array("", "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre");
+
+    return $tomadia.", ".$day." de ".$meses[$month]." de ".$year;
+}
 
 }
 ?>

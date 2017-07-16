@@ -63,6 +63,26 @@ class SeguidoresModel{
     return $result;
   }
 
+  public function comunidad($misSeguidores){
+    $misSeguidores = explode(',',$misSeguidores);
+    $tipo_array  = "('";
+    $tipo_array .= implode("','", $misSeguidores);
+    $tipo_array .= "')";
+    try{
+      $sql = "SELECT inkside_poetas.poet_codigo AS codigo, poet_nick, poet_foto, pdesc_avatar, pdesc_acerca
+              FROM inkside_poetas
+              LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+              LEFT JOIN inkside_seguidores ON inkside_seguidores.poet_codigo = inkside_poetas.poet_codigo
+              WHERE inkside_poetas.poet_codigo IN $tipo_array";
+      $query = $this->pdo->prepare($sql);
+      $query->execute();
+      $result = $query->fetchALL(PDO::FETCH_BOTH);
+    }catch (Exception $e){
+      $result = array(0,$e->getMessage());
+    }
+    return $result;
+  }
+
   public function misSegidos($poet_codigo){
     try{
       $sql = "SELECT inkside_seguidores.poet_codigo, poet_nick, poet_foto, pdesc_avatar, seg_seguidores
@@ -72,7 +92,7 @@ class SeguidoresModel{
               WHERE  inkside_seguidores.poet_codigo = ?";
       $query = $this->pdo->prepare($sql);
       $query->execute(array($poet_codigo));
-      $result = $query->fetchALL(PDO::FETCH_BOTH);
+      $result = $query->fetch(PDO::FETCH_BOTH);
     }catch (Exception $e){
       $result = array(0,$e->getMessage());
     }

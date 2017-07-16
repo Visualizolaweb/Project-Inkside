@@ -176,7 +176,7 @@ $(document).ready(function() {
       indent: false,
       rule: false
   });
-  
+
   $("#btnBuscarFiltro").click(function(){
     $("#frmBuscar").submit();
   });

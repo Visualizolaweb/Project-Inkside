@@ -5,8 +5,6 @@
   $poemas = new PoemasController();
   $seguidores = new SeguidoresController();
 
-
-
   require_once("controller/poetas.controller.php");
   $poetas = new PoetasController();
 
@@ -19,19 +17,19 @@
   }
 
   $topMisPoemas = $poemas->misMasleidos($_SESSION["poeta"]["poet_codigo"]);
-
   $misSeguidores = $seguidores->yoSigo($_SESSION["poeta"]["poet_codigo"]);
-
   $poemasContent = $poemas->poemas($misSeguidores['seg_seguidores']);
 
   require_once("controller/likes.controller.php");
   $likes = new likesController();
 
+  $last_msg_id  =   @$_GET['last_msg_id'];
+  $action       =   @$_GET['action'];
+
 ?>
 <section id="wrap-container">
   <div class="row container-fluid wrap-panes">
       <div class="col l3">
-
         <!-- Widget Poetas Sugeridos -->
         <div class="panel">
           <div class="panel-title">Poetas Sugeridos</div>
@@ -54,7 +52,6 @@
                 }
             ?>
           </ul>
-
         </div>
 
         <!-- Widget - Tu publicaciones mas vistas -->
@@ -70,33 +67,25 @@
                 }else{
                   $color = "";
                 }
-
                 echo '<a href="#!" class="collection-item"><span class="new badge '.$color.'" data-badge-caption="Vistas">'.$puesto["pub_hits"].'</span>'.$puesto["pub_titulo"].'</a>';
               }
-
             ?>
-            </div>
+          </div>
         </div>
       </div>
-
       <div class="col l6">
-
         <!-- Widget - Bienvenido -->
         <div class="panel message">
           <div class="icon-message cyan accent-3"><i class="fa fa-star"></i></div>
           <p>Aquí podrás ver los poemas sugeridos según tus gustos</p>
         </div>
-
         <!-- Widget - Poemas -->
-
         <?php
           foreach ($poemasContent as $content) {
             $totalLikes = $likes->likes($content['pub_codigo']);
             $allLikes = count($totalLikes);
-
             $totalcomentarios = $comentarios->comentarios($content['pub_codigo']);
             $allCoementarios = count($totalcomentarios);
-
             foreach ($totalLikes as $milike) {
               if($milike['codigo']==$_SESSION["poeta"]["poet_codigo"]){
                 $classLike = "fa fa-heart";
@@ -134,10 +123,8 @@
                   <a href="javascript:void(0)" onClick="dedicaPoema(\''.$content["pub_codigo"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')"><li><i class="fa fa-bullhorn"></i></li></a>
                   </ul>
                 </div>
-
                  <div class="post__author author vcard inline-items">
       							<img src="'.$avatarPublic.'" alt="author" data-pin-nopin="true">
-
       							<div class="author-date">
       								<a class="h6 post__author-name fn" href="#">'.$content["poet_nick"].'</a>
       								<div class="post__date">
@@ -150,9 +137,7 @@
 
                 <div class="post__content">
                   <h3>'.$content["pub_titulo"].'</h3>
-
                   '.$Content.'
-
                   <div class="more-detail right-align "><a href="pubID'.$content["pub_codigo"].'" class="teal-text">Leer más</a></div>
                 </div>
 
@@ -187,24 +172,22 @@
         </div>
 
         <div class="panel followers">
-            <div class="panel-title">Poetas que te siguen!</div>
+          <div class="panel-title">Poetas que te siguen!</div>
             <ul>
               <?php
               require_once("controller/seguidores.controller.php");
               $seguidores = new SeguidoresController();
 
-              foreach ($seguidores->misSeguidores($_SESSION["poeta"]["poet_codigo"]) as $seguidor) {
-
+              foreach ($seguidores->misSeguidores($_SESSION["poeta"]["poet_codigo"]) as $seguidor){
                   if($seguidor["pdesc_avatar"] == ""){
                      $avatarSeguidor = $seguidor["poet_foto"];
                   }else{
-                    $avatarSeguidor = $seguidor["pdesc_avatar"]; }
-
+                    $avatarSeguidor = $seguidor["pdesc_avatar"];
+                  }
                   echo '
                   <li><img src="'.$avatarSeguidor.'" class="tooltipped blue-grey-text" data-position="bottom" data-delay="50" data-tooltip="'.$seguidor["poet_nick"].'"/></li>';
               }
-            ?>
-
+              ?>
             </ul>
         </div>
       </div>

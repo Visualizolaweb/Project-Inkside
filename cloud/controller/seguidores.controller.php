@@ -33,5 +33,10 @@ class SeguidoresController extends InitController{
       return $seguidores;
   }
 
+  public function miComunidad($misSeguidores){
+      $MyComunidad = $this->seguidores->comunidad($misSeguidores);
+      return $MyComunidad;
+  }
+
 }
 ?>

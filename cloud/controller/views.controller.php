@@ -69,6 +69,12 @@ class ViewsController{
     require_once 'views/include/structure-footer-dashboard.php';
   }
 
+  public function perfilPoeta(){
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/poetas/index.php';
+    require_once 'views/include/structure-footer-dashboard.php';
+  }
+
   public function editaPoema(){
     require_once 'views/include/structure-header-dashboard.php';
     require_once 'views/section/poems/update_poem.php';
@@ -100,7 +106,13 @@ class ViewsController{
   }
 
   public function completoPerfil(){
-    require_once 'views/section/users/complete-profile.php'; 
+    require_once 'views/section/users/complete-profile.php';
+  }
+
+  public function miComunidad(){
+    require_once 'views/include/structure-header-dashboard.php';
+    require_once 'views/section/community/mi-comunidad.php';
+    require_once 'views/include/structure-footer-dashboard.php';
   }
 
 }
