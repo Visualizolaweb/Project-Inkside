@@ -609,6 +609,10 @@ footer #redes a + div{
   width: 100%;
 }
 
+.pinBoot article, #pinBoot article, .pinBoot2 article, #pinBoot2 article{
+  word-wrap: break-word;
+}
+
 img {
   width: 100%;
   max-width: 100%;

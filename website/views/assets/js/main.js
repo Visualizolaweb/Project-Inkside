@@ -1,7 +1,11 @@
 $(window).load(function() {
    $('.preloader').fadeOut('slow');
     $('body').css({'overflow':'visible'});
+    $(".white-panel p").removeAttr("style");
+    $(".white-panel p").removeAttr("class");
+    $(".white-panel p").removeAttr("id");
  })
+
 
  $(".button-collapse").sideNav();
  $("#publicaciones").modal();

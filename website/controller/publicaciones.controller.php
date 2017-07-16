@@ -120,7 +120,7 @@ class PublicacionesController{
     $text = str_replace(htmlentities('<br />'),' ',$text);
       $text = html_entity_decode($text);
 
-    $char = ',.¿?0123456789áéíóúñ"❤…“”';
+    $char = ',.¿?0123456789áéíóúñ"❤…“”°ÁÉÍÓÚÑ';
     $stringDisplay = str_word_count($text,1,$char);
 
     foreach ($stringDisplay as $key => $value) {
