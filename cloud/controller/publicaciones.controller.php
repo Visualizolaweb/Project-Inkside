@@ -240,6 +240,9 @@ class PublicacionesController extends InitController{
     if (strlen(strip_tags($string)) > $length)
         $stringDisplay .= ' ...';
     return $stringDisplay;
+
+
+
  }
 
  function fechaesp($date) {

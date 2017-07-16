@@ -220,6 +220,7 @@ header{
   text-align: justify;
   border-top: 1px solid #e6ecf5 !important;
   min-height: 230px;
+  word-wrap: break-word;
 }
 
 .post__content h3{
