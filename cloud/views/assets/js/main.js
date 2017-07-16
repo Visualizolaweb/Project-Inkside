@@ -161,7 +161,22 @@ $("#txt-departamento").change(function(){
 $(document).ready(function() {
   $('select').material_select();
   // TEXT AREA ENRIQUECIDO CON HTML
-  $("#txt_contenido").jqte();
+  $("#txt_contenido").jqte({
+      b:false,
+      color:false,
+      fsize: false,
+      formats: [["p","Parrafo"],["h4","Titulos"],["h5","Subtitulos"]],
+      p: false,
+      remove: false,
+      source: false,
+      sub: false,
+      strike: false,
+      sup: false,
+      outdent: false,
+      indent: false,
+      rule: false
+  });
+  
   $("#btnBuscarFiltro").click(function(){
     $("#frmBuscar").submit();
   });
@@ -188,18 +203,6 @@ function addLikes(id,action,total) {
     }
   });
 }
-
-// Buscador Autocompletar
-// function buscar() {
-//     var textoBusqueda = $("input#busqueda").val();
-//     if (textoBusqueda != "") {
-//         $.post("index.php?c=publicaciones&a=Buscador", {valorBusqueda: textoBusqueda}, function(mensaje) {
-//             $("#resultadoBusqueda").html(mensaje);
-//         });
-//     } else {
-//         ("#resultadoBusqueda").html('');
-// 	};
-// };
 
 $(document).ready(function(){
    $('.collapsible').collapsible();

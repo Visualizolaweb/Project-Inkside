@@ -91,6 +91,8 @@
         <section class="pinBoot">
           <?php
                  foreach ($poemas as $row) {
+
+
                    if ($row['pdesc_avatar']=='') {
                      $delimitador = explode("/",$row['poet_foto']);
                      if(($delimitador[0] == 'https:') OR ($delimitador[0] == 'http:')){
@@ -99,8 +101,14 @@
                        $avatar = "cloud/".$row['poet_foto'];
                      }
                    }else{
-                     $avatar = 'cloud/'.$row['pdesc_avatar'];
+                     if($row['poet_foto'] != 'views/assets/images/perfil/img_default.png'){
+                       $avatar = "cloud/".$row['poet_foto'];
+                     }else{
+                       $avatar = 'cloud/'.$row['pdesc_avatar'];
+                     }
                    }
+
+
 
                    if(isset($row['pub_imgPortada'])){
                      $image = "cloud/views/assets/images/portadasPoemas/".$row['pub_imgPortada'];

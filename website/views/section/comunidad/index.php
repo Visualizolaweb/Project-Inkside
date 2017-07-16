@@ -31,16 +31,21 @@
   foreach ($poetasComunidad as $row) {
      $contenido = $publicaciones->getSubString($row['pdesc_acerca']);
 
-    if ($row['pdesc_avatar']=='') {
-      $delimitador = explode("/",$row['poet_foto']);
-      if(($delimitador[0] == 'https:') OR ($delimitador[0] == 'http:')){
-        $avatar = $row['poet_foto'];
-      }else{
-        $avatar = "cloud/".$row['poet_foto'];
-      }
-    }else{
-      $avatar = 'cloud/'.$row['pdesc_avatar'];
-    }
+     if ($row['pdesc_avatar']=='') {
+       $delimitador = explode("/",$row['poet_foto']);
+       if(($delimitador[0] == 'https:') OR ($delimitador[0] == 'http:')){
+         $avatar = $row['poet_foto'];
+       }else{
+         $avatar = "cloud/".$row['poet_foto'];
+       }
+     }else{
+       if($row['poet_foto'] != 'views/assets/images/perfil/img_default.png'){
+         $avatar = "cloud/".$row['poet_foto'];
+       }else{
+         $avatar = 'cloud/'.$row['pdesc_avatar'];
+       }
+     }
+     
     echo '<article class="community-panel">
           <div class="profile-image circle"><img src="'.$avatar.'" alt="'.$row['poet_nick'].'" /></div>
             <h3>'.$row['poet_nick'].'</h3>

@@ -188,7 +188,6 @@
 
 <!-- VISTA DETALLE NOTICIA  -->
 
-
 <div class="container wrap detail-poem">
   <div class="row">
     <div class="col l7">

@@ -109,12 +109,9 @@ class PublicacionesController{
      return $result;
   }
 
-  public function getSubString($string, $length=NULL){
-    if ($length == NULL)
-        $length = 230;
-    $stringDisplay = substr(strip_tags($string), 0, $length);
-    if (strlen(strip_tags($string)) > $length)
-        $stringDisplay .= ' ...';
+  public function getSubString($string){
+
+    $stringDisplay = strtr("prueba","<br><br>",$string);
     return $stringDisplay;
  }
 

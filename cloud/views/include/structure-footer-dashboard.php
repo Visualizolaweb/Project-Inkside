@@ -8,5 +8,6 @@
   <script type='text/javascript' src='https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js'></script>
   <script type="text/javascript" src="views/assets/js/croppie.js"></script>
   <script type="text/javascript" src="views/assets/js/main.js"></script>
+  <!-- <script type="text/javascript" src="views/assets/js/autologout.js"></script> -->
   </body>
 </html>
