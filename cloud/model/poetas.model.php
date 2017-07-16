@@ -71,6 +71,35 @@ class PoetasModel{
     return $result;
   }
 
+  public function miComunidad($poet_codigo){
+   try{
+      $sql = "SELECT
+                 poet_nombre,
+                 poet_apellido,
+                 poet_nick,
+                 poet_email,
+                 poet_fecha_nac,
+                 poet_sexo,
+                 poet_celular,
+                 poet_descripcion,
+                 ciu_codigo
+             FROM
+                 inkside_poetas
+             WHERE
+                 poet_codigo = ?";
+     $query = $this->pdo->prepare($sql);
+     $query->execute(array($poet_codigo));
+     $result = $query->fetch(PDO::FETCH_BOTH);
+
+
+
+    }catch(PDOException $e){
+     $result = array(0,$e->getMessage(),$e->getCode());
+   }
+
+   return $result;
+ }
+
   public function datosPoetaFull($poet_codigo){
     try{
        $sql = "SELECT
@@ -103,6 +132,8 @@ class PoetasModel{
 
     return $result;
 }
+
+
 
   public function datosPoetaFullbyCodigo($poet_codigo){
     try{
@@ -391,6 +422,22 @@ class PoetasModel{
         $result = array(0,$e->getMessage(),$e->getCode());
       }
 
+      return $result;
+    }
+
+    public function seguidores($poet_codigo){
+      try{
+        $sql = "SELECT inkside_seguidores.poet_codigo, poet_nick, poet_foto, pdesc_avatar
+                FROM inkside_poetas
+                LEFT JOIN inkside_poeta_descripcion ON inkside_poetas.poet_codigo = inkside_poeta_descripcion.poet_codigo
+                JOIN inkside_seguidores ON inkside_seguidores.poet_codigo = inkside_poetas.poet_codigo
+                WHERE  seg_seguidores LIKE '%".$poet_codigo."%'";
+        $query = $this->pdo->prepare($sql);
+        $query->execute();
+        $result = $query->fetchALL(PDO::FETCH_BOTH);
+      }catch (Exception $e){
+        $result = array(0,$e->getMessage());
+      }
       return $result;
     }
 

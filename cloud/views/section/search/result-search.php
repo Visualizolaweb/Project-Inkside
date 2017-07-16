@@ -40,6 +40,7 @@
      $detPoetas .= '<article class="community-panel">
                       <div class="profile-image circle"><img src="'.$avatar.'" alt="'.$detPoeta['poet_nick'].'" /></div>
                       <h3>'.$detPoeta['poet_nick'].'</h3>
+                      <div class="center-align white-text"><a href="poeta-'.base64_encode($publicacion['codigo']).'" type="button" class="center waves-effect waves-light btn indigo darken-4 z-depth-0 btn-icon"> Ver Poemas</a></div>
                       <p>'.$contenidoPet.'</p>
                     </article>';
 

@@ -18,8 +18,11 @@ class PoetasController extends InitController{
      header("Location: mis-datos");
   }
 
-  public function buscarDatoPoeta(){
-     $result = $this->poetas->datosPoetaFull($_SESSION["poeta"]["poet_codigo"]);
+  public function buscarDatoPoeta($codpoet){
+    if($codpoet==''){
+      $codpoet = $_SESSION["poeta"]["poet_codigo"];
+    }
+     $result = $this->poetas->datosPoetaFull($codpoet);
      return $result;
   }
 
@@ -71,6 +74,11 @@ class PoetasController extends InitController{
 
     $this->poetas->actualizoPerfil($data,$categoria);
     header("Location: dashboard");
+  }
+
+  public function cargaSeguidores($poet_codigo){
+    $result = $this->poetas->seguidores($poet_codigo);
+    return count($result);
   }
 
 }
