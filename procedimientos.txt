@@ -1,0 +1,39 @@
+DELIMITER $$
+CREATE PROCEDURE `autenticarUsuario`(`email` VARCHAR(255))
+BEGIN
+	SELECT inkside_poetas.*, inkside_acceso.* FROM inkside_poetas INNER JOIN inkside_acceso ON inkside_poetas.poet_codigo = inkside_acceso.poet_codigo WHERE (poet_email = email) and (acc_origen_conexion = 'inkside') and (poet_estado != 'Inactivo');
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+CREATE  PROCEDURE `registroPoetaSocial`(`poet_codigo` VARCHAR(255), `poet_nombre` VARCHAR(120), `poet_apellido` VARCHAR(120), `poet_nick` VARCHAR(250), `poet_email` VARCHAR(250), `poet_foto` VARCHAR(250), `poet_fecha_nac` DATE, `poet_sexo` VARCHAR(50), `poet_descripcion` LONGTEXT, `poet_estado` VARCHAR(100), `acc_token` VARCHAR(255), `acc_social_id` VARCHAR(255), `acc_origen` VARCHAR(50))
+BEGIN
+	
+    DECLARE social_id varchar(255);
+    
+    SELECT acc_social_id INTO social_id FROM inkside_acceso WHERE acc_social_id = acc_social_id;
+    
+    IF social_id <> acc_social_id THEN
+		INSERT INTO inkside_poetas (poet_codigo, poet_nombre, poet_apellido, poet_nick, poet_email,poet_foto, poet_fecha_nac, poet_sexo,poet_descripcion, poet_estado, poet_fecha_creacion) VALUES (poet_codigo, poet_nombre, poet_apellido, poet_nick, poet_email,poet_foto, poet_fecha_nac, poet_sexo,poet_descripcion, poet_estado, NOW());
+		INSERT INTO inkside_acceso (acc_token, poet_codigo, acc_social_id, acc_origen_conexion) VALUES (acc_token, poet_codigo, acc_social_id, acc_origen);
+    end if;
+END$$
+
+DELIMITER ;
+DELIMITER $$
+CREATE PROCEDURE `registroPoeta`(`poet_codigo` VARCHAR(255), `poet_nombre` VARCHAR(120), `poet_apellido` VARCHAR(120), `poet_email` VARCHAR(250), `acc_token` VARCHAR(255), `acc_password` VARCHAR(255), `acc_origen` VARCHAR(50))
+BEGIN
+	INSERT INTO inkside_poetas (poet_codigo, poet_nombre, poet_apellido, poet_nick, poet_email, poet_fecha_creacion) VALUES (poet_codigo, poet_nombre, poet_apellido, poet_nombre, poet_email, NOW());
+    INSERT INTO inkside_acceso (acc_token, poet_codigo, acc_password, acc_origen_conexion) VALUES (acc_token, poet_codigo, acc_password, acc_origen);
+END$$
+
+DELIMITER ;
+
+DELIMITER $$
+CREATE  PROCEDURE `buscoEmail`(`email` VARCHAR(255))
+BEGIN
+	SELECT * FROM inkside_poetas WHERE poet_email = email;
+END$$
+
+DELIMITER ;

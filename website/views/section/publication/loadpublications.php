@@ -15,7 +15,12 @@
           // CONSTRUCCION DEL PAGINADOR
 
           // Realizar la consulta para verificar la cantidad de registros
-          $totalPoemas =  $publicaciones->cuentaPoemas();
+          if(!isset($_GET["categoria"])){
+            $totalPoemas =  $publicaciones->cuentaPoemas();
+          }else{
+            $totalPoemas =  $publicaciones->cuentaPoemasbyCategoria($_GET["categoria"]);
+          }
+
           $cantRegistros = 21;
 
           $pagina = @$_GET["pagina"];
@@ -28,7 +33,13 @@
 
           $total_paginas = ceil($totalPoemas / $cantRegistros);
 
-          $poemas = $publicaciones->poemas($inicio,$cantRegistros);
+          if(!isset($_GET["categoria"])){
+            $poemas = $publicaciones->poemas($inicio,$cantRegistros);
+          }else{
+            $poemas = $publicaciones->poemasbycategoria($inicio,$cantRegistros,$_GET["categoria"]);
+          }
+
+
           $paginador = true;
         break;
 

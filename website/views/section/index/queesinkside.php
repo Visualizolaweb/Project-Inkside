@@ -27,7 +27,10 @@
              }else{
                echo '<p style="margin-bottom:20px;">Lo último de la actividad literaria y poética en el mundo</p>';
              foreach ($articulos as $row) {
-               $conten = $publicaciones->getSubString($row["pub_contenido"]);
+               $conten =  strip_tags($row["pub_contenido"],"<br>");
+               $conten =  htmlentities($conten);
+               $conten =  str_replace(htmlentities("<br>")," ",$conten);
+               $conten =  substr($conten, 0, 200)."...";
              echo '<div class="col l3">
                      <article>
                        <div class="title label-event">'.$row["pub_categoria"].'</div>

@@ -56,6 +56,7 @@ RewriteRule ^responder-pubID(\w+.+)/?$ index.php?c=views&a=responder&pid=$1
 RewriteRule ^nuevo-mensaje$ index.php?c=views&a=crearMensaje
 RewriteRule ^buscar$ index.php?c=views&a=busqueda
 RewriteRule ^mi-comunidad$ index.php?c=views&a=miComunidad
+RewriteRule ^comunidad-inkside$ index.php?c=views&a=Comunidad
 
 #Redirecciones Procesos
 RewriteRule ^registro-poeta$ index.php?c=auth&a=registroPoeta

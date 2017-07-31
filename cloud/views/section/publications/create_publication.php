@@ -18,7 +18,7 @@
          <div class="file-field input-field">
             <div class="btn z-depth-0" style="margin-top: 4px;">
                <span>Agregar Portada</span>
-               <input type="file" name="txt_imgPortada">
+               <input type="file" name="txt_imgPortada" accept="image/*">
             </div>
             <div class="file-path-wrapper">
                <input class="file-path validate" type="text">
@@ -33,12 +33,12 @@
 
       <div class="input-field col s12">
         <label for="txt_contenido">Escribe el contenido de la noticia</label><br>
-        <textarea rows="20" name="data[3]" id="txt_contenido" required></textarea>
+        <textarea rows="20" name="data[3]" id="txt_contenido" required maxlength="6000"></textarea>
         <input type="hidden" name="data[777]" value="Noticia" />
       </div>
 
       <div class="input-field col s12" id="categorias">
-        <?php $categorias->cargarCategorias(); ?>
+        <input type="hidden" name="cat[]" value="24">
       </div>
 
       <div class="input-field col m12" style="margin-bottom:20px">

@@ -1,12 +1,28 @@
 <?php
    require_once 'controller/poetas.controller.php';
    require_once 'controller/publicaciones.controller.php';
+   require_once 'controller/seguidores.controller.php';
 
   //  CARGAMOS LOS DATOS DEL POETA
   $codpoet = base64_decode($_GET['codpoet']);
 
   $poeta = new PoetasController();
+  $seguidores = new SeguidoresController();
+
   $perfil = $poeta->buscarDatoPoeta($codpoet);
+  $seguidos = $seguidores->yoSigo($_SESSION["poeta"]["poet_codigo"]);
+
+  $seguidos = explode(",",$seguidos["seg_seguidores"]);
+ 
+  foreach ($seguidos as $key) {
+
+    if($codpoet == $key){
+      $button = '<a href="javascript:void(0)" onClick="nosigo(\''.$_SESSION["poeta"]["poet_codigo"].'\',\''.$perfil["poet_codigo"].'\')" class=" btnseguirpoeta waves-effect waves-light btn center blue-grey lighten-3" style="display:block">Dejar de Seguir</a>';
+      break;
+    }else{
+      $button = '<a href="javascript:void(0)" onClick="seguir_poeta(\''.$_SESSION["poeta"]["poet_codigo"].'\',\''.$perfil["poet_codigo"].'\')" class=" btnseguirpoeta waves-effect waves-light btn center" style="display:block">+ Seguir Poeta</a>';
+    }
+  }
 
   if ($perfil['pdesc_avatar']=='') {
     $delimitador = explode("/",$perfil['poet_foto']);
@@ -45,13 +61,16 @@
 <section id="wrap-container">
   <div class="row container-fluid">
     <div class="col m12 header-section detail-poet">
-        <h5 class="title">Conoce los poemas de <?php echo $perfil['poet_nick']?></h5>
+        <h5 class="title"><?php echo $perfil['poet_nick']?></h5>
         <div class="row">
           <div class="col m2 profile-poet"><img src="<?php echo $avatar ?>" class="circle" alt="<?php echo $perfil['poet_nick']; ?>"></div>
-          <div class="col m10"><?php echo $perfil['pdesc_acerca']?></div>
+
+          <div class="col m10"><?php echo $perfil['pdesc_acerca']?>
+          </div>
+
         </div>
     </div>
-
+    <?php echo $button; ?>
     <div class="sec-publicaciones  comunity ">
 
     <div class="row">

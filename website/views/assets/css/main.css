@@ -700,3 +700,23 @@ img {
   border-bottom: 1px solid #ccc;
   padding-bottom: 5px;
 }
+.edicion-text{
+  margin-bottom: 50px;
+}
+.edicion-text h5{
+  font-weight: bold;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+.edicion-text h4{
+  font-weight: bold; 
+  font-size: 15px;
+}
+.edicion-text  ul{
+  margin-top: 0;
+  margin-bottom: 2px;
+}
+.edicion-text p{
+  font-size: 14px;
+  text-align: justify;
+}

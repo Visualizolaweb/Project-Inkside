@@ -14,7 +14,7 @@
 
     <form class="row" enctype="multipart/form-data" action="guardar-poema" method="post" data-parsley-validate id="poemas">
 
-      <div class="col m6">
+      <div class="col m4">
          <div class="file-field input-field">
             <div class="btn z-depth-0" style="margin-top: 4px;">
                <span>Agregar Portada</span>
@@ -26,11 +26,15 @@
          </div>
       </div>
 
-      <div class="input-field col m6">
+      <div class="input-field col m4">
         <input id="txt_titulo" name="data[2]" type="text" required autocomplete="off">
         <label for="txt_titulo">Ponle un título a tu evento</label>
       </div>
 
+      <div class="input-field col m4">
+        <input id="txtfechaini" type="text" class="datepicker">
+        <label for="txtfechaini">Fecha del evento</label>
+      </div>
       <div class="input-field col s12">
         <label for="txt_contenido">Cuentanos un resumen del evento, dia, hora, precio y lugar. </label><br>
         <textarea rows="20" name="data[3]" id="txt_contenido" required></textarea>
@@ -38,7 +42,7 @@
       </div>
 
       <div class="input-field col s12" id="categorias">
-        <?php $categorias->cargarCategorias(); ?>
+        <input type="hidden" name="cat[]" value="25">
       </div>
 
       <div class="input-field col m12" style="margin-bottom:20px">

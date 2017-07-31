@@ -19,9 +19,10 @@ class PoetasController extends InitController{
   }
 
   public function buscarDatoPoeta($codpoet){
-    if($codpoet==''){
+    if(!isset($codpoet)){
       $codpoet = $_SESSION["poeta"]["poet_codigo"];
     }
+
      $result = $this->poetas->datosPoetaFull($codpoet);
      return $result;
   }

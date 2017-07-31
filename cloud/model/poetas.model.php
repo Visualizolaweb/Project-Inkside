@@ -102,18 +102,9 @@ class PoetasModel{
 
   public function datosPoetaFull($poet_codigo){
     try{
-       $sql = "SELECT
-                  poet_nombre,
-                  poet_apellido,
-                  poet_nick,
-                  poet_email,
-                  poet_fecha_nac,
-                  poet_sexo,
-                  poet_celular,
-                  poet_descripcion,
-                  ciu_codigo,
-                  poet_foto,
-                  inkside_poeta_descripcion.*
+
+       $sql = "SELECT inkside_poetas.poet_codigo, poet_nombre, poet_apellido, poet_nick,    poet_email, poet_fecha_nac,  poet_sexo,  poet_celular, 
+	   poet_descripcion, ciu_codigo,  poet_foto, inkside_poeta_descripcion.pdesc_acerca, inkside_poeta_descripcion.pdesc_avatar, inkside_poeta_descripcion.pdesc_codigo
               FROM
                   inkside_poetas
               LEFT JOIN

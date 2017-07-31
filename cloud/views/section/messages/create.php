@@ -1,7 +1,12 @@
 <?php
   require_once("controller/poetas.controller.php");
-  $poetas = new PoetasController();
-  $admins = $poetas->poetasRol("Administrador");
+  require_once("controller/seguidores.controller.php");
+
+  $seguidores = new SeguidoresController();
+  $sigoa    = $seguidores->yoSigo($_SESSION["poeta"]["poet_codigo"]);
+  $comunidad = $seguidores->miComunidad( $sigoa["seg_seguidores"]);
+
+
 ?>
 
 <section id="wrap-container">
@@ -16,29 +21,27 @@
     <form class="row" enctype="multipart/form-data" action="enviar-mensaje" method="post" data-parsley-validate id="poemas">
 
       <div class="input-field col s12">
-        <input id="txt_asunto" name="data[1]" type="text" required autocomplete="off">
-        <label for="txt_asunto">Asunto</label>
-      </div>
-
-      <div class="input-field col s12">
         <input id="txt_de" name="data[2]" readonly value="<?php echo $_SESSION["poeta"]["poet_nick"]." (".$_SESSION["poeta"]["poet_email"].")"?>" type="text" required autocomplete="off">
         <label for="txt_de">De</label>
       </div>
 
+
       <div class="input-field col s12 ui-widget">
         <select id="txt_destinatario" name="data[0]" required>
-          <option value="">Selecciona un Administrador</option>
+          <option value="">Selecciona un destinatario</option>
+          <option value="jaolopez@gmail.com">Administrador Inkside</option>
           <?php
-              foreach ($admins as $value) {
-                if($value['poet_email']!='webmaster@inksidepoesia.com'){
-                  echo "<option value=".$value['poet_email'].">".$value['poet_nick']." (".$value['poet_email']."), Administrador (webmaster@inksidepoesia.com)</option>";
-                }else{
-                  echo "<option value=".$value['poet_email'].">".$value['poet_nick']." (".$value['poet_email'].")</option>";
-                }
+              foreach ($comunidad as $value) {
+                echo '<option value="'.$value["poet_email"].'">'.$value["poet_nick"].'</option>';
               }
           ?>
         </select>
         <label for="txt_destinatario">Para</label>
+      </div>
+
+      <div class="input-field col s12">
+        <input id="txt_asunto" name="data[1]" type="text" required autocomplete="off">
+        <label for="txt_asunto">Asunto</label>
       </div>
 
       <div class="input-field col s12">

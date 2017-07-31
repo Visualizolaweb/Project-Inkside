@@ -19,6 +19,16 @@ class PublicacionesController{
     return $result;
   }
 
+  public function poemasbycategoria($desde, $hasta, $categoria){
+    if(!isset($hasta)){
+      $limit = "";
+    }else{
+      $limit = "LIMIT ".$desde." , ".$hasta;
+    }
+    $result = $this->publicaciones->cargarPoemasbyCategoria($limit, $categoria);
+    return $result;
+  }
+
   public function poemasporPoeta($desde, $hasta, $poet_codigo){
     if(!isset($hasta)){
       $limit = "";
@@ -53,6 +63,12 @@ class PublicacionesController{
   public function cuentaPoemas(){
     $limit = "";
     $result = $this->publicaciones->cargarPoemas($limit);
+    return count($result);
+  }
+
+  public function cuentaPoemasbyCategoria($categoria){
+    $limit = "";
+    $result = $this->publicaciones->cargarPoemasbyCategoria($limit,$categoria);
     return count($result);
   }
 

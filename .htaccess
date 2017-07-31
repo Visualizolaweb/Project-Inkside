@@ -39,12 +39,16 @@ RewriteRule ^comunidad-inkside$ index.php?c=views&a=comunidad
 RewriteRule ^que-es-inkside$ index.php?c=views&a=inkside
 RewriteRule ^ayudanos-a-mejorar$ index.php?c=views&a=ayudanos
 RewriteRule ^reportar-abuso$ index.php?c=views&a=reporta
+RewriteRule ^ediciones-inkside$ index.php?c=views&a=ediciones
+RewriteRule ^solicitar-publicacion$ index.php?c=views&a=solicitaediciones
 
 RewriteRule ^poemas$ index.php?c=views&a=cargarPublicacion
 RewriteRule ^noticias$ index.php?c=views&a=cargarNoticia
 RewriteRule ^eventos$ index.php?c=views&a=cargarEvento
 RewriteRule ^poeta-(\w+.+)/?$ index.php?c=views&a=perfilPoeta&codpoet=$1
 RewriteRule ^buscar-(\w+.+)/?$ index.php?c=views&a=cargarResultados&search=$1
+RewriteRule ^poeta-(\w+.+)/?$ index.php?c=views&a=perfilPoeta&codpoet=$1
+RewriteRule ^categoria-(\w+.+)/?$ index.php?c=views&a=cargarPublicacion&categoria=$1
 
 
 RewriteRule ^dedicoPoema$ cloud/index.php?c=envios&a=dedicatoriapublica

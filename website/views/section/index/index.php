@@ -25,10 +25,6 @@
             $conten =  substr($conten, 0, 200)."...";
 
 
-
-
-
-
              echo '<div class="col l3">
                      <article>
                        <div class="title label-event">'.$row["pub_categoria"].'</div>

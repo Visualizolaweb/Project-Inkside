@@ -33,6 +33,17 @@ class ViewsController{
     require_once 'website/views/include/structure-footer.php';
   }
 
+  public function ediciones(){
+    require_once 'website/views/include/structure-header.php';
+    require_once 'website/views/section/index/publicaciones.php';
+    require_once 'website/views/include/structure-footer.php';
+  }
+  public function solicitaediciones(){
+    require_once 'website/views/include/structure-header.php';
+    require_once 'website/views/section/index/solicito-publicacion.php';
+    require_once 'website/views/include/structure-footer.php';
+  }
+
   public function cargarPublicacion(){
 
     $dataFilter = 'Poema';

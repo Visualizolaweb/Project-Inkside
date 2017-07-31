@@ -1,11 +1,12 @@
 $(window).load(function() {
    $('.preloader').fadeOut('slow');
-    $('body').css({'overflow':'visible'}); 
+    $('body').css({'overflow':'visible'});
  })
 
  var ctrlDown = false, ctrlKey = 17, cmdKey = 91, vKey = 86, cKey = 67;
 
  $(".button-collapse").sideNav();
+ $('.collapsible').collapsible();
  $("#publicaciones").modal();
  $("#recordar").modal();
  $('.tooltipped').tooltip({delay: 50});
@@ -128,6 +129,25 @@ function add_poet(micodigo, poet_codigo){
   })
 }
 
+function seguir_poeta(micodigo, poet_codigo){
+  $.post("index.php?c=seguidores&a=seguirPoeta",{micodigo:micodigo, poet_codigo:poet_codigo},function(){
+
+      $(".btnseguirpoeta").addClass("blue-grey lighten-3");
+      $(".btnseguirpoeta").html("Dejar de Seguir");
+      $(".btnseguirpoeta").attr('onclick',"nosigo('"+micodigo+"','"+poet_codigo+"')");
+  })
+}
+
+function nosigo(micodigo, poet_codigo){
+   $.post("index.php?c=seguidores&a=noseguirPoeta",{micodigo:micodigo, poet_codigo:poet_codigo},function(){
+
+      $(".btnseguirpoeta").removeClass("blue-grey lighten-3");
+      $(".btnseguirpoeta").addClass(" teal accent-4");
+      $(".btnseguirpoeta").html("+ Seguir Poeta");
+      $(".btnseguirpoeta").attr('onclick',"seguir_poeta('"+micodigo+"','"+poet_codigo+"')");
+  })
+}
+
 function dedicaPoema(codigopoema,codigopoeta){
   $.sweetModal.prompt('Deseas dedicar este poema?, escribe el correo del destinatario', null, null, function(val) {
   $.post("index.php?c=envios&a=dedicatoria",{pub_codigo: codigopoema, poet_codigo: codigopoeta, email: val}, function(confirm){
@@ -170,7 +190,9 @@ $(document).ready(function() {
       b:false,
       color:false,
       fsize: false,
-      formats: [["p","Parrafo"],["h4","Titulos"],["h5","Subtitulos"]],
+      formats: false,
+      i: false,
+      u: false,
       p: false,
       remove: false,
       source: false,
@@ -201,6 +223,7 @@ function addLikes(id,action,total) {
     if(e == 'like'){
       total = parseInt(total) + 1;
       $("#like-"+id).html('<a  href="javascript:void(0)" onClick="addLikes(\''+id+'\',\'unlike\','+total+')" data-position="top" data-delay="50" data-tooltip="A '+total+' personas les ha gustado este poema"> <i class="fa fa-heart"></i> '+ total +' </a>');
+ 
     }else{
 
       total = parseInt(total) - 1;

@@ -90,7 +90,7 @@ class PublicacionesController extends InitController{
              <a href="pubID'.$content["pub_codigo"].'"><li><i class="fa fa-comments"></i></li></a>';
 
              if($tipoArticulo == 'Poema'){
-              echo '<a href="javascript:void(0)" onClick="dedicaPoema(\''.$content["pub_codigo"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')"><li><i class="fa fa-bullhorn"></i></li></a>';
+              echo '<a href="javascript:void(0)" onClick="dedicaPoema(\''.$content["pub_codigo"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')"><li><i class="fa fa-paper-plane"></i></li></a>';
              }
 
           echo '</ul>
@@ -100,7 +100,7 @@ class PublicacionesController extends InitController{
                <img src="'.$avatarPublic.'" alt="author" data-pin-nopin="true">
 
                <div class="author-date">
-                 <a class="h6 post__author-name fn" href="#">'.$content["poet_nick"].'</a>
+                 <a class="h6 post__author-name fn" href="poeta-'.base64_encode($content["poet_codigo"]).'">'.$content["poet_nick"].'</a>
                  <div class="post__date">
                    <time class="published" datetime="'.$content["pub_fechaPublicacion"].'T18:18">
                       '.$content["pub_fechaPublicacion"].'

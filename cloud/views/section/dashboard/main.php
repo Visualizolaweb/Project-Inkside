@@ -16,9 +16,18 @@
      $_SESSION["poeta"]["poet_codigo"] = $codigoPoeta["poet_codigo"];
   }
 
+
   $topMisPoemas = $poemas->misMasleidos($_SESSION["poeta"]["poet_codigo"]);
   $misSeguidores = $seguidores->yoSigo($_SESSION["poeta"]["poet_codigo"]);
-  $poemasContent = $poemas->poemas($misSeguidores['seg_seguidores']);
+
+  $misSeguidores = explode(",",$misSeguidores['seg_seguidores']);
+
+
+  if((count($misSeguidores[0])>0) and ($misSeguidores[0] != "")){
+    $poemasContent = $poemas->poemas($misSeguidores);
+  }else{
+    $poemasContent = $poemas->poemassinleer();
+  }
 
   require_once("controller/likes.controller.php");
   $likes = new likesController();
@@ -44,8 +53,8 @@
                     $avatar = $sugeridos['poet_foto'];
                   }
                   echo '<li class="collection-item avatar" id='.$sugeridos['poet_codigo'].'>
-                    <img src="'.$avatar.'" alt="" class="circle">
-                    <span class="title">'.$sugeridos['poet_nick'].'</span>
+                    <a href="poeta-'.base64_encode($sugeridos['poet_codigo']).'"><img src="'.$avatar.'" alt="" class="circle"></a>
+                    <span class="title"><a href="poeta-'.base64_encode($sugeridos['poet_codigo']).'">'.$sugeridos['poet_nick'].'</a></span>
                     <p>'.$sugeridos['ciu_nombre'].'
                     <a href="javascript:void(0)" onclick="add_poet(\''.$_SESSION["poeta"]["poet_codigo"].'\',\''.$sugeridos['poet_codigo'].'\')"><span class="new badge" data-badge-caption="Seguir">+</span></p></a>
                   </li>';
@@ -67,7 +76,7 @@
                 }else{
                   $color = "";
                 }
-                echo '<a href="#!" class="collection-item"><span class="new badge '.$color.'" data-badge-caption="Vistas">'.$puesto["pub_hits"].'</span>'.$puesto["pub_titulo"].'</a>';
+                echo '<a href="pubID'.$puesto["pub_codigo"].'" class="collection-item"><span class="new badge '.$color.'" data-badge-caption="Vistas">'.$puesto["pub_hits"].'</span>'.$puesto["pub_titulo"].'</a>';
               }
             ?>
           </div>
@@ -77,7 +86,7 @@
         <!-- Widget - Bienvenido -->
         <div class="panel message">
           <div class="icon-message cyan accent-3"><i class="fa fa-star"></i></div>
-          <p>Aquí podrás ver los poemas sugeridos según tus gustos</p>
+          <p>Aquí podrás ver los poemas de los poetas que sigues</p>
         </div>
         <!-- Widget - Poemas -->
         <?php
@@ -120,13 +129,13 @@
                   <ul>
                   <a href="javascript:void(0)" onClick="addLikes(\''.$content["pub_codigo"].'\',\''.$accion.'\',\''.$allLikes.'\')"><li><i class="fa fa-heart"></i></li></a>
                   <a href="pubID'.$content["pub_codigo"].'"><li><i class="fa fa-comments"></i></li></a>
-                  <a href="javascript:void(0)" onClick="dedicaPoema(\''.$content["pub_codigo"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')"><li><i class="fa fa-bullhorn"></i></li></a>
+                  <a href="javascript:void(0)" onClick="dedicaPoema(\''.$content["pub_codigo"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')"><li><i class="fa fa-paper-plane"></i></li></a>
                   </ul>
                 </div>
                  <div class="post__author author vcard inline-items">
       							<img src="'.$avatarPublic.'" alt="author" data-pin-nopin="true">
       							<div class="author-date">
-      								<a class="h6 post__author-name fn" href="#">'.$content["poet_nick"].'</a>
+      								<a class="h6 post__author-name fn" href="poeta-'.base64_encode($content["poet_codigo"]).'">'.$content["poet_nick"].'</a>
       								<div class="post__date">
       									<time class="published" datetime="'.$content["pub_fechaPublicacion"].'T18:18">
       									   '.$content["pub_fechaPublicacion"].'
@@ -171,25 +180,45 @@
           </div>
         </div>
 
-        <div class="panel followers">
-          <div class="panel-title">Poetas que te siguen!</div>
-            <ul>
-              <?php
-              require_once("controller/seguidores.controller.php");
-              $seguidores = new SeguidoresController();
 
-              foreach ($seguidores->misSeguidores($_SESSION["poeta"]["poet_codigo"]) as $seguidor){
-                  if($seguidor["pdesc_avatar"] == ""){
-                     $avatarSeguidor = $seguidor["poet_foto"];
-                  }else{
-                    $avatarSeguidor = $seguidor["pdesc_avatar"];
-                  }
-                  echo '
-                  <li><img src="'.$avatarSeguidor.'" class="tooltipped blue-grey-text" data-position="bottom" data-delay="50" data-tooltip="'.$seguidor["poet_nick"].'"/></li>';
-              }
-              ?>
-            </ul>
-        </div>
-      </div>
+        <ul class="collapsible" data-collapsible="accordion">
+          <li>
+            <div class="collapsible-header"><b>Tus sigues a...</b></div>
+            <div class="collapsible-body">
+              <ul>
+                <?php
+                foreach ($seguidores->miComunidad(implode(",",$misSeguidores)) as $seguidor){
+                    if($seguidor["pdesc_avatar"] == ""){
+                       $avatarSeguidor = $seguidor["poet_foto"];
+                    }else{
+                      $avatarSeguidor = $seguidor["pdesc_avatar"];
+                    }
+                    echo '
+                    <li><a href="poeta-'.base64_encode($seguidor["codigo"]).'"><img src="'.$avatarSeguidor.'" class="tooltipped blue-grey-text" data-position="bottom" data-delay="50" data-tooltip="'.$seguidor["poet_nick"].'"/></a></li>';
+                }
+                ?>
+              </ul>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header"><b>Tus seguidores...</b></div>
+            <div class="collapsible-body">
+                  <ul>
+                    <?php
+                    foreach ($seguidores->misSeguidores($_SESSION["poeta"]["poet_codigo"]) as $seguidor){
+                        if($seguidor["pdesc_avatar"] == ""){
+                           $avatarSeguidor = $seguidor["poet_foto"];
+                        }else{
+                          $avatarSeguidor = $seguidor["pdesc_avatar"];
+                        }
+                        echo '
+                        <li><a href="poeta-'.base64_encode($seguidor["poet_codigo"]).'"><img src="'.$avatarSeguidor.'" class="tooltipped blue-grey-text" data-position="bottom" data-delay="50" data-tooltip="'.$seguidor["poet_nick"].'"/></a></li>';
+                    }
+                    ?>
+                  </ul>
+            </div>
+          </li>
+        </ul>
+
     </div>
 </section>

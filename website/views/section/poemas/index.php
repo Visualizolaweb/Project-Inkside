@@ -66,7 +66,7 @@
           <ul>
           <?php
             foreach ($categorias->categoriabyId($contenido['catePub_codigo']) as $key => $value) {
-              echo '<li   class="chip teal lighten-5">'.$value["catePub_nombre"].'</li>';
+              echo '<a href="categoria-'.$value["catePub_codigo"].'"><li   class="chip teal lighten-5">'.$value["catePub_nombre"].'</li></a>';
             }
           ?>
           </ul>

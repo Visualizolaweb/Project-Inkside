@@ -18,7 +18,7 @@
       <div class="file-field input-field">
          <div class="btn z-depth-0" style="margin-top: 4px;">
             <span>Agregar Portada</span>
-            <input type="file" name="txt_imgPortada">
+            <input type="file" name="txt_imgPortada" accept="image/*">
          </div>
          <div class="file-path-wrapper">
             <input class="file-path validate" type="text">
@@ -34,7 +34,7 @@
 
       <div class="input-field col s12">
         <label for="txt_contenido">Inspirate y escribe</label><br>
-        <textarea rows="20" name="data[3]" id="txt_contenido" required></textarea>
+        <textarea rows="20" name="data[3]" id="txt_contenido" required maxlength="6000"></textarea>
       </div>
 
       <input id="txt_audio" type="hidden" name="data[4]" autocomplete="off">

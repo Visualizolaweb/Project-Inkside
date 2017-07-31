@@ -53,10 +53,10 @@ $cargacomentarios = $comentarios->comentarios($_GET["pid"]);
           <div class="control-button">
             <ul>
               <?php
-
-        echo '  <a href="javascript:void(0)" onClick="dedicaPoema(\''.$_GET["pid"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')"><li><i class="fa fa-bullhorn"></i></li></a>';
+                echo '  <a href="javascript:void(0)" onClick="dedicaPoema(\''.$_GET["pid"].'\',\''.$_SESSION["poeta"]["poet_codigo"].'\')"><li><i class="fa fa-paper-plane"></i></li></a>';
 
                ?>
+
             </ul>
           </div>
 
@@ -64,12 +64,15 @@ $cargacomentarios = $comentarios->comentarios($_GET["pid"]);
 							<img src="<?php echo $avatar ?>" alt="author" data-pin-nopin="true">
 
 							<div class="author-date">
-								<a class="h6 post__author-name fn" href="#"><?php echo $detalle["poet_nick"] ?></a>
-								<div class="post__date">
+								<a class="h6 post__author-name fn" href="poeta-<?php echo base64_encode($detalle["poet_codigo"])?>"><?php echo $detalle["poet_nick"] ?></a>
+
+                <div class="post__date">
 									<time class="published" datetime="<?php echo $detalle["pub_fechaPublicacion"]; ?>T18:18">
 									   Publicado el <?php echo $detalle["pub_fechaPublicacion"] ?>.
 									</time>
 								</div>
+
+
 							</div>
   				</div>
 

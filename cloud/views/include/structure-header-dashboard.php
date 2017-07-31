@@ -7,6 +7,7 @@
       require_once("controller/correo.controller.php");
       $correo = new CorreoController();
       $sinLeer = $correo->MensajeNoLeidos();
+      
       if($sinLeer>=1){
         $noLeidos = $sinLeer[1];
       }else{

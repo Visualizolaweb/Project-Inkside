@@ -20,7 +20,7 @@ body{
 
 .fixed-sidebar{
   position: fixed;
-  width: 250px;
+  width: 190px;
   z-index: 22;
   min-height: 1000vh;}
 
@@ -28,7 +28,7 @@ body{
     position: absolute;
     height: 100%;
     background-color: #fff;
-    width: 250px;}
+    width: 190px;}
 
 .logo-inkside{
   padding: 10px 5px;
@@ -49,7 +49,7 @@ header{
   left: 0;
   right: 0;
   z-index: 21;
-  margin-left: 250px;}
+  margin-left: 190px;}
 
 .profile{
   margin-top:10px;}
@@ -72,7 +72,7 @@ header{
   top:70px !important;}
 
 #wrap-container{
-  margin-left: 250px;
+  margin-left: 190px;
   padding-top: 70px;}
 
 
@@ -403,7 +403,6 @@ h5.title{
 .header-section{
   padding-bottom: 30px;
   margin-bottom: 20px;
-  border-bottom: 1px solid #ccc;
   display: inline;
 }
 
@@ -584,9 +583,14 @@ tr.odd {
   display: flex;
 }
 
-.detail-poet .row .profile-poet{
-  justify-content: center;
+#Suggest .title a{
+  color: inherit;
 }
+
+.profile-poet img{
+  width: 80px;
+}
+
 
 .detail-poet .row div{
   display: flex;
@@ -595,5 +599,30 @@ tr.odd {
 
 .sec-publicaciones.comunity {
   position: relative;
-  top: 170px;
+  top: 20px;
+}
+
+.collapsible-body{
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+}
+
+.collapsible-body ul{
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.collapsible-body ul li{
+  width: 60px;
+  height: 60px;
+  padding: 5px;
+}
+
+.collapsible-body ul li img{
+  width: 100%;
+  border-radius: 350px
 }

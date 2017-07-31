@@ -76,8 +76,12 @@ class PoemasController extends InitController{
     return $result;
   }
 
-  public function poemas(){
-    $result = $this->poemas->cargaPoemas();
+  public function poemas($seguidores){
+    $result = $this->poemas->cargaPoemas($seguidores);
+    return $result;
+  }
+  public function poemassinleer(){
+    $result = $this->poemas->cargaPoemasmenosleidos();
     return $result;
   }
 

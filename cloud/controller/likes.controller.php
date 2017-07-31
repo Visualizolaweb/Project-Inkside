@@ -24,7 +24,7 @@ class likesController{
       }elseif ($totResultado==1) {
         if($likesyAvatars[0]['poet_codigo']==$_SESSION["poeta"]["poet_codigo"]){
           echo '<div class="pic-profiles">
-                  <a href="!#">
+                  <a href="poeta-'.base64_encode($likesyAvatars[0]['poet_codigo']).'">
                     <ul>
                       <li><img src="'.$likesyAvatars[0]['poet_foto'].'"  class="thum-poem"/></li>
                     </ul>
@@ -33,7 +33,7 @@ class likesController{
             echo '<div class="poets-like">Te gusta esta publicación</div>';
         }else{
             echo '<div class="pic-profiles">
-                  <a href="!#">
+                  <a href="poeta-'.base64_encode($likesyAvatars[0]['poet_codigo']).'">
                     <ul>
                       <li><img src="'.$likesyAvatars[0]['poet_foto'].'"  class="thum-poem"/></li>
                     </ul>
@@ -43,7 +43,7 @@ class likesController{
         }
       }else{
       echo '<div class="pic-profiles">
-              <a href="!#">
+              <a href="poeta-'.base64_encode($likesyAvatars[0]['poet_codigo']).'">
                 <ul>';
 
                   if($totResultado >= 5){
